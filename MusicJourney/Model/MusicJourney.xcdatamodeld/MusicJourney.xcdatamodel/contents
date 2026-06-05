@@ -7,14 +7,12 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="status" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="objective" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Objective" inverseName="goals" inverseEntity="Objective"/>
     </entity>
     <entity name="Objective" representedClassName="Objective" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="status" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="goals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Goal" inverseName="objective" inverseEntity="Goal"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
@@ -27,8 +25,8 @@
         <attribute name="streak" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Goal" positionX="-112.2616577148438" positionY="-173.5850982666016" width="128" height="164"/>
-        <element name="Objective" positionX="-311.5968322753906" positionY="-74.92616271972656" width="128" height="89"/>
+        <element name="Goal" positionX="-112.2616577148438" positionY="-173.5850982666016" width="128" height="163"/>
+        <element name="Objective" positionX="-311.5968322753906" positionY="-74.92616271972656" width="128" height="88"/>
         <element name="User" positionX="-354.8726806640625" positionY="-295.0977783203125" width="128" height="148"/>
     </elements>
 </model>

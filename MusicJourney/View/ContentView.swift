@@ -4,19 +4,20 @@
 //
 //  Created by Academy on 05/06/26.
 //
+
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
         TabView {
-            ObjectiveListView()
+            JourneyView()
                 .tabItem {
-                    Label("Jornada", systemImage: "map.fill")
+                    Label("Jornada", systemImage: "map")
                 }
             
             UserProfileView()
                 .tabItem {
-                    Label("Perfil", systemImage: "person.crop.circle.fill")
+                    Label("Histórico", systemImage: "clock.fill")
                 }
         }
     }
