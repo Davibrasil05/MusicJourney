@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21H1320" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Achievement" representedClassName="Achievement" syncable="YES" codeGenerationType="class">
+        <attribute name="condition_value" optional="YES" attributeType="String"/>
+        <attribute name="description_achievement" optional="YES" attributeType="String"/>
+        <attribute name="icon" optional="YES" attributeType="URI"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lock" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Goal" representedClassName="Goal" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="description_name" optional="YES" attributeType="String"/>
@@ -30,5 +39,6 @@
         <element name="Goal" positionX="-112.2616577148438" positionY="-173.5850982666016" width="128" height="164"/>
         <element name="Objective" positionX="-311.5968322753906" positionY="-74.92616271972656" width="128" height="89"/>
         <element name="User" positionX="-354.8726806640625" positionY="-295.0977783203125" width="128" height="148"/>
+        <element name="Achievement" positionX="-198" positionY="-108" width="128" height="134"/>
     </elements>
 </model>
