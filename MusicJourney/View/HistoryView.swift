@@ -12,5 +12,3 @@ struct HistoryView: View {
         Text("Histórico")
     }
 }
-
-
