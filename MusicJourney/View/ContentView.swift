@@ -4,7 +4,6 @@
 //
 //  Created by Academy on 05/06/26.
 //
-
 import SwiftUI
 import CoreData
 
@@ -30,14 +29,14 @@ struct ContentView: View {
 struct MainTabView: View {
     var body: some View {
         TabView {
-            JourneyView()
+            ObjectiveListView()
                 .tabItem {
-                    Label("Jornada", systemImage: "map")
+                    Label("Jornada", systemImage: "map.fill")
                 }
 
             HistoryView()
                 .tabItem {
-                    Label("Histórico", systemImage: "clock.fill")
+                    Label("Perfil", systemImage: "person.crop.circle.fill")
                 }
         }
     }

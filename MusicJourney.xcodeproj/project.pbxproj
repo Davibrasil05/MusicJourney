@@ -154,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				9F667CFB2FD340100068DE50 /* Persistence.swift */,
+				9F667D282FD3529A0068DE50 /* UserViewModel.swift */,
+				9F667D2A2FD352AD0068DE50 /* ObjectiveViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -298,10 +300,14 @@
 			files = (
 				9F667CFC2FD340100068DE50 /* Persistence.swift in Sources */,
 				9F667CF52FD3400D0068DE50 /* ContentView.swift in Sources */,
+				9F667D2B2FD352AD0068DE50 /* ObjectiveViewModel.swift in Sources */,
+				9F667D352FD353F70068DE50 /* ObjectiveDetailView.swift in Sources */,
+				9F667D332FD353DF0068DE50 /* ObjectiveListView.swift in Sources */,
 				9F667D252FD3409E0068DE50 /* HistoryView.swift in Sources */,
 				9F667D272FD340AC0068DE50 /* JourneyView.swift in Sources */,
 				9F667D282FD341000068DE50 /* OnboardingFormView.swift in Sources */,
 				9F667CFF2FD340100068DE50 /* MusicJourney.xcdatamodeld in Sources */,
+				9F667D292FD3529A0068DE50 /* UserViewModel.swift in Sources */,
 				9F667CF32FD3400D0068DE50 /* MusicJourneyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
