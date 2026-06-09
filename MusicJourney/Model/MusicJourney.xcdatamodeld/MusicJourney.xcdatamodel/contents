@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21H1320" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Achievement" representedClassName="Achievement" syncable="YES">
+    <entity name="Achievement" representedClassName="Achievement" syncable="YES" codeGenerationType="class">
         <attribute name="achievementDescription" optional="YES" attributeType="String"/>
         <attribute name="conditionValue" optional="YES" attributeType="String"/>
         <attribute name="icon" optional="YES" attributeType="URI"/>
@@ -9,16 +9,16 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="unlockedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="User"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="User" inverseName="achievements" inverseEntity="User"/>
     </entity>
-    <entity name="Annotation" representedClassName="Annotation" syncable="YES">
+    <entity name="Annotation" representedClassName="Annotation" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="text" optional="YES" attributeType="String"/>
         <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Goal" inverseName="notes" inverseEntity="Goal"/>
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="notes" inverseEntity="Session"/>
     </entity>
-    <entity name="Goal" representedClassName="Goal" syncable="YES">
+    <entity name="Goal" representedClassName="Goal" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="completedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="difficulty" optional="YES" attributeType="String"/>
@@ -35,7 +35,7 @@
         <relationship name="recordings" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recording" inverseName="goal" inverseEntity="Recording"/>
         <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Session" inverseName="goal" inverseEntity="Session"/>
     </entity>
-    <entity name="Objective" representedClassName="Objective" syncable="YES">
+    <entity name="Objective" representedClassName="Objective" syncable="YES" codeGenerationType="class">
         <attribute name="completedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="descriptionText" optional="YES" attributeType="String"/>
@@ -44,9 +44,9 @@
         <attribute name="progress" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="status" optional="YES" attributeType="String"/>
         <relationship name="goals" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Goal" inverseName="objective" inverseEntity="Goal"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="objective" inverseEntity="User"/>
     </entity>
-    <entity name="Recording" representedClassName="Recording" syncable="YES">
+    <entity name="Recording" representedClassName="Recording" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="fileURL" optional="YES" attributeType="String"/>
@@ -55,7 +55,7 @@
         <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Goal" inverseName="recordings" inverseEntity="Goal"/>
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="recordings" inverseEntity="Session"/>
     </entity>
-    <entity name="Session" representedClassName="Session" syncable="YES">
+    <entity name="Session" representedClassName="Session" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -63,7 +63,7 @@
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Annotation" inverseName="session" inverseEntity="Annotation"/>
         <relationship name="recordings" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recording" inverseName="session" inverseEntity="Recording"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES">
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
         <attribute name="experienceLevel" optional="YES" attributeType="String"/>
         <attribute name="genres" optional="YES" attributeType="Transformable"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -73,16 +73,16 @@
         <attribute name="practiceSchedule" optional="YES" attributeType="String"/>
         <attribute name="streak" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="xp" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="achievements" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Achievement"/>
-        <relationship name="objective" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Objective"/>
+        <relationship name="achievements" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Achievement" inverseName="user" inverseEntity="Achievement"/>
+        <relationship name="objective" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Objective" inverseName="user" inverseEntity="Objective"/>
     </entity>
     <elements>
-        <element name="Achievement" positionX="-118.8275146484376" positionY="-339.2253570556641" width="128" height="28"/>
-        <element name="Annotation" positionX="-11.08807373046875" positionY="-71.25056457519531" width="128" height="28"/>
-        <element name="Goal" positionX="-257.9225463867189" positionY="-146.4799346923828" width="128" height="28"/>
-        <element name="Objective" positionX="-447.0709838867188" positionY="-112.2295074462891" width="128" height="28"/>
-        <element name="Recording" positionX="218.2617187499999" positionY="-227.2450408935547" width="128" height="28"/>
-        <element name="Session" positionX="166.3582153320313" positionY="27.47775268554685" width="128" height="28"/>
-        <element name="User" positionX="-458.3980102539062" positionY="-471.661376953125" width="142.8009033203125" height="28"/>
+        <element name="Achievement" positionX="-118.8275146484376" positionY="-339.2253570556641" width="128" height="164"/>
+        <element name="Annotation" positionX="-11.08807373046875" positionY="-71.25056457519531" width="128" height="104"/>
+        <element name="Goal" positionX="-257.9225463867189" positionY="-146.4799346923828" width="128" height="254"/>
+        <element name="Objective" positionX="-447.0709838867188" positionY="-112.2295074462891" width="128" height="164"/>
+        <element name="Recording" positionX="218.2617187499999" positionY="-227.2450408935547" width="128" height="134"/>
+        <element name="Session" positionX="166.3582153320313" positionY="27.47775268554685" width="128" height="119"/>
+        <element name="User" positionX="-458.3980102539062" positionY="-471.661376953125" width="142.8009033203125" height="194"/>
     </elements>
 </model>

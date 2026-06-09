@@ -22,7 +22,7 @@ struct UserProfileView: View {
                             get: { user.instrument ?? "" }, set: { user.instrument = $0 }
                         ))
                         TextField("Nível (ex: Intermediário)", text: Binding(
-                            get: { user.level_instrument ?? "" }, set: { user.level_instrument = $0 }
+                            get: { user.experienceLevel ?? "" }, set: { user.experienceLevel = $0 }
                         ))
                     }
                     
@@ -37,7 +37,7 @@ struct UserProfileView: View {
                         HStack {
                             Text("Experiência (XP)")
                             Spacer()
-                            Text("\(user.experience) / 100 XP")
+                            Text("\(user.xp) / 100 XP")
                                 .foregroundColor(.green)
                         }
                         

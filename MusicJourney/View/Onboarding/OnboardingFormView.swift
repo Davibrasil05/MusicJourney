@@ -179,9 +179,9 @@ struct OnboardingFormView: View {
         user.id = UUID()
         user.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
         user.instrument = instrument.rawValue
-        user.level_instrument = selectedLevel.rawValue
+        user.experienceLevel = selectedLevel.rawValue
         user.level = levelValue(for: selectedLevel)
-        user.experience = 0
+        user.xp = 0
         user.streak = 0
 
         do {

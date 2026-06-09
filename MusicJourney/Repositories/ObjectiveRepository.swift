@@ -21,8 +21,11 @@ class ObjectiveViewModel: ObservableObject {
     // MARK: - READ (Buscar)
     func fetchObjectives() {
         let request = NSFetchRequest<Objective>(entityName: "Objective")
-        // Opcional: Adicionar um sortDescriptor para ordenar alfabeticamente
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \Objective.name, ascending: true)]
+        // Ordena pela data de criação e pelo nome
+        request.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Objective.createdAt, ascending: false),
+            NSSortDescriptor(keyPath: \Objective.name, ascending: true)
+        ]
         
         do {
             objectives = try context.fetch(request)
@@ -32,28 +35,31 @@ class ObjectiveViewModel: ObservableObject {
     }
     
     // MARK: - CREATE (Criar Objetivo)
-    func addObjective(name: String) {
+    func addObjective(name: String, descriptionText: String = "") {
         let newObjective = Objective(context: context)
         newObjective.id = UUID()
         newObjective.name = name
-        newObjective.status = false
+        newObjective.descriptionText = descriptionText
+        newObjective.createdAt = Date()
+        newObjective.progress = 0
+        newObjective.status = "active" // <- Mudou: Agora usamos String
         
         saveContext()
         fetchObjectives() // Atualiza a lista após salvar
     }
     
     // MARK: - CREATE (Criar Meta / Goal para um Objetivo)
-    // MARK: - CREATE (Criar Meta / Goal para um Objetivo)
-    func addGoal(to objective: Objective, name: String, descriptionName: String, category: String, difficulty: String, priority: Int16, time: Date) {
+    func addGoal(to objective: Objective, name: String, textDescription: String, category: String, difficulty: String, order: Int16) {
         let newGoal = Goal(context: context)
         newGoal.id = UUID()
         newGoal.name = name
-        newGoal.description_name = descriptionName
+        newGoal.textDescription = textDescription // <- Mudou: Estava description_name
         newGoal.category = category
         newGoal.difficulty = difficulty
-        newGoal.priority = priority
-        newGoal.time = time
-        newGoal.status = false
+        newGoal.order = order // <- Mudou: Substituiu o antigo 'priority'
+        newGoal.isFinal = false // Default
+        newGoal.xpReward = 0
+        newGoal.status = "locked" // <- Mudou: Pode ser "locked", "unlocked", "completed"
         
         newGoal.objective = objective // Relacionamento seguro
         
@@ -85,15 +91,32 @@ class ObjectiveViewModel: ObservableObject {
         fetchObjectives()
     }
     
-    // MARK: - TOGGLE STATUS
+    // MARK: - TOGGLE STATUS (Agora com Strings)
     func toggleObjectiveStatus(objective: Objective) {
-        objective.status.toggle()
+        if objective.status == "active" {
+            objective.status = "completed"
+            objective.completedAt = Date() // Salva a data que concluiu
+        } else {
+            objective.status = "active"
+            objective.completedAt = nil // Remove a data se reabrir
+        }
+        
         saveContext()
         fetchObjectives()
     }
     
     func toggleGoalStatus(goal: Goal) {
-        goal.status.toggle()
+        // Exemplo de fluxo: Bloqueada -> Desbloqueada -> Concluída
+        if goal.status == "locked" {
+            goal.status = "unlocked"
+        } else if goal.status == "unlocked" {
+            goal.status = "completed"
+            goal.completedAt = Date()
+        } else {
+            goal.status = "unlocked" // Volta pra destravada se o usuário desmarcar
+            goal.completedAt = nil
+        }
+        
         saveContext()
         fetchObjectives()
     }

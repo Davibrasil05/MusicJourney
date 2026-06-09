@@ -34,7 +34,7 @@ struct MainTabView: View {
                     Label("Jornada", systemImage: "map.fill")
                 }
 
-            HistoryView()
+            UserProfileView()
                 .tabItem {
                     Label("Perfil", systemImage: "person.crop.circle.fill")
                 }
