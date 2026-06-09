@@ -17,3 +17,9 @@ xcuserdata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+### Cursor ###
+.cursor/rules/
+.cursor/skills/
+.cursorignore
+.cursorindexingignore
