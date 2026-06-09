@@ -18,7 +18,7 @@ class MetronomeService {
     
     init() {
         // DICA: Se você usou um arquivo .mp3 em vez de .wav, não esqueça de mudar a extensão aqui!
-        guard let url = Bundle.main.url(forResource: "click", withExtension: "mp3") else {
+        guard let url = Bundle.main.url(forResource: "click1", withExtension: "mp3") else {
             print("⚠️ Aviso: Arquivo click não encontrado no projeto.")
             return
         }
