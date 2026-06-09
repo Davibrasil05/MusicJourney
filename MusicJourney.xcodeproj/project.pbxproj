@@ -475,6 +475,7 @@
 				9FB83B0E2FD8803F007A06E0 /* Session.swift in Sources */,
 				9FDC4E662FD8867500C62F3C /* FeedBack.swift in Sources */,
 				9FDC4E682FD8868100C62F3C /* SessionView.swift in Sources */,
+				9FE541D12FD890DD00675C89 /* OnboardingFormView.swift in Sources */,
 				9F7C7ED52FD75ECE009961ED /* UserViewRepository.swift in Sources */,
 				AA1B3C4D5E6F7A8B9C0D1E2F /* OnboardingStepHeader.swift in Sources */,
 				BB1B3C4D5E6F7A8B9C0D1E2F /* OnboardingOptionRow.swift in Sources */,
