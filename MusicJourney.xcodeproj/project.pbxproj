@@ -16,11 +16,18 @@
 		9F667D252FD3409E0068DE50 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667D242FD3409E0068DE50 /* HistoryView.swift */; };
 		9F667D272FD340AC0068DE50 /* JourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667D262FD340AC0068DE50 /* JourneyView.swift */; };
 		9F667D282FD341000068DE50 /* OnboardingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667D2A2FD341000068DE50 /* OnboardingFormView.swift */; };
-		9F7C7ED42FD75ECE009961ED /* ObjectiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED22FD75ECD009961ED /* ObjectiveViewModel.swift */; };
-		9F7C7ED52FD75ECE009961ED /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED32FD75ECE009961ED /* UserViewModel.swift */; };
+		9F7C7ED42FD75ECE009961ED /* ObjectiveRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED22FD75ECD009961ED /* ObjectiveRepository.swift */; };
+		9F7C7ED52FD75ECE009961ED /* UserViewRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED32FD75ECE009961ED /* UserViewRepository.swift */; };
 		9F7C7ED92FD75EF3009961ED /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED62FD75EF2009961ED /* UserProfileView.swift */; };
 		9F7C7EDA2FD75EF3009961ED /* ObjectiveDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED72FD75EF2009961ED /* ObjectiveDetailView.swift */; };
 		9F7C7EDB2FD75EF3009961ED /* ObjectiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED82FD75EF3009961ED /* ObjectiveListView.swift */; };
+		9FB83B082FD8800B007A06E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B072FD8800B007A06E0 /* User.swift */; };
+		9FB83B0A2FD8801A007A06E0 /* Objective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B092FD8801A007A06E0 /* Objective.swift */; };
+		9FB83B0C2FD8802D007A06E0 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B0B2FD8802D007A06E0 /* Goal.swift */; };
+		9FB83B0E2FD8803F007A06E0 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B0D2FD8803F007A06E0 /* Session.swift */; };
+		9FB83B102FD8804D007A06E0 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B0F2FD8804D007A06E0 /* Recording.swift */; };
+		9FB83B122FD8805C007A06E0 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B112FD8805C007A06E0 /* Annotation.swift */; };
+		9FB83B142FD8806A007A06E0 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B132FD8806A007A06E0 /* Badge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,11 +60,18 @@
 		9F667D242FD3409E0068DE50 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		9F667D262FD340AC0068DE50 /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
 		9F667D2A2FD341000068DE50 /* OnboardingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFormView.swift; sourceTree = "<group>"; };
-		9F7C7ED22FD75ECD009961ED /* ObjectiveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveViewModel.swift; sourceTree = "<group>"; };
-		9F7C7ED32FD75ECE009961ED /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		9F7C7ED22FD75ECD009961ED /* ObjectiveRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveRepository.swift; sourceTree = "<group>"; };
+		9F7C7ED32FD75ECE009961ED /* UserViewRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewRepository.swift; sourceTree = "<group>"; };
 		9F7C7ED62FD75EF2009961ED /* UserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		9F7C7ED72FD75EF2009961ED /* ObjectiveDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveDetailView.swift; sourceTree = "<group>"; };
 		9F7C7ED82FD75EF3009961ED /* ObjectiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveListView.swift; sourceTree = "<group>"; };
+		9FB83B072FD8800B007A06E0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9FB83B092FD8801A007A06E0 /* Objective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objective.swift; sourceTree = "<group>"; };
+		9FB83B0B2FD8802D007A06E0 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		9FB83B0D2FD8803F007A06E0 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		9FB83B0F2FD8804D007A06E0 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
+		9FB83B112FD8805C007A06E0 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		9FB83B132FD8806A007A06E0 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,9 +120,12 @@
 		9F667CF12FD3400D0068DE50 /* MusicJourney */ = {
 			isa = PBXGroup;
 			children = (
+				9FB83B212FD88225007A06E0 /* App */,
+				9FB83B202FD8821E007A06E0 /* Extensions */,
+				9FB83B1F2FD88211007A06E0 /* Services */,
+				9FB83B152FD88093007A06E0 /* Repositories */,
 				9F667CF22FD3400D0068DE50 /* MusicJourneyApp.swift */,
 				9F667D232FD340490068DE50 /* Model */,
-				9F667D222FD340380068DE50 /* ViewModel */,
 				9F667D212FD3402D0068DE50 /* View */,
 				9F667CF62FD340100068DE50 /* Assets.xcassets */,
 				9F667CF82FD340100068DE50 /* Preview Content */,
@@ -127,33 +144,133 @@
 		9F667D212FD3402D0068DE50 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9F7C7ED72FD75EF2009961ED /* ObjectiveDetailView.swift */,
-				9F7C7ED82FD75EF3009961ED /* ObjectiveListView.swift */,
+				9FB83B1E2FD88201007A06E0 /* Componentes */,
+				9FB83B1D2FD881FA007A06E0 /* History */,
+				9FB83B1C2FD881EC007A06E0 /* Retrospective */,
+				9FB83B1B2FD881E7007A06E0 /* Feedback */,
+				9FB83B1A2FD881DF007A06E0 /* Session */,
+				9FB83B192FD881D3007A06E0 /* GoalManagement */,
+				9FB83B182FD881BD007A06E0 /* Objective */,
+				9FB83B172FD881B3007A06E0 /* Home */,
+				9FB83B162FD881AC007A06E0 /* Onboarding */,
 				9F7C7ED62FD75EF2009961ED /* UserProfileView.swift */,
 				9F667CF42FD3400D0068DE50 /* ContentView.swift */,
-				9F667D242FD3409E0068DE50 /* HistoryView.swift */,
 				9F667D262FD340AC0068DE50 /* JourneyView.swift */,
-				9F667D2A2FD341000068DE50 /* OnboardingFormView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		9F667D222FD340380068DE50 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				9F7C7ED22FD75ECD009961ED /* ObjectiveViewModel.swift */,
-				9F7C7ED32FD75ECE009961ED /* UserViewModel.swift */,
-				9F667CFB2FD340100068DE50 /* Persistence.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		9F667D232FD340490068DE50 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				9F667CFD2FD340100068DE50 /* MusicJourney.xcdatamodeld */,
+				9FB83B072FD8800B007A06E0 /* User.swift */,
+				9FB83B092FD8801A007A06E0 /* Objective.swift */,
+				9FB83B0B2FD8802D007A06E0 /* Goal.swift */,
+				9FB83B0D2FD8803F007A06E0 /* Session.swift */,
+				9FB83B0F2FD8804D007A06E0 /* Recording.swift */,
+				9FB83B112FD8805C007A06E0 /* Annotation.swift */,
+				9FB83B132FD8806A007A06E0 /* Badge.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9FB83B152FD88093007A06E0 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				9F7C7ED22FD75ECD009961ED /* ObjectiveRepository.swift */,
+				9F7C7ED32FD75ECE009961ED /* UserViewRepository.swift */,
+				9F667CFB2FD340100068DE50 /* Persistence.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		9FB83B162FD881AC007A06E0 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				9F667D2A2FD341000068DE50 /* OnboardingFormView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		9FB83B172FD881B3007A06E0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		9FB83B182FD881BD007A06E0 /* Objective */ = {
+			isa = PBXGroup;
+			children = (
+				9F7C7ED72FD75EF2009961ED /* ObjectiveDetailView.swift */,
+				9F7C7ED82FD75EF3009961ED /* ObjectiveListView.swift */,
+			);
+			path = Objective;
+			sourceTree = "<group>";
+		};
+		9FB83B192FD881D3007A06E0 /* GoalManagement */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GoalManagement;
+			sourceTree = "<group>";
+		};
+		9FB83B1A2FD881DF007A06E0 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		9FB83B1B2FD881E7007A06E0 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		9FB83B1C2FD881EC007A06E0 /* Retrospective */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Retrospective;
+			sourceTree = "<group>";
+		};
+		9FB83B1D2FD881FA007A06E0 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				9F667D242FD3409E0068DE50 /* HistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		9FB83B1E2FD88201007A06E0 /* Componentes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Componentes;
+			sourceTree = "<group>";
+		};
+		9FB83B1F2FD88211007A06E0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9FB83B202FD8821E007A06E0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9FB83B212FD88225007A06E0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,18 +403,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FB83B082FD8800B007A06E0 /* User.swift in Sources */,
 				9F7C7EDB2FD75EF3009961ED /* ObjectiveListView.swift in Sources */,
 				9F667CFC2FD340100068DE50 /* Persistence.swift in Sources */,
 				9F667CF52FD3400D0068DE50 /* ContentView.swift in Sources */,
-				9F7C7ED42FD75ECE009961ED /* ObjectiveViewModel.swift in Sources */,
+				9F7C7ED42FD75ECE009961ED /* ObjectiveRepository.swift in Sources */,
+				9FB83B0A2FD8801A007A06E0 /* Objective.swift in Sources */,
 				9F7C7EDA2FD75EF3009961ED /* ObjectiveDetailView.swift in Sources */,
 				9F667D252FD3409E0068DE50 /* HistoryView.swift in Sources */,
 				9F667D272FD340AC0068DE50 /* JourneyView.swift in Sources */,
 				9F7C7ED92FD75EF3009961ED /* UserProfileView.swift in Sources */,
 				9F667D282FD341000068DE50 /* OnboardingFormView.swift in Sources */,
+				9FB83B102FD8804D007A06E0 /* Recording.swift in Sources */,
 				9F667CFF2FD340100068DE50 /* MusicJourney.xcdatamodeld in Sources */,
-				9F7C7ED52FD75ECE009961ED /* UserViewModel.swift in Sources */,
+				9FB83B0E2FD8803F007A06E0 /* Session.swift in Sources */,
+				9F7C7ED52FD75ECE009961ED /* UserViewRepository.swift in Sources */,
+				9FB83B0C2FD8802D007A06E0 /* Goal.swift in Sources */,
+				9FB83B122FD8805C007A06E0 /* Annotation.swift in Sources */,
 				9F667CF32FD3400D0068DE50 /* MusicJourneyApp.swift in Sources */,
+				9FB83B142FD8806A007A06E0 /* Badge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
