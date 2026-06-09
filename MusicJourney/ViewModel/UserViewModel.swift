@@ -29,9 +29,9 @@ class UserViewModel: ObservableObject {
                 newUser.id = UUID()
                 newUser.name = "Novo Músico"
                 newUser.instrument = "Violão"
-                newUser.level_instrument = "Iniciante"
+                newUser.experienceLevel = "Iniciante"
                 newUser.level = 1
-                newUser.experience = 0
+                newUser.xp = 0
                 newUser.streak = 0
                 
                 try context.save()
@@ -49,10 +49,10 @@ class UserViewModel: ObservableObject {
     // Função divertida para testar a XP!
     func gainXP(amount: Int16) {
         guard let user = currentUser else { return }
-        user.experience += amount
-        if user.experience >= 100 { // Se passar de 100XP, sobe de nível!
+        user.xp += amount
+        if user.xp >= 100 { // Se passar de 100XP, sobe de nível!
             user.level += 1
-            user.experience = 0 // Reseta a XP para o próximo nível
+            user.xp = 0 // Reseta a XP para o próximo nível
         }
         saveChanges()
     }
