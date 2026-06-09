@@ -18,8 +18,15 @@ xcuserdata/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+### Project specific ###
+Contexto/
+
 ### Cursor ###
 .cursor/rules/
 .cursor/skills/
 .cursorignore
 .cursorindexingignore
+
+
+.DS_Store
+UserInterfaceState.xcuserstate

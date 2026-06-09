@@ -18,7 +18,6 @@
 		9F667CFF2FD340100068DE50 /* MusicJourney.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F667CFD2FD340100068DE50 /* MusicJourney.xcdatamodeld */; };
 		9F667D252FD3409E0068DE50 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667D242FD3409E0068DE50 /* HistoryView.swift */; };
 		9F667D272FD340AC0068DE50 /* JourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667D262FD340AC0068DE50 /* JourneyView.swift */; };
-		9F667D282FD341000068DE50 /* OnboardingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667D2A2FD341000068DE50 /* OnboardingFormView.swift */; };
 		9F667D8A2FD884F40068DE50 /* testeapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667D892FD884F40068DE50 /* testeapp.swift */; };
 		9F667D8C2FD885CC0068DE50 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667D8B2FD885CC0068DE50 /* Extensions.swift */; };
 		9F667D8E2FD885DC0068DE50 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667D8D2FD885DC0068DE50 /* Services.swift */; };
@@ -35,12 +34,20 @@
 		9FB83B102FD8804D007A06E0 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B0F2FD8804D007A06E0 /* Recording.swift */; };
 		9FB83B122FD8805C007A06E0 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B112FD8805C007A06E0 /* Annotation.swift */; };
 		9FB83B142FD8806A007A06E0 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B132FD8806A007A06E0 /* Badge.swift */; };
+		9FB83B272FD88AFF007A06E0 /* YoutubeURLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B262FD88AFF007A06E0 /* YoutubeURLParser.swift */; };
+		9FB83B292FD88B16007A06E0 /* YoutubePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B282FD88B16007A06E0 /* YoutubePlayerView.swift */; };
 		9FDC4E622FD8865100C62F3C /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E612FD8865100C62F3C /* Components.swift */; };
 		9FDC4E642FD8865F00C62F3C /* Retrospective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E632FD8865F00C62F3C /* Retrospective.swift */; };
 		9FDC4E662FD8867500C62F3C /* FeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E652FD8867500C62F3C /* FeedBack.swift */; };
 		9FDC4E682FD8868100C62F3C /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E672FD8868100C62F3C /* SessionView.swift */; };
 		9FDC4E6A2FD8869400C62F3C /* GoalManagment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E692FD8869400C62F3C /* GoalManagment.swift */; };
 		9FDC4E6C2FD886A000C62F3C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E6B2FD886A000C62F3C /* Home.swift */; };
+		9FE541D12FD890DD00675C89 /* OnboardingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE541CE2FD890DA00675C89 /* OnboardingFormView.swift */; };
+		AA1B3C4D5E6F7A8B9C0D1E2F /* OnboardingStepHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1B3C4D5E6F7A8B9C0D1E3A /* OnboardingStepHeader.swift */; };
+		BB1B3C4D5E6F7A8B9C0D1E2F /* OnboardingOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B3C4D5E6F7A8B9C0D1E3A /* OnboardingOptionRow.swift */; };
+		CC1B3C4D5E6F7A8B9C0D1E2F /* OnboardingInstrumentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1B3C4D5E6F7A8B9C0D1E3A /* OnboardingInstrumentCard.swift */; };
+		DD1B3C4D5E6F7A8B9C0D1E2F /* OnboardingGenreChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B3C4D5E6F7A8B9C0D1E3A /* OnboardingGenreChip.swift */; };
+		EE1B3C4D5E6F7A8B9C0D1E2F /* OnboardingPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +82,6 @@
 		9F667D0E2FD340110068DE50 /* MusicJourneyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicJourneyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F667D242FD3409E0068DE50 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		9F667D262FD340AC0068DE50 /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
-		9F667D2A2FD341000068DE50 /* OnboardingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFormView.swift; sourceTree = "<group>"; };
 		9F667D892FD884F40068DE50 /* testeapp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testeapp.swift; sourceTree = "<group>"; };
 		9F667D8B2FD885CC0068DE50 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9F667D8D2FD885DC0068DE50 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Services.swift; path = MusicJourney/Extensions/Services.swift; sourceTree = SOURCE_ROOT; };
@@ -92,12 +98,20 @@
 		9FB83B0F2FD8804D007A06E0 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		9FB83B112FD8805C007A06E0 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		9FB83B132FD8806A007A06E0 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		9FB83B262FD88AFF007A06E0 /* YoutubeURLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = YoutubeURLParser.swift; path = MusicJourney/YoutubeURLParser.swift; sourceTree = SOURCE_ROOT; };
+		9FB83B282FD88B16007A06E0 /* YoutubePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = YoutubePlayerView.swift; path = MusicJourney/YoutubePlayerView.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E612FD8865100C62F3C /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Components.swift; path = MusicJourney/Extensions/Components.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E632FD8865F00C62F3C /* Retrospective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Retrospective.swift; path = MusicJourney/Extensions/Retrospective.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E652FD8867500C62F3C /* FeedBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeedBack.swift; path = MusicJourney/Extensions/FeedBack.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E672FD8868100C62F3C /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SessionView.swift; path = MusicJourney/Extensions/SessionView.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E692FD8869400C62F3C /* GoalManagment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoalManagment.swift; path = MusicJourney/Extensions/GoalManagment.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E6B2FD886A000C62F3C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Home.swift; path = MusicJourney/Extensions/Home.swift; sourceTree = SOURCE_ROOT; };
+		9FE541CE2FD890DA00675C89 /* OnboardingFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFormView.swift; sourceTree = "<group>"; };
+		AA1B3C4D5E6F7A8B9C0D1E3A /* OnboardingStepHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStepHeader.swift; sourceTree = "<group>"; };
+		BB1B3C4D5E6F7A8B9C0D1E3A /* OnboardingOptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOptionRow.swift; sourceTree = "<group>"; };
+		CC1B3C4D5E6F7A8B9C0D1E3A /* OnboardingInstrumentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInstrumentCard.swift; sourceTree = "<group>"; };
+		DD1B3C4D5E6F7A8B9C0D1E3A /* OnboardingGenreChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGenreChip.swift; sourceTree = "<group>"; };
+		EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPrimaryButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,7 +238,8 @@
 		9FB83B162FD881AC007A06E0 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				9F667D2A2FD341000068DE50 /* OnboardingFormView.swift */,
+				FF1B3C4D5E6F7A8B9C0D1E2F /* Components */,
+				9FE541CE2FD890DA00675C89 /* OnboardingFormView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -290,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				9FDC4E612FD8865100C62F3C /* Components.swift */,
+				9FB83B282FD88B16007A06E0 /* YoutubePlayerView.swift */,
 			);
 			path = Componentes;
 			sourceTree = "<group>";
@@ -299,6 +315,7 @@
 			children = (
 				9F667D8D2FD885DC0068DE50 /* Services.swift */,
 				9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */,
+				9FB83B262FD88AFF007A06E0 /* YoutubeURLParser.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -318,6 +335,18 @@
 				9F667D892FD884F40068DE50 /* testeapp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		FF1B3C4D5E6F7A8B9C0D1E2F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AA1B3C4D5E6F7A8B9C0D1E3A /* OnboardingStepHeader.swift */,
+				BB1B3C4D5E6F7A8B9C0D1E3A /* OnboardingOptionRow.swift */,
+				CC1B3C4D5E6F7A8B9C0D1E3A /* OnboardingInstrumentCard.swift */,
+				DD1B3C4D5E6F7A8B9C0D1E3A /* OnboardingGenreChip.swift */,
+				EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,6 +482,7 @@
 			files = (
 				9FB83B082FD8800B007A06E0 /* User.swift in Sources */,
 				9F664BB42FD8A70E00DEA9D7 /* MetronomeOverlayView.swift in Sources */,
+				9FB83B292FD88B16007A06E0 /* YoutubePlayerView.swift in Sources */,
 				9F7C7EDB2FD75EF3009961ED /* ObjectiveListView.swift in Sources */,
 				9F667CFC2FD340100068DE50 /* Persistence.swift in Sources */,
 				9F667D8E2FD885DC0068DE50 /* Services.swift in Sources */,
@@ -468,6 +498,7 @@
 				9FDC4E622FD8865100C62F3C /* Components.swift in Sources */,
 				9F667D272FD340AC0068DE50 /* JourneyView.swift in Sources */,
 				9F7C7ED92FD75EF3009961ED /* UserProfileView.swift in Sources */,
+				9FB83B272FD88AFF007A06E0 /* YoutubeURLParser.swift in Sources */,
 				9F667D282FD341000068DE50 /* OnboardingFormView.swift in Sources */,
 				9FB83B102FD8804D007A06E0 /* Recording.swift in Sources */,
 				9F664BB22FD8A6F600DEA9D7 /* PraticeSessionViewModel.swift in Sources */,
@@ -476,7 +507,13 @@
 				9FB83B0E2FD8803F007A06E0 /* Session.swift in Sources */,
 				9FDC4E662FD8867500C62F3C /* FeedBack.swift in Sources */,
 				9FDC4E682FD8868100C62F3C /* SessionView.swift in Sources */,
+				9FE541D12FD890DD00675C89 /* OnboardingFormView.swift in Sources */,
 				9F7C7ED52FD75ECE009961ED /* UserViewRepository.swift in Sources */,
+				AA1B3C4D5E6F7A8B9C0D1E2F /* OnboardingStepHeader.swift in Sources */,
+				BB1B3C4D5E6F7A8B9C0D1E2F /* OnboardingOptionRow.swift in Sources */,
+				CC1B3C4D5E6F7A8B9C0D1E2F /* OnboardingInstrumentCard.swift in Sources */,
+				DD1B3C4D5E6F7A8B9C0D1E2F /* OnboardingGenreChip.swift in Sources */,
+				EE1B3C4D5E6F7A8B9C0D1E2F /* OnboardingPrimaryButton.swift in Sources */,
 				9FB83B0C2FD8802D007A06E0 /* Goal.swift in Sources */,
 				9F664BAF2FD8A6C700DEA9D7 /* MetroronomeService.swift in Sources */,
 				9FB83B122FD8805C007A06E0 /* Annotation.swift in Sources */,
