@@ -109,8 +109,8 @@ struct YouTubePlayerView: UIViewRepresentable {
     }
 }
 
-struct YoutubePlayerView_Previews: PreviewProvider {
-    static var previews: some View {
-        YoutubePlayerView()
-    }
-}
+//struct YoutubePlayerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        YoutubePlayerView()
+//    }
+//}
