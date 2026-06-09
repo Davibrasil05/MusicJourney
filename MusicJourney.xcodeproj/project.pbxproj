@@ -31,6 +31,8 @@
 		9FB83B102FD8804D007A06E0 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B0F2FD8804D007A06E0 /* Recording.swift */; };
 		9FB83B122FD8805C007A06E0 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B112FD8805C007A06E0 /* Annotation.swift */; };
 		9FB83B142FD8806A007A06E0 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B132FD8806A007A06E0 /* Badge.swift */; };
+		9FB83B272FD88AFF007A06E0 /* YoutubeURLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B262FD88AFF007A06E0 /* YoutubeURLParser.swift */; };
+		9FB83B292FD88B16007A06E0 /* YoutubePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B282FD88B16007A06E0 /* YoutubePlayerView.swift */; };
 		9FDC4E622FD8865100C62F3C /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E612FD8865100C62F3C /* Components.swift */; };
 		9FDC4E642FD8865F00C62F3C /* Retrospective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E632FD8865F00C62F3C /* Retrospective.swift */; };
 		9FDC4E662FD8867500C62F3C /* FeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E652FD8867500C62F3C /* FeedBack.swift */; };
@@ -84,6 +86,8 @@
 		9FB83B0F2FD8804D007A06E0 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		9FB83B112FD8805C007A06E0 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		9FB83B132FD8806A007A06E0 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		9FB83B262FD88AFF007A06E0 /* YoutubeURLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = YoutubeURLParser.swift; path = MusicJourney/YoutubeURLParser.swift; sourceTree = SOURCE_ROOT; };
+		9FB83B282FD88B16007A06E0 /* YoutubePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = YoutubePlayerView.swift; path = MusicJourney/YoutubePlayerView.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E612FD8865100C62F3C /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Components.swift; path = MusicJourney/Extensions/Components.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E632FD8865F00C62F3C /* Retrospective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Retrospective.swift; path = MusicJourney/Extensions/Retrospective.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E652FD8867500C62F3C /* FeedBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeedBack.swift; path = MusicJourney/Extensions/FeedBack.swift; sourceTree = SOURCE_ROOT; };
@@ -272,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				9FDC4E612FD8865100C62F3C /* Components.swift */,
+				9FB83B282FD88B16007A06E0 /* YoutubePlayerView.swift */,
 			);
 			path = Componentes;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				9F667D8D2FD885DC0068DE50 /* Services.swift */,
+				9FB83B262FD88AFF007A06E0 /* YoutubeURLParser.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -431,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FB83B082FD8800B007A06E0 /* User.swift in Sources */,
+				9FB83B292FD88B16007A06E0 /* YoutubePlayerView.swift in Sources */,
 				9F7C7EDB2FD75EF3009961ED /* ObjectiveListView.swift in Sources */,
 				9F667CFC2FD340100068DE50 /* Persistence.swift in Sources */,
 				9F667D8E2FD885DC0068DE50 /* Services.swift in Sources */,
@@ -446,6 +453,7 @@
 				9FDC4E622FD8865100C62F3C /* Components.swift in Sources */,
 				9F667D272FD340AC0068DE50 /* JourneyView.swift in Sources */,
 				9F7C7ED92FD75EF3009961ED /* UserProfileView.swift in Sources */,
+				9FB83B272FD88AFF007A06E0 /* YoutubeURLParser.swift in Sources */,
 				9F667D282FD341000068DE50 /* OnboardingFormView.swift in Sources */,
 				9FB83B102FD8804D007A06E0 /* Recording.swift in Sources */,
 				9F667D8C2FD885CC0068DE50 /* Extensions.swift in Sources */,
