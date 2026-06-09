@@ -34,7 +34,7 @@
 		9FDC4E622FD8865100C62F3C /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E612FD8865100C62F3C /* Components.swift */; };
 		9FDC4E642FD8865F00C62F3C /* Retrospective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E632FD8865F00C62F3C /* Retrospective.swift */; };
 		9FDC4E662FD8867500C62F3C /* FeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E652FD8867500C62F3C /* FeedBack.swift */; };
-		9FDC4E682FD8868100C62F3C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E672FD8868100C62F3C /* Session.swift */; };
+		9FDC4E682FD8868100C62F3C /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E672FD8868100C62F3C /* SessionView.swift */; };
 		9FDC4E6A2FD8869400C62F3C /* GoalManagment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E692FD8869400C62F3C /* GoalManagment.swift */; };
 		9FDC4E6C2FD886A000C62F3C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E6B2FD886A000C62F3C /* Home.swift */; };
 /* End PBXBuildFile section */
@@ -87,7 +87,7 @@
 		9FDC4E612FD8865100C62F3C /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Components.swift; path = MusicJourney/Extensions/Components.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E632FD8865F00C62F3C /* Retrospective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Retrospective.swift; path = MusicJourney/Extensions/Retrospective.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E652FD8867500C62F3C /* FeedBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeedBack.swift; path = MusicJourney/Extensions/FeedBack.swift; sourceTree = SOURCE_ROOT; };
-		9FDC4E672FD8868100C62F3C /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Session.swift; path = MusicJourney/Extensions/Session.swift; sourceTree = SOURCE_ROOT; };
+		9FDC4E672FD8868100C62F3C /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SessionView.swift; path = MusicJourney/Extensions/SessionView.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E692FD8869400C62F3C /* GoalManagment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoalManagment.swift; path = MusicJourney/Extensions/GoalManagment.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E6B2FD886A000C62F3C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Home.swift; path = MusicJourney/Extensions/Home.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -239,7 +239,7 @@
 		9FB83B1A2FD881DF007A06E0 /* Session */ = {
 			isa = PBXGroup;
 			children = (
-				9FDC4E672FD8868100C62F3C /* Session.swift */,
+				9FDC4E672FD8868100C62F3C /* SessionView.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -452,7 +452,7 @@
 				9F667CFF2FD340100068DE50 /* MusicJourney.xcdatamodeld in Sources */,
 				9FB83B0E2FD8803F007A06E0 /* Session.swift in Sources */,
 				9FDC4E662FD8867500C62F3C /* FeedBack.swift in Sources */,
-				9FDC4E682FD8868100C62F3C /* Session.swift in Sources */,
+				9FDC4E682FD8868100C62F3C /* SessionView.swift in Sources */,
 				9F7C7ED52FD75ECE009961ED /* UserViewRepository.swift in Sources */,
 				9FB83B0C2FD8802D007A06E0 /* Goal.swift in Sources */,
 				9FB83B122FD8805C007A06E0 /* Annotation.swift in Sources */,
