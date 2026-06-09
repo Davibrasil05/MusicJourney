@@ -26,3 +26,7 @@ Contexto/
 .cursor/skills/
 .cursorignore
 .cursorindexingignore
+
+
+.DS_Store
+UserInterfaceState.xcuserstate
