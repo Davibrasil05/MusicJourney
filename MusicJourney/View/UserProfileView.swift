@@ -49,6 +49,18 @@ struct UserProfileView: View {
                         }
                     }
                     
+                    // MARK: - Nova Seção: Ferramentas
+                    Section(header: Text("Ferramentas de Prática")) {
+                        // Navega para a view do metrônomo que criamos
+                        NavigationLink(destination: MetronomeOverlayView(viewModel: PracticeSessionViewModel())) {
+                            HStack {
+                                Image(systemName: "metronome.fill") // Ícone bem legal do SF Symbols
+                                    .foregroundColor(.blue)
+                                Text("Testar Metrônomo")
+                            }
+                        }
+                    }
+                    
                     // Um botão para você testar como a gamificação vai funcionar depois
                     Button(action: { viewModel.gainXP(amount: 15) }) {
                         Text("Praticar (Ganhar +15 XP)")

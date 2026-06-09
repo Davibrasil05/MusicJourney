@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F664BAF2FD8A6C700DEA9D7 /* MetroronomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */; };
+		9F664BB22FD8A6F600DEA9D7 /* PraticeSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */; };
+		9F664BB42FD8A70E00DEA9D7 /* MetronomeOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BB32FD8A70E00DEA9D7 /* MetronomeOverlayView.swift */; };
 		9F667CF32FD3400D0068DE50 /* MusicJourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667CF22FD3400D0068DE50 /* MusicJourneyApp.swift */; };
 		9F667CF52FD3400D0068DE50 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667CF42FD3400D0068DE50 /* ContentView.swift */; };
 		9F667CF72FD340100068DE50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F667CF62FD340100068DE50 /* Assets.xcassets */; };
@@ -23,6 +26,7 @@
 		9F7C7ED92FD75EF3009961ED /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED62FD75EF2009961ED /* UserProfileView.swift */; };
 		9F7C7EDA2FD75EF3009961ED /* ObjectiveDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED72FD75EF2009961ED /* ObjectiveDetailView.swift */; };
 		9F7C7EDB2FD75EF3009961ED /* ObjectiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED82FD75EF3009961ED /* ObjectiveListView.swift */; };
+		9F880EE12FD8AC4A00D9E169 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9F880EE02FD8AC4A00D9E169 /* click.mp3 */; };
 		9FB83B082FD8800B007A06E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B072FD8800B007A06E0 /* User.swift */; };
 		9FB83B0A2FD8801A007A06E0 /* Objective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B092FD8801A007A06E0 /* Objective.swift */; };
 		9FB83B0C2FD8802D007A06E0 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B0B2FD8802D007A06E0 /* Goal.swift */; };
@@ -64,6 +68,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MetroronomeService.swift; path = MusicJourney/View/MetroronomeService.swift; sourceTree = SOURCE_ROOT; };
+		9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PraticeSessionViewModel.swift; sourceTree = "<group>"; };
+		9F664BB32FD8A70E00DEA9D7 /* MetronomeOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeOverlayView.swift; sourceTree = "<group>"; };
 		9F667CEF2FD3400D0068DE50 /* MusicJourney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicJourney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F667CF22FD3400D0068DE50 /* MusicJourneyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicJourneyApp.swift; sourceTree = "<group>"; };
 		9F667CF42FD3400D0068DE50 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,6 +90,7 @@
 		9F7C7ED62FD75EF2009961ED /* UserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		9F7C7ED72FD75EF2009961ED /* ObjectiveDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveDetailView.swift; sourceTree = "<group>"; };
 		9F7C7ED82FD75EF3009961ED /* ObjectiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveListView.swift; sourceTree = "<group>"; };
+		9F880EE02FD8AC4A00D9E169 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = click.mp3; path = ../../../../Downloads/click.mp3; sourceTree = "<group>"; };
 		9FB83B072FD8800B007A06E0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9FB83B092FD8801A007A06E0 /* Objective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objective.swift; sourceTree = "<group>"; };
 		9FB83B0B2FD8802D007A06E0 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
@@ -131,6 +139,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F664BB02FD8A6D600DEA9D7 /* Metronome */ = {
+			isa = PBXGroup;
+			children = (
+				9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */,
+				9F664BB32FD8A70E00DEA9D7 /* MetronomeOverlayView.swift */,
+			);
+			path = Metronome;
+			sourceTree = "<group>";
+		};
 		9F667CE62FD3400D0068DE50 = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +193,7 @@
 		9F667D212FD3402D0068DE50 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9F664BB02FD8A6D600DEA9D7 /* Metronome */,
 				9FB83B1E2FD88201007A06E0 /* Componentes */,
 				9FB83B1D2FD881FA007A06E0 /* History */,
 				9FB83B1C2FD881EC007A06E0 /* Retrospective */,
@@ -296,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				9F667D8D2FD885DC0068DE50 /* Services.swift */,
+				9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */,
 				9FB83B262FD88AFF007A06E0 /* YoutubeURLParser.swift */,
 			);
 			path = Services;
@@ -312,6 +331,7 @@
 		9FB83B212FD88225007A06E0 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				9F880EE02FD8AC4A00D9E169 /* click.mp3 */,
 				9F667D892FD884F40068DE50 /* testeapp.swift */,
 			);
 			path = App;
@@ -433,6 +453,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F880EE12FD8AC4A00D9E169 /* click.mp3 in Resources */,
 				9F667CFA2FD340100068DE50 /* Preview Assets.xcassets in Resources */,
 				9F667CF72FD340100068DE50 /* Assets.xcassets in Resources */,
 			);
@@ -460,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FB83B082FD8800B007A06E0 /* User.swift in Sources */,
+				9F664BB42FD8A70E00DEA9D7 /* MetronomeOverlayView.swift in Sources */,
 				9FB83B292FD88B16007A06E0 /* YoutubePlayerView.swift in Sources */,
 				9F7C7EDB2FD75EF3009961ED /* ObjectiveListView.swift in Sources */,
 				9F667CFC2FD340100068DE50 /* Persistence.swift in Sources */,
@@ -479,6 +501,7 @@
 				9FB83B272FD88AFF007A06E0 /* YoutubeURLParser.swift in Sources */,
 				9F667D282FD341000068DE50 /* OnboardingFormView.swift in Sources */,
 				9FB83B102FD8804D007A06E0 /* Recording.swift in Sources */,
+				9F664BB22FD8A6F600DEA9D7 /* PraticeSessionViewModel.swift in Sources */,
 				9F667D8C2FD885CC0068DE50 /* Extensions.swift in Sources */,
 				9F667CFF2FD340100068DE50 /* MusicJourney.xcdatamodeld in Sources */,
 				9FB83B0E2FD8803F007A06E0 /* Session.swift in Sources */,
@@ -492,6 +515,7 @@
 				DD1B3C4D5E6F7A8B9C0D1E2F /* OnboardingGenreChip.swift in Sources */,
 				EE1B3C4D5E6F7A8B9C0D1E2F /* OnboardingPrimaryButton.swift in Sources */,
 				9FB83B0C2FD8802D007A06E0 /* Goal.swift in Sources */,
+				9F664BAF2FD8A6C700DEA9D7 /* MetroronomeService.swift in Sources */,
 				9FB83B122FD8805C007A06E0 /* Annotation.swift in Sources */,
 				9F667CF32FD3400D0068DE50 /* MusicJourneyApp.swift in Sources */,
 				9FB83B142FD8806A007A06E0 /* Badge.swift in Sources */,
