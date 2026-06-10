@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class ObjectiveViewModel: ObservableObject {
+class ObjectiveRepository: ObservableObject {
     let context = PersistenceController.shared.container.viewContext
     
     // Lista de objetivos publicados para a View observar
