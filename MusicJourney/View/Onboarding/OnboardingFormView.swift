@@ -6,26 +6,10 @@
 import SwiftUI
 import CoreData
 
-// MARK: - Temporary enums (will be replaced with CoreData attributes)
-
-enum MusicInstrument: String, CaseIterable, Identifiable {
-    case violao   = "Violão"
-    case tambor   = "Tambor"
-    case pandeiro = "Pandeiro"
-
-    var id: String { rawValue }
-
-    var sfSymbol: String {
-        switch self {
-        case .violao:   return "guitars"
-        case .tambor:   return "music.note.list"
-        case .pandeiro: return "waveform"
-        }
-    }
-}
+// MARK: - Enums (temporary until CoreData model is finalised)
 
 enum MusicLevel: String, CaseIterable, Identifiable {
-    case basico        = "Básico"
+    case iniciante     = "Iniciante"
     case intermediario = "Intermediário"
     case avancado      = "Avançado"
 
@@ -33,158 +17,180 @@ enum MusicLevel: String, CaseIterable, Identifiable {
 
     var levelValue: Int16 {
         switch self {
-        case .basico:        return 0
+        case .iniciante:     return 0
         case .intermediario: return 1
         case .avancado:      return 2
         }
     }
 }
 
-// MARK: - View
+enum MusicInstrument: String, CaseIterable, Identifiable {
+    case violao  = "Violão"
+    case ukulele = "Ukulele"
+    case teclado = "Teclado"
+    case bateria = "Bateria"
+
+    var id: String { rawValue }
+
+    var assetName: String {
+        switch self {
+        case .violao:  return "instrument-violao"
+        case .ukulele: return "instrument-ukulele"
+        case .teclado: return "instrument-teclado"
+        case .bateria: return "instrument-bateria"
+        }
+    }
+}
+
+enum MusicGenre: String, CaseIterable, Identifiable {
+    case rock    = "Rock"
+    case pop     = "Pop"
+    case mpb     = "MPB"
+    case jazz    = "Jazz"
+    case samba   = "Samba"
+    case gospel  = "Gospel"
+    case pagode  = "Pagode"
+    case classica = "Clássica"
+
+    var id: String { rawValue }
+}
+
+enum PracticeSchedule: String, CaseIterable, Identifiable {
+    case manha = "Manhã"
+    case tarde = "Tarde"
+    case noite = "Noite"
+
+    var id: String { rawValue }
+
+    var assetName: String {
+        switch self {
+        case .manha: return "schedule-manha"
+        case .tarde: return "schedule-tarde"
+        case .noite: return "schedule-noite"
+        }
+    }
+}
+
+// MARK: - Wizard Orchestrator
 
 struct OnboardingFormView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @AppStorage("onboardingCompleted") private var onboardingCompleted = false
 
-    @State private var name = ""
-    @State private var selectedLevel: MusicLevel = .basico
-    @State private var selectedInstrument: MusicInstrument?
-    @State private var showValidationError = false
+    @State private var currentStep: Int = 0
+    @State private var direction: Int = 1
 
-    private var canFinish: Bool {
-        !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && selectedInstrument != nil
+    @State private var selectedLevel: MusicLevel?
+    @State private var selectedInstrument: MusicInstrument?
+    @State private var selectedGenres: Set<MusicGenre> = []
+    @State private var selectedSchedule: PracticeSchedule?
+
+    private var canAdvance: Bool {
+        switch currentStep {
+        case 0: return true
+        case 1: return selectedLevel != nil
+        case 2: return selectedInstrument != nil
+        case 3: return !selectedGenres.isEmpty
+        case 4: return selectedSchedule != nil
+        default: return false
+        }
+    }
+
+    private var slideTransition: AnyTransition {
+        let insertion = AnyTransition.move(edge: direction > 0 ? .trailing : .leading)
+            .combined(with: .opacity)
+        let removal   = AnyTransition.move(edge: direction > 0 ? .leading  : .trailing)
+            .combined(with: .opacity)
+        return .asymmetric(insertion: insertion, removal: removal)
     }
 
     var body: some View {
-        GeometryReader { geometry in
-            VStack(spacing: 0) {
-                headerSection
-                    .frame(height: geometry.size.height * 0.18)
-                    .background(Color("headerGreen"))
+        ZStack {
+            stepView
+                .transition(slideTransition)
+                .id(currentStep)
+        }
+        .animation(.easeInOut(duration: 0.3), value: currentStep)
+    }
 
-                formCard
-                    .frame(maxHeight: .infinity)
-            }
-            .background(Color("headerGreen").ignoresSafeArea())
+    // MARK: - Step router
+
+    @ViewBuilder
+    private var stepView: some View {
+        switch currentStep {
+        case 0:
+            OnboardingWelcomeStep(
+                currentStep: currentStep,
+                onNext: advance
+            )
+        case 1:
+            OnboardingLevelStep(
+                currentStep: currentStep,
+                selectedLevel: $selectedLevel,
+                canAdvance: canAdvance,
+                onBack: goBack,
+                onNext: advance
+            )
+        case 2:
+            OnboardingInstrumentStep(
+                currentStep: currentStep,
+                selectedInstrument: $selectedInstrument,
+                canAdvance: canAdvance,
+                onBack: goBack,
+                onNext: advance
+            )
+        case 3:
+            OnboardingGenreStep(
+                currentStep: currentStep,
+                selectedGenres: $selectedGenres,
+                canAdvance: canAdvance,
+                onBack: goBack,
+                onNext: advance
+            )
+        case 4:
+            OnboardingScheduleStep(
+                currentStep: currentStep,
+                selectedSchedule: $selectedSchedule,
+                canAdvance: canAdvance,
+                onBack: goBack,
+                onFinish: finishOnboarding
+            )
+        default:
+            EmptyView()
         }
     }
 
-    // MARK: - Header
+    // MARK: - Navigation
 
-    private var headerSection: some View {
-        Text("Bem Vindo!")
-            .font(.system(size: 28, weight: .bold))
-            .foregroundColor(Color("textDark"))
-            .frame(maxWidth: .infinity)
-            .padding(.top, 56)
-    }
-
-    // MARK: - Card
-
-    private var formCard: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 20) {
-                Text("Vamos começar com formulário")
-                    .font(.system(size: 22, weight: .bold))
-                    .foregroundColor(Color("textDark"))
-                    .frame(maxWidth: .infinity)
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 24)
-                    .padding(.bottom, 8)
-
-                formField(title: "Nome") {
-                    TextField("Seu nome", text: $name)
-                        .font(.system(size: 16))
-                        .foregroundColor(Color("textDark"))
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 14)
-                        .background(Color("inputGray"))
-                        .cornerRadius(14)
-                }
-
-                formField(title: "Nível") {
-                    Menu {
-                        ForEach(MusicLevel.allCases) { level in
-                            Button(level.rawValue) { selectedLevel = level }
-                        }
-                    } label: {
-                        HStack {
-                            Text(selectedLevel.rawValue)
-                                .font(.system(size: 16))
-                                .foregroundColor(Color("textDark"))
-                            Spacer()
-                            Image(systemName: "chevron.down")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(Color("textDark").opacity(0.6))
-                        }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 14)
-                        .background(Color("inputGray"))
-                        .cornerRadius(14)
-                    }
-                }
-
-                formField(title: "Qual seu principal instrumento?") {
-                    HStack(spacing: 12) {
-                        ForEach(MusicInstrument.allCases) { instrument in
-                            OnboardingInstrumentCard(
-                                title: instrument.rawValue,
-                                sfSymbol: instrument.sfSymbol,
-                                isSelected: selectedInstrument == instrument,
-                                onTap: { selectedInstrument = instrument }
-                            )
-                        }
-                    }
-                }
-
-                if showValidationError {
-                    Text("Preencha seu nome e escolha um instrumento.")
-                        .font(.system(size: 14))
-                        .foregroundColor(.red)
-                }
-
-                OnboardingPrimaryButton(
-                    title: "Finalizar",
-                    isEnabled: canFinish,
-                    action: finishOnboarding
-                )
-                .padding(.top, 8)
-                .padding(.bottom, 32)
-            }
-            .padding(.horizontal, 24)
-        }
-        .background(
-            Color("cardCream")
-                .cornerRadius(32, corners: [.topLeft, .topRight])
-                .ignoresSafeArea(edges: .bottom)
-        )
-    }
-
-    // MARK: - Helpers
-
-    private func formField<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(Color("textDark"))
-            content()
+    private func advance() {
+        direction = 1
+        withAnimation(.easeInOut(duration: 0.3)) {
+            currentStep += 1
         }
     }
+
+    private func goBack() {
+        direction = -1
+        withAnimation(.easeInOut(duration: 0.3)) {
+            currentStep -= 1
+        }
+    }
+
+    // MARK: - Save
 
     private func finishOnboarding() {
-        guard canFinish, let instrument = selectedInstrument else {
-            showValidationError = true
-            return
-        }
+        guard let level = selectedLevel, let instrument = selectedInstrument else { return }
 
         let user = User(context: viewContext)
         user.id = UUID()
-        user.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        user.name = ""
         user.instrument = instrument.rawValue
-        user.experienceLevel = selectedLevel.rawValue
-        user.level = selectedLevel.levelValue
+        user.experienceLevel = level.rawValue
+        user.level = level.levelValue
         user.xp = 0
         user.streak = 0
+        user.practiceSchedule = selectedSchedule?.rawValue
+        user.genres = selectedGenres.map(\.rawValue) as NSArray
 
         do {
             try viewContext.save()
@@ -195,7 +201,7 @@ struct OnboardingFormView: View {
     }
 }
 
-// MARK: - Shape helpers
+// MARK: - Shape helpers (shared across onboarding)
 
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
@@ -226,5 +232,6 @@ struct OnboardingFormView_Previews: PreviewProvider {
                 \.managedObjectContext,
                  PersistenceController(inMemory: true).container.viewContext
             )
+            .previewDisplayName("OnboardingFormView")
     }
 }

@@ -16,7 +16,7 @@ struct OnboardingPrimaryButton: View {
             Text(title)
                 .font(.system(size: 17, weight: .bold))
                 .foregroundColor(
-                    isEnabled ? Color("textDark") : Color("textDark").opacity(0.35)
+                    isEnabled ? Color("cardCream") : Color("cardCream").opacity(0.5)
                 )
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 16)

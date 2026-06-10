@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23BB996F3C14482ABA9100B9 /* OnboardingDotsIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5EA7D73A64BA6B30114BE /* OnboardingDotsIndicator.swift */; };
+		33CCF1626BD9432BBB4BA50E /* OnboardingScheduleStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7764B744B6B45AC8CD2A2D3 /* OnboardingScheduleStep.swift */; };
+		36B5121B1B7C4053A0C13742 /* OnboardingTextOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772D3F92D74DFDBAD6B3EE /* OnboardingTextOptionButton.swift */; };
+		58A8C6D456334176AC462E67 /* OnboardingInstrumentStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */; };
+		7578F69B620143EBBF7B7779 /* OnboardingGenreStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */; };
 		9F664BAF2FD8A6C700DEA9D7 /* MetroronomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */; };
 		9F664BB22FD8A6F600DEA9D7 /* PraticeSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */; };
 		9F667CF32FD3400D0068DE50 /* MusicJourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667CF22FD3400D0068DE50 /* MusicJourneyApp.swift */; };
@@ -46,8 +51,10 @@
 		9FDC4E6C2FD886A000C62F3C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E6B2FD886A000C62F3C /* Home.swift */; };
 		9FE541D12FD890DD00675C89 /* OnboardingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE541CE2FD890DA00675C89 /* OnboardingFormView.swift */; };
 		AA1B3C4D5E6F7A8B9C0D1E2F /* OnboardingStepHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1B3C4D5E6F7A8B9C0D1E3A /* OnboardingStepHeader.swift */; };
+		B7BB8BD989574EA09AC87917 /* OnboardingWelcomeStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C8AD54C2464292BFF98B49 /* OnboardingWelcomeStep.swift */; };
 		BB1B3C4D5E6F7A8B9C0D1E2F /* OnboardingOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B3C4D5E6F7A8B9C0D1E3A /* OnboardingOptionRow.swift */; };
 		CC1B3C4D5E6F7A8B9C0D1E2F /* OnboardingInstrumentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1B3C4D5E6F7A8B9C0D1E3A /* OnboardingInstrumentCard.swift */; };
+		D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028732BB7354CA2A777C0F5 /* OnboardingLevelStep.swift */; };
 		DD1B3C4D5E6F7A8B9C0D1E2F /* OnboardingGenreChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B3C4D5E6F7A8B9C0D1E3A /* OnboardingGenreChip.swift */; };
 		EE1B3C4D5E6F7A8B9C0D1E2F /* OnboardingPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +77,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1028732BB7354CA2A777C0F5 /* OnboardingLevelStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLevelStep.swift; sourceTree = "<group>"; };
+		2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGenreStep.swift; sourceTree = "<group>"; };
+		55C8AD54C2464292BFF98B49 /* OnboardingWelcomeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeStep.swift; sourceTree = "<group>"; };
 		9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MetroronomeService.swift; path = MusicJourney/View/MetroronomeService.swift; sourceTree = SOURCE_ROOT; };
 		9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PraticeSessionViewModel.swift; sourceTree = "<group>"; };
 		9F664BB32FD8A70E00DEA9D7 /* MetronomeOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeOverlayView.swift; sourceTree = "<group>"; };
@@ -110,12 +120,16 @@
 		9FDC4E672FD8868100C62F3C /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SessionView.swift; path = MusicJourney/Extensions/SessionView.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E692FD8869400C62F3C /* GoalManagment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoalManagment.swift; path = MusicJourney/Extensions/GoalManagment.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E6B2FD886A000C62F3C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Home.swift; path = MusicJourney/Extensions/Home.swift; sourceTree = SOURCE_ROOT; };
-		9FE541CE2FD890DA00675C89 /* OnboardingFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFormView.swift; sourceTree = "<group>"; };
+		9FE541CE2FD890DA00675C89 /* OnboardingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFormView.swift; sourceTree = "<group>"; };
 		AA1B3C4D5E6F7A8B9C0D1E3A /* OnboardingStepHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStepHeader.swift; sourceTree = "<group>"; };
 		BB1B3C4D5E6F7A8B9C0D1E3A /* OnboardingOptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOptionRow.swift; sourceTree = "<group>"; };
 		CC1B3C4D5E6F7A8B9C0D1E3A /* OnboardingInstrumentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInstrumentCard.swift; sourceTree = "<group>"; };
+		CFF5EA7D73A64BA6B30114BE /* OnboardingDotsIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDotsIndicator.swift; sourceTree = "<group>"; };
+		D6772D3F92D74DFDBAD6B3EE /* OnboardingTextOptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTextOptionButton.swift; sourceTree = "<group>"; };
 		DD1B3C4D5E6F7A8B9C0D1E3A /* OnboardingGenreChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGenreChip.swift; sourceTree = "<group>"; };
+		DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInstrumentStep.swift; sourceTree = "<group>"; };
 		EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPrimaryButton.swift; sourceTree = "<group>"; };
+		F7764B744B6B45AC8CD2A2D3 /* OnboardingScheduleStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScheduleStep.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +266,11 @@
 			isa = PBXGroup;
 			children = (
 				FF1B3C4D5E6F7A8B9C0D1E2F /* Components */,
+				55C8AD54C2464292BFF98B49 /* OnboardingWelcomeStep.swift */,
+				1028732BB7354CA2A777C0F5 /* OnboardingLevelStep.swift */,
+				DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */,
+				2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */,
+				F7764B744B6B45AC8CD2A2D3 /* OnboardingScheduleStep.swift */,
 				9FE541CE2FD890DA00675C89 /* OnboardingFormView.swift */,
 			);
 			path = Onboarding;
@@ -354,6 +373,8 @@
 		FF1B3C4D5E6F7A8B9C0D1E2F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CFF5EA7D73A64BA6B30114BE /* OnboardingDotsIndicator.swift */,
+				D6772D3F92D74DFDBAD6B3EE /* OnboardingTextOptionButton.swift */,
 				AA1B3C4D5E6F7A8B9C0D1E3A /* OnboardingStepHeader.swift */,
 				BB1B3C4D5E6F7A8B9C0D1E3A /* OnboardingOptionRow.swift */,
 				CC1B3C4D5E6F7A8B9C0D1E3A /* OnboardingInstrumentCard.swift */,
@@ -522,6 +543,13 @@
 				9FDC4E662FD8867500C62F3C /* FeedBack.swift in Sources */,
 				9FDC4E682FD8868100C62F3C /* SessionView.swift in Sources */,
 				9FE541D12FD890DD00675C89 /* OnboardingFormView.swift in Sources */,
+				23BB996F3C14482ABA9100B9 /* OnboardingDotsIndicator.swift in Sources */,
+				36B5121B1B7C4053A0C13742 /* OnboardingTextOptionButton.swift in Sources */,
+				B7BB8BD989574EA09AC87917 /* OnboardingWelcomeStep.swift in Sources */,
+				D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */,
+				58A8C6D456334176AC462E67 /* OnboardingInstrumentStep.swift in Sources */,
+				7578F69B620143EBBF7B7779 /* OnboardingGenreStep.swift in Sources */,
+				33CCF1626BD9432BBB4BA50E /* OnboardingScheduleStep.swift in Sources */,
 				9F7C7ED52FD75ECE009961ED /* UserViewRepository.swift in Sources */,
 				AA1B3C4D5E6F7A8B9C0D1E2F /* OnboardingStepHeader.swift in Sources */,
 				BB1B3C4D5E6F7A8B9C0D1E2F /* OnboardingOptionRow.swift in Sources */,

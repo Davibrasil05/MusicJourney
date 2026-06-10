@@ -26,7 +26,7 @@ struct OnboardingGenreChip: View {
 
     private var chipBackground: some View {
         Capsule()
-            .fill(isSelected ? Color("buttonPurple") : Color("inputGray"))
+            .fill(isSelected ? Color("headerGreen") : Color("inputGray"))
     }
 }
 
