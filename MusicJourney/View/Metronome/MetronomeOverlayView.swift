@@ -1,14 +1,6 @@
-//
-//  MetronomeOverlayView.swift
-//  MusicJourney
-//
-//  Created by Academy on 09/06/26.
-//
-
 import SwiftUI
 
 struct MetronomeOverlayView: View {
-    // Passamos a mesma ViewModel que está na tela de Prática
     @ObservedObject var viewModel: PracticeSessionViewModel
     
     var body: some View {
