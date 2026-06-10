@@ -35,38 +35,41 @@ struct ObjectiveDetailView: View {
                         .foregroundColor(.gray)
                 } else {
                     ForEach(goals) { goal in
-                        HStack {
-                            // Mudou: Status agora é comparado como String
-                            Image(systemName: goal.status == "completed" ? "checkmark.square.fill" : "square")
-                                .foregroundColor(goal.status == "completed" ? .green : .gray)
-                                .onTapGesture {
-                                    viewModel.toggleGoalStatus(goal: goal)
-                                }
+                        NavigationLink(destination: GoalDetailView(goal: goal)) {
                             
-                            VStack(alignment: .leading, spacing: 4) {
-                                HStack {
-                                    Text(goal.name ?? "Meta sem nome")
-                                        .font(.headline)
-                                        .strikethrough(goal.status == "completed") // Mudou: String
-                                    Spacer()
-                                    // Bônus: Como não temos mais prioridade, coloquei uma estrelinha
-                                    // laranja caso a meta seja a dificuldade "Mestre"
-                                    if goal.difficulty == "Mestre" {
-                                        Image(systemName: "star.fill").foregroundColor(.orange)
+                            HStack {
+                                // Mudou: Status agora é comparado como String
+                                Image(systemName: goal.status == "completed" ? "checkmark.square.fill" : "square")
+                                    .foregroundColor(goal.status == "completed" ? .green : .gray)
+                                    .onTapGesture {
+                                        viewModel.toggleGoalStatus(goal: goal)
                                     }
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    HStack {
+                                        Text(goal.name ?? "Meta sem nome")
+                                            .font(.headline)
+                                            .strikethrough(goal.status == "completed") // Mudou: String
+                                        Spacer()
+                                        // Bônus: Como não temos mais prioridade, coloquei uma estrelinha
+                                        // laranja caso a meta seja a dificuldade "Mestre"
+                                        if goal.difficulty == "Mestre" {
+                                            Image(systemName: "star.fill").foregroundColor(.orange)
+                                        }
+                                    }
+                                    // Mudou: Agora é textDescription
+                                    Text(goal.textDescription ?? "").font(.subheadline)
+                                    HStack {
+                                        Text("Cat: \(goal.category ?? "")")
+                                        Text("• Dif: \(goal.difficulty ?? "")")
+                                    }
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
                                 }
-                                // Mudou: Agora é textDescription
-                                Text(goal.textDescription ?? "").font(.subheadline)
-                                HStack {
-                                    Text("Cat: \(goal.category ?? "")")
-                                    Text("• Dif: \(goal.difficulty ?? "")")
-                                }
-                                .font(.caption)
-                                .foregroundColor(.gray)
                             }
+                            .padding(.vertical, 4)
                         }
-                        .padding(.vertical, 4)
-                    }
+                        }
                     .onDelete { indexSet in
                         if let index = indexSet.first {
                             viewModel.deleteGoal(goal: goals[index])
