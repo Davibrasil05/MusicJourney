@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct ObjectiveListView: View {
-    @StateObject private var viewModel = ObjectiveViewModel()
+    @StateObject private var viewModel = ObjectiveRepository()
     
     @State private var showingAddSheet = false
     @State private var newObjectiveName = ""
