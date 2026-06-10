@@ -5,45 +5,42 @@
 
 import SwiftUI
 
-/// Card used in the Instrument selection step.
+/// 2x2 grid card for instrument selection. Uses a custom asset image.
 struct OnboardingInstrumentCard: View {
     let title: String
-    let sfSymbol: String
+    let assetName: String
     let isSelected: Bool
     let onTap: () -> Void
 
     var body: some View {
         Button(action: onTap) {
             VStack(spacing: 10) {
-                Image(systemName: sfSymbol)
-                    .font(.system(size: 26))
-                    .foregroundColor(
-                        isSelected ? Color("buttonPurple") : Color("textDark").opacity(0.5)
-                    )
-                    .frame(height: 34)
+                Image(assetName)
+                    .renderingMode(.template)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 48, height: 48)
+                    .foregroundColor(isSelected ? Color("cardCream") : Color("textDark").opacity(0.35))
 
                 Text(title)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(Color("textDark"))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.8)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(isSelected ? Color("cardCream") : Color("textDark"))
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 14)
-            .background(
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(Color("inputGray"))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 14)
-                            .stroke(
-                                isSelected ? Color("buttonPurple") : Color.clear,
-                                lineWidth: 2.5
-                            )
-                    )
-            )
+            .padding(.vertical, 20)
+            .background(cardBackground)
         }
         .buttonStyle(PlainButtonStyle())
         .animation(.easeInOut(duration: 0.15), value: isSelected)
+    }
+
+    private var cardBackground: some View {
+        RoundedRectangle(cornerRadius: 16)
+            .fill(isSelected ? Color("headerGreen") : Color("inputGray"))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(isSelected ? Color("headerGreen") : Color("headerGreen").opacity(0.3), lineWidth: 1.5)
+            )
     }
 }
 
@@ -51,12 +48,14 @@ struct OnboardingInstrumentCard: View {
 
 struct OnboardingInstrumentCard_Previews: PreviewProvider {
     static var previews: some View {
-        HStack(spacing: 12) {
-            OnboardingInstrumentCard(title: "Violão",   sfSymbol: "guitars",         isSelected: true,  onTap: {})
-            OnboardingInstrumentCard(title: "Bateria",  sfSymbol: "music.note.list", isSelected: false, onTap: {})
-            OnboardingInstrumentCard(title: "Teclado",  sfSymbol: "pianokeys",       isSelected: false, onTap: {})
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 14) {
+            OnboardingInstrumentCard(title: "Violão",  assetName: "instrument-violao",  isSelected: true,  onTap: {})
+            OnboardingInstrumentCard(title: "Ukulele", assetName: "instrument-ukulele", isSelected: false, onTap: {})
+            OnboardingInstrumentCard(title: "Teclado", assetName: "instrument-teclado", isSelected: false, onTap: {})
+            OnboardingInstrumentCard(title: "Bateria", assetName: "instrument-bateria", isSelected: false, onTap: {})
         }
-        .padding()
+        .padding(24)
+        .background(Color("cardCream"))
         .previewDisplayName("OnboardingInstrumentCard")
     }
 }
