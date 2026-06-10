@@ -14,10 +14,10 @@ struct OnboardingGenreChip: View {
     var body: some View {
         Button(action: onTap) {
             Text(title)
-                .font(.system(size: 14, weight: isSelected ? .semibold : .regular))
+                .font(.system(size: 16, weight: .bold))
                 .foregroundColor(isSelected ? Color("cardCream") : Color("textDark"))
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 14)
                 .background(chipBackground)
         }
         .buttonStyle(PlainButtonStyle())
@@ -26,7 +26,11 @@ struct OnboardingGenreChip: View {
 
     private var chipBackground: some View {
         Capsule()
-            .fill(isSelected ? Color("headerGreen") : Color("inputGray"))
+            .fill(isSelected ? Color("headerGreen") : Color.clear)
+            .overlay(
+                Capsule()
+                    .stroke(Color("headerGreen"), lineWidth: 1.5)
+            )
     }
 }
 
