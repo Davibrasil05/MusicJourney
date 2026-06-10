@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct ObjectiveDetailView: View {
-    @ObservedObject var viewModel: ObjectiveViewModel
+    @ObservedObject var viewModel: ObjectiveRepository
     var objective: Objective
     
     @State private var showingAddGoalSheet = false
