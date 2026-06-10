@@ -12,6 +12,13 @@
 		36B5121B1B7C4053A0C13742 /* OnboardingTextOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772D3F92D74DFDBAD6B3EE /* OnboardingTextOptionButton.swift */; };
 		58A8C6D456334176AC462E67 /* OnboardingInstrumentStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */; };
 		7578F69B620143EBBF7B7779 /* OnboardingGenreStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */; };
+		9F2DA0002FD9D9F60058F384 /* PresetObjective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D9FFF2FD9D9F60058F384 /* PresetObjective.swift */; };
+		9F2DA0022FD9DCD40058F384 /* PresetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA0012FD9DCD30058F384 /* PresetCatalog.swift */; };
+		9F2DA0062FD9E4A40058F384 /* PresetCatalog+Flauta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA0052FD9E4A40058F384 /* PresetCatalog+Flauta.swift */; };
+		9F2DA0082FD9E4C60058F384 /* PresetCatalog+Guitarra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA0072FD9E4C60058F384 /* PresetCatalog+Guitarra.swift */; };
+		9F2DA00A2FD9E5080058F384 /* PresetCatalog+Teclado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA0092FD9E5080058F384 /* PresetCatalog+Teclado.swift */; };
+		9F2DA00C2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA00B2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift */; };
+		9F2DA00E2FD9E5850058F384 /* PresetCatalog+Violao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA00D2FD9E5850058F384 /* PresetCatalog+Violao.swift */; };
 		9F664BAF2FD8A6C700DEA9D7 /* MetroronomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */; };
 		9F664BB22FD8A6F600DEA9D7 /* PraticeSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */; };
 		9F667CF32FD3400D0068DE50 /* MusicJourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667CF22FD3400D0068DE50 /* MusicJourneyApp.swift */; };
@@ -80,6 +87,13 @@
 		1028732BB7354CA2A777C0F5 /* OnboardingLevelStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLevelStep.swift; sourceTree = "<group>"; };
 		2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGenreStep.swift; sourceTree = "<group>"; };
 		55C8AD54C2464292BFF98B49 /* OnboardingWelcomeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeStep.swift; sourceTree = "<group>"; };
+		9F2D9FFF2FD9D9F60058F384 /* PresetObjective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetObjective.swift; sourceTree = "<group>"; };
+		9F2DA0012FD9DCD30058F384 /* PresetCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetCatalog.swift; sourceTree = "<group>"; };
+		9F2DA0052FD9E4A40058F384 /* PresetCatalog+Flauta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Flauta.swift"; sourceTree = "<group>"; };
+		9F2DA0072FD9E4C60058F384 /* PresetCatalog+Guitarra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Guitarra.swift"; sourceTree = "<group>"; };
+		9F2DA0092FD9E5080058F384 /* PresetCatalog+Teclado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Teclado.swift"; sourceTree = "<group>"; };
+		9F2DA00B2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Ukulele.swift"; sourceTree = "<group>"; };
+		9F2DA00D2FD9E5850058F384 /* PresetCatalog+Violao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Violao.swift"; sourceTree = "<group>"; };
 		9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MetroronomeService.swift; path = MusicJourney/View/MetroronomeService.swift; sourceTree = SOURCE_ROOT; };
 		9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PraticeSessionViewModel.swift; sourceTree = "<group>"; };
 		9F664BB32FD8A70E00DEA9D7 /* MetronomeOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeOverlayView.swift; sourceTree = "<group>"; };
@@ -157,6 +171,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F2DA00F2FD9E6400058F384 /* Presets */ = {
+			isa = PBXGroup;
+			children = (
+				9F2D9FFF2FD9D9F60058F384 /* PresetObjective.swift */,
+				9F2DA0012FD9DCD30058F384 /* PresetCatalog.swift */,
+				9F2DA0052FD9E4A40058F384 /* PresetCatalog+Flauta.swift */,
+				9F2DA0072FD9E4C60058F384 /* PresetCatalog+Guitarra.swift */,
+				9F2DA0092FD9E5080058F384 /* PresetCatalog+Teclado.swift */,
+				9F2DA00B2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift */,
+				9F2DA00D2FD9E5850058F384 /* PresetCatalog+Violao.swift */,
+			);
+			path = Presets;
+			sourceTree = "<group>";
+		};
 		9F664BB02FD8A6D600DEA9D7 /* Metronome */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +260,7 @@
 		9F667D232FD340490068DE50 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9F2DA00F2FD9E6400058F384 /* Presets */,
 				9F667CFD2FD340100068DE50 /* MusicJourney.xcdatamodeld */,
 				9FB83B072FD8800B007A06E0 /* User.swift */,
 				9FB83B092FD8801A007A06E0 /* Objective.swift */,
@@ -515,7 +544,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F2DA0002FD9D9F60058F384 /* PresetObjective.swift in Sources */,
 				9FB83B082FD8800B007A06E0 /* User.swift in Sources */,
+				9F2DA0022FD9DCD40058F384 /* PresetCatalog.swift in Sources */,
 				9FB83B292FD88B16007A06E0 /* YoutubePlayerView.swift in Sources */,
 				9F7C7EDB2FD75EF3009961ED /* ObjectiveListView.swift in Sources */,
 				9F667CFC2FD340100068DE50 /* Persistence.swift in Sources */,
@@ -524,18 +555,23 @@
 				9F667CF52FD3400D0068DE50 /* ContentView.swift in Sources */,
 				9FDC4E642FD8865F00C62F3C /* Retrospective.swift in Sources */,
 				9FDC4E6C2FD886A000C62F3C /* Home.swift in Sources */,
+				9F2DA00E2FD9E5850058F384 /* PresetCatalog+Violao.swift in Sources */,
 				9F7C7ED42FD75ECE009961ED /* ObjectiveRepository.swift in Sources */,
 				9FB83B0A2FD8801A007A06E0 /* Objective.swift in Sources */,
 				9F7C7EDA2FD75EF3009961ED /* ObjectiveDetailView.swift in Sources */,
 				9F667D8A2FD884F40068DE50 /* testeapp.swift in Sources */,
 				9FDC4E6A2FD8869400C62F3C /* GoalManagment.swift in Sources */,
+				9F2DA00A2FD9E5080058F384 /* PresetCatalog+Teclado.swift in Sources */,
 				9F667D252FD3409E0068DE50 /* HistoryView.swift in Sources */,
+				9F2DA0082FD9E4C60058F384 /* PresetCatalog+Guitarra.swift in Sources */,
 				9FDC4E622FD8865100C62F3C /* Components.swift in Sources */,
+				9F2DA00C2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift in Sources */,
 				9F880EEA2FD9CED200D9E169 /* MetronomeOverlayView.swift in Sources */,
 				9F667D272FD340AC0068DE50 /* JourneyView.swift in Sources */,
 				9F7C7ED92FD75EF3009961ED /* UserProfileView.swift in Sources */,
 				9FB83B272FD88AFF007A06E0 /* YoutubeURLParser.swift in Sources */,
 				9FB83B102FD8804D007A06E0 /* Recording.swift in Sources */,
+				9F2DA0062FD9E4A40058F384 /* PresetCatalog+Flauta.swift in Sources */,
 				9F664BB22FD8A6F600DEA9D7 /* PraticeSessionViewModel.swift in Sources */,
 				9F667D8C2FD885CC0068DE50 /* Extensions.swift in Sources */,
 				9F667CFF2FD340100068DE50 /* MusicJourney.xcdatamodeld in Sources */,
