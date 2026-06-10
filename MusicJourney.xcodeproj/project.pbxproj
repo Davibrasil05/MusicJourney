@@ -29,6 +29,10 @@
 		9F880EE62FD9C5A600D9E169 /* AudioRecorderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F880EE52FD9C5A600D9E169 /* AudioRecorderService.swift */; };
 		9F880EE92FD9C6CF00D9E169 /* AudioRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F880EE82FD9C6CF00D9E169 /* AudioRecordingView.swift */; };
 		9F880EEA2FD9CED200D9E169 /* MetronomeOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BB32FD8A70E00DEA9D7 /* MetronomeOverlayView.swift */; };
+		9F880EEC2FD9E29800D9E169 /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F880EEB2FD9E29800D9E169 /* SessionRepository.swift */; };
+		9F880EEF2FD9E74600D9E169 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F880EEE2FD9E74600D9E169 /* PracticeViewModel.swift */; };
+		9F880EF12FD9EA5C00D9E169 /* PracticeSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F880EF02FD9EA5C00D9E169 /* PracticeSessionView.swift */; };
+		9F880EF42FD9F53400D9E169 /* GoalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F880EF32FD9F53400D9E169 /* GoalDetailView.swift */; };
 		9FB83B082FD8800B007A06E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B072FD8800B007A06E0 /* User.swift */; };
 		9FB83B0A2FD8801A007A06E0 /* Objective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B092FD8801A007A06E0 /* Objective.swift */; };
 		9FB83B0C2FD8802D007A06E0 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB83B0B2FD8802D007A06E0 /* Goal.swift */; };
@@ -95,6 +99,10 @@
 		9F880EE32FD8B44700D9E169 /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
 		9F880EE52FD9C5A600D9E169 /* AudioRecorderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioRecorderService.swift; path = MusicJourney/View/Metronome/AudioRecorderService.swift; sourceTree = SOURCE_ROOT; };
 		9F880EE82FD9C6CF00D9E169 /* AudioRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingView.swift; sourceTree = "<group>"; };
+		9F880EEB2FD9E29800D9E169 /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
+		9F880EEE2FD9E74600D9E169 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
+		9F880EF02FD9EA5C00D9E169 /* PracticeSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSessionView.swift; sourceTree = "<group>"; };
+		9F880EF32FD9F53400D9E169 /* GoalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailView.swift; sourceTree = "<group>"; };
 		9FB83B072FD8800B007A06E0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9FB83B092FD8801A007A06E0 /* Objective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objective.swift; sourceTree = "<group>"; };
 		9FB83B0B2FD8802D007A06E0 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
@@ -197,6 +205,8 @@
 		9F667D212FD3402D0068DE50 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9F880EF22FD9F52400D9E169 /* Goal */,
+				9F880EED2FD9E73100D9E169 /* Practice */,
 				9F880EE72FD9C6B400D9E169 /* Recording */,
 				9F664BB02FD8A6D600DEA9D7 /* Metronome */,
 				9FB83B1E2FD88201007A06E0 /* Componentes */,
@@ -238,12 +248,30 @@
 			name = Recording;
 			sourceTree = "<group>";
 		};
+		9F880EED2FD9E73100D9E169 /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				9F880EEE2FD9E74600D9E169 /* PracticeViewModel.swift */,
+				9F880EF02FD9EA5C00D9E169 /* PracticeSessionView.swift */,
+			);
+			path = Practice;
+			sourceTree = "<group>";
+		};
+		9F880EF22FD9F52400D9E169 /* Goal */ = {
+			isa = PBXGroup;
+			children = (
+				9F880EF32FD9F53400D9E169 /* GoalDetailView.swift */,
+			);
+			path = Goal;
+			sourceTree = "<group>";
+		};
 		9FB83B152FD88093007A06E0 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
 				9F7C7ED22FD75ECD009961ED /* ObjectiveRepository.swift */,
 				9F7C7ED32FD75ECE009961ED /* UserViewRepository.swift */,
 				9F667CFB2FD340100068DE50 /* Persistence.swift */,
+				9F880EEB2FD9E29800D9E169 /* SessionRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -496,6 +524,7 @@
 			files = (
 				9FB83B082FD8800B007A06E0 /* User.swift in Sources */,
 				9FB83B292FD88B16007A06E0 /* YoutubePlayerView.swift in Sources */,
+				9F880EF12FD9EA5C00D9E169 /* PracticeSessionView.swift in Sources */,
 				9F7C7EDB2FD75EF3009961ED /* ObjectiveListView.swift in Sources */,
 				9F667CFC2FD340100068DE50 /* Persistence.swift in Sources */,
 				9F880EE92FD9C6CF00D9E169 /* AudioRecordingView.swift in Sources */,
@@ -505,8 +534,10 @@
 				9FDC4E6C2FD886A000C62F3C /* Home.swift in Sources */,
 				9F7C7ED42FD75ECE009961ED /* ObjectiveRepository.swift in Sources */,
 				9FB83B0A2FD8801A007A06E0 /* Objective.swift in Sources */,
+				9F880EF42FD9F53400D9E169 /* GoalDetailView.swift in Sources */,
 				9F7C7EDA2FD75EF3009961ED /* ObjectiveDetailView.swift in Sources */,
 				9F667D8A2FD884F40068DE50 /* testeapp.swift in Sources */,
+				9F880EEF2FD9E74600D9E169 /* PracticeViewModel.swift in Sources */,
 				9FDC4E6A2FD8869400C62F3C /* GoalManagment.swift in Sources */,
 				9F667D252FD3409E0068DE50 /* HistoryView.swift in Sources */,
 				9FDC4E622FD8865100C62F3C /* Components.swift in Sources */,
@@ -521,6 +552,7 @@
 				9FB83B0E2FD8803F007A06E0 /* Session.swift in Sources */,
 				9FDC4E662FD8867500C62F3C /* FeedBack.swift in Sources */,
 				9FDC4E682FD8868100C62F3C /* SessionView.swift in Sources */,
+				9F880EEC2FD9E29800D9E169 /* SessionRepository.swift in Sources */,
 				9FE541D12FD890DD00675C89 /* OnboardingFormView.swift in Sources */,
 				9F7C7ED52FD75ECE009961ED /* UserViewRepository.swift in Sources */,
 				AA1B3C4D5E6F7A8B9C0D1E2F /* OnboardingStepHeader.swift in Sources */,
