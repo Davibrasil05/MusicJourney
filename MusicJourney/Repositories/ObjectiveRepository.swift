@@ -34,18 +34,25 @@ class ObjectiveRepository: ObservableObject {
         }
     }
     
-    // MARK: - CREATE (Criar Objetivo)
-    func addObjective(name: String, descriptionText: String = "") {
+    // MARK: - CREATE (Criar Objetivo) - ATUALIZADO
+    @discardableResult
+    func addObjective(name: String, descriptionText: String = "", deadline: Date? = nil, reminderTime: Date? = nil, isDailyReminder: Bool = false) -> Objective {
         let newObjective = Objective(context: context)
         newObjective.id = UUID()
         newObjective.name = name
         newObjective.descriptionText = descriptionText
         newObjective.createdAt = Date()
         newObjective.progress = 0
-        newObjective.status = "active" // <- Mudou: Agora usamos String
+        newObjective.status = "active"
+        
+        // NOVO: Adicionando os novos campos do Figma!
+        newObjective.reminderTime = reminderTime
+        newObjective.isDailyReminder = isDailyReminder
         
         saveContext()
-        fetchObjectives() // Atualiza a lista após salvar
+        fetchObjectives()
+        
+        return newObjective // <- Agora a função devolve o que acabou de criar!
     }
     
     // MARK: - CREATE (Criar Meta / Goal para um Objetivo)
@@ -53,15 +60,15 @@ class ObjectiveRepository: ObservableObject {
         let newGoal = Goal(context: context)
         newGoal.id = UUID()
         newGoal.name = name
-        newGoal.textDescription = textDescription // <- Mudou: Estava description_name
+        newGoal.textDescription = textDescription
         newGoal.category = category
         newGoal.difficulty = difficulty
-        newGoal.order = order // <- Mudou: Substituiu o antigo 'priority'
-        newGoal.isFinal = false // Default
+        newGoal.order = order
+        newGoal.isFinal = false
         newGoal.xpReward = 0
-        newGoal.status = "locked" // <- Mudou: Pode ser "locked", "unlocked", "completed"
+        newGoal.status = "locked"
         
-        newGoal.objective = objective // Relacionamento seguro
+        newGoal.objective = objective
         
         saveContext()
         fetchObjectives()
@@ -91,14 +98,14 @@ class ObjectiveRepository: ObservableObject {
         fetchObjectives()
     }
     
-    // MARK: - TOGGLE STATUS (Agora com Strings)
+    // MARK: - TOGGLE STATUS
     func toggleObjectiveStatus(objective: Objective) {
         if objective.status == "active" {
             objective.status = "completed"
-            objective.completedAt = Date() // Salva a data que concluiu
+            objective.completedAt = Date()
         } else {
             objective.status = "active"
-            objective.completedAt = nil // Remove a data se reabrir
+            objective.completedAt = nil
         }
         
         saveContext()
@@ -106,14 +113,13 @@ class ObjectiveRepository: ObservableObject {
     }
     
     func toggleGoalStatus(goal: Goal) {
-        // Exemplo de fluxo: Bloqueada -> Desbloqueada -> Concluída
         if goal.status == "locked" {
             goal.status = "unlocked"
         } else if goal.status == "unlocked" {
             goal.status = "completed"
             goal.completedAt = Date()
         } else {
-            goal.status = "unlocked" // Volta pra destravada se o usuário desmarcar
+            goal.status = "unlocked"
             goal.completedAt = nil
         }
         
@@ -122,13 +128,10 @@ class ObjectiveRepository: ObservableObject {
     }
     
     // MARK: - PRESETS (Objetivos pré-definidos)
-
-    /// Retorna os presets compatíveis com o instrumento e nível do usuário
     func getPresetsForUser(instrument: String, level: String) -> [PresetObjective] {
         return PresetCatalog.presets(instrument: instrument, level: level)
     }
 
-    /// Cria um Objective + Goals no CoreData a partir de um preset hardcoded
     func createPresetObjective(preset: PresetObjective, user: User) {
         let objective = Objective(context: context)
         objective.id = UUID()
@@ -150,7 +153,6 @@ class ObjectiveRepository: ObservableObject {
             goal.order = goalPreset.order
             goal.isFinal = goalPreset.isFinal
             goal.xpReward = goalPreset.xpReward
-            // A primeira meta começa desbloqueada, as demais trancadas
             goal.status = goalPreset.order == 1 ? "unlocked" : "locked"
             goal.objective = objective
         }
