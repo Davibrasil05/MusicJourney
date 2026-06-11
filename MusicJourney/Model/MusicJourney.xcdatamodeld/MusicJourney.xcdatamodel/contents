@@ -68,6 +68,7 @@
         <attribute name="genres" optional="YES" attributeType="Transformable"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="instrument" optional="YES" attributeType="String"/>
+        <attribute name="lastPractice" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="practiceSchedule" optional="YES" attributeType="String"/>
@@ -83,6 +84,6 @@
         <element name="Objective" positionX="-447.0709838867188" positionY="-112.2295074462891" width="128" height="164"/>
         <element name="Recording" positionX="218.2617187499999" positionY="-227.2450408935547" width="128" height="134"/>
         <element name="Session" positionX="166.3582153320313" positionY="27.47775268554685" width="128" height="119"/>
-        <element name="User" positionX="-458.3980102539062" positionY="-471.661376953125" width="142.8009033203125" height="194"/>
+        <element name="User" positionX="-458.3980102539062" positionY="-471.661376953125" width="142.8009033203125" height="209"/>
     </elements>
 </model>
