@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel(objectiveRepo: ObjectiveRepository(), userRepo: UserViewModel())
+    @State private var selectedGoal: Goal?
     @State private var showingAddSheet = false
     @State private var newGoalName = ""
     @State private var newGoalDescription = ""
@@ -85,8 +86,7 @@ struct HomeView: View {
                             GoalCardView(goalName: goal.name ?? "", state: state)
                                 .onTapGesture {
                                     if state == .active {
-                                        // Apenas metas ativas podem ser clicadas!
-                                        // Abra a PracticeSessionView
+                                        selectedGoal = goal
                                     }
                                 }
                         }
@@ -102,9 +102,21 @@ struct HomeView: View {
             viewModel.loadHomeData()
         }
         .sheet(isPresented: $showingAddSheet) {
-                  CreateObjectiveView(viewModel: viewModel)
-              }
-        
+            CreateObjectiveView(viewModel: viewModel)
+        }
+        .fullScreenCover(item: $selectedGoal, onDismiss: {
+            viewModel.loadHomeData()
+        }) { goal in
+            NavigationView {
+                PracticeSessionView(
+                    viewModel: SessionViewModel(
+                        goal: goal,
+                        sessionRepo: SessionRepository(),
+                        objectiveRepo: ObjectiveRepository()
+                    )
+                )
+            }
+        }
     }
     
     // Helper para limpar os campos
