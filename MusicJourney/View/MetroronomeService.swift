@@ -7,6 +7,13 @@ class MetronomeService {
     
     var isPlaying: Bool = false
     
+    // NOVO: Controle de compasso e batida atual
+    var beatsPerMeasure: Int = 4
+    var currentBeat: Int = 0
+    
+    // NOVO: Callback que avisa a ViewModel qual beat está tocando agora
+    var onBeat: ((Int) -> Void)?
+    
     var currentBPM: Double = 120.0 {
         didSet {
             // Se o usuário deslizar o Slider, reiniciamos o ritmo instantaneamente
@@ -34,6 +41,7 @@ class MetronomeService {
     func start() {
         guard !isPlaying else { return }
         isPlaying = true
+        currentBeat = 0
         startTimer()
     }
     
@@ -41,6 +49,7 @@ class MetronomeService {
         isPlaying = false
         timer?.invalidate() // Mata o laço de repetição na hora
         timer = nil
+        currentBeat = 0
     }
     
     private func startTimer() {
@@ -50,14 +59,24 @@ class MetronomeService {
         // Toca a batida inicial imediatamente
         player?.currentTime = 0
         player?.play()
+        currentBeat = 1
+        onBeat?(currentBeat)
         
         // A matemática básica do metrônomo: 60 segundos divididos pelo BPM
         let interval = 60.0 / currentBPM
         
         // Cria um cronômetro infinito que dispara a cada intervalo
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
-            self?.player?.currentTime = 0 // Rebovina o áudio pro milissegundo zero
-            self?.player?.play()          // Dispara o TOC!
+            guard let self = self else { return }
+            self.player?.currentTime = 0 // Rebobina o áudio pro milissegundo zero
+            self.player?.play()          // Dispara o TOC!
+            
+            // Avança a batida e reseta ao chegar no fim do compasso
+            self.currentBeat += 1
+            if self.currentBeat > self.beatsPerMeasure {
+                self.currentBeat = 1
+            }
+            self.onBeat?(self.currentBeat)
         }
         
         // Esse comando vital impede que o metrônomo pare de bater enquanto

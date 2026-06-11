@@ -14,6 +14,12 @@
 		58A8C6D456334176AC462E67 /* OnboardingInstrumentStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */; };
 		5F3F5ED144344B5FACD09D1C /* GoalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C815E018F8A34C00A12E6B5A /* GoalDTO.swift */; };
 		7578F69B620143EBBF7B7779 /* OnboardingGenreStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */; };
+		9F1003C12FDB564200C7888E /* MetronomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C02FDB564200C7888E /* MetronomeHeader.swift */; };
+		9F1003C32FDB56B900C7888E /* DisplayBPM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C22FDB56B900C7888E /* DisplayBPM.swift */; };
+		9F1003C52FDB56D000C7888E /* DisplayCompass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C42FDB56D000C7888E /* DisplayCompass.swift */; };
+		9F1003C72FDB56F800C7888E /* BPMControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C62FDB56F800C7888E /* BPMControl.swift */; };
+		9F1003C92FDB574000C7888E /* BeatIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C82FDB574000C7888E /* BeatIndicatorView.swift */; };
+		9F1003CB2FDB575800C7888E /* BPMAdjustButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003CA2FDB575800C7888E /* BPMAdjustButtonsView.swift */; };
 		9F2DA0002FD9D9F60058F384 /* PresetObjective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D9FFF2FD9D9F60058F384 /* PresetObjective.swift */; };
 		9F2DA0022FD9DCD40058F384 /* PresetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA0012FD9DCD30058F384 /* PresetCatalog.swift */; };
 		9F2DA0062FD9E4A40058F384 /* PresetCatalog+Flauta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA0052FD9E4A40058F384 /* PresetCatalog+Flauta.swift */; };
@@ -110,6 +116,12 @@
 		2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGenreStep.swift; sourceTree = "<group>"; };
 		55C8AD54C2464292BFF98B49 /* OnboardingWelcomeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeStep.swift; sourceTree = "<group>"; };
 		5938EB69AE644610BB6B42DF /* GeminiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiService.swift; sourceTree = "<group>"; };
+		9F1003C02FDB564200C7888E /* MetronomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeHeader.swift; sourceTree = "<group>"; };
+		9F1003C22FDB56B900C7888E /* DisplayBPM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayBPM.swift; sourceTree = "<group>"; };
+		9F1003C42FDB56D000C7888E /* DisplayCompass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCompass.swift; sourceTree = "<group>"; };
+		9F1003C62FDB56F800C7888E /* BPMControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMControl.swift; sourceTree = "<group>"; };
+		9F1003C82FDB574000C7888E /* BeatIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatIndicatorView.swift; sourceTree = "<group>"; };
+		9F1003CA2FDB575800C7888E /* BPMAdjustButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMAdjustButtonsView.swift; sourceTree = "<group>"; };
 		9F2D9FFF2FD9D9F60058F384 /* PresetObjective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetObjective.swift; sourceTree = "<group>"; };
 		9F2DA0012FD9DCD30058F384 /* PresetCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetCatalog.swift; sourceTree = "<group>"; };
 		9F2DA0052FD9E4A40058F384 /* PresetCatalog+Flauta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Flauta.swift"; sourceTree = "<group>"; };
@@ -215,6 +227,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F1003BF2FDB562700C7888E /* components */ = {
+			isa = PBXGroup;
+			children = (
+				9F1003C02FDB564200C7888E /* MetronomeHeader.swift */,
+				9F1003C22FDB56B900C7888E /* DisplayBPM.swift */,
+				9F1003C42FDB56D000C7888E /* DisplayCompass.swift */,
+				9F1003C62FDB56F800C7888E /* BPMControl.swift */,
+				9F1003C82FDB574000C7888E /* BeatIndicatorView.swift */,
+				9F1003CA2FDB575800C7888E /* BPMAdjustButtonsView.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
 		9F2DA00F2FD9E6400058F384 /* Presets */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +292,7 @@
 		9F664BB02FD8A6D600DEA9D7 /* Metronome */ = {
 			isa = PBXGroup;
 			children = (
+				9F1003BF2FDB562700C7888E /* components */,
 				9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */,
 				9F664BB32FD8A70E00DEA9D7 /* MetronomeOverlayView.swift */,
 			);
@@ -669,11 +695,15 @@
 				9F667CFC2FD340100068DE50 /* Persistence.swift in Sources */,
 				9F3ADB3C2FDB25BC0071CA0F /* PracticeBottomSheet.swift in Sources */,
 				9F880EE92FD9C6CF00D9E169 /* AudioRecordingView.swift in Sources */,
+				9F1003C92FDB574000C7888E /* BeatIndicatorView.swift in Sources */,
 				9F667D8E2FD885DC0068DE50 /* Services.swift in Sources */,
 				9F667CF52FD3400D0068DE50 /* ContentView.swift in Sources */,
+				9F1003C72FDB56F800C7888E /* BPMControl.swift in Sources */,
 				108919B659194815B6441888 /* GeminiService.swift in Sources */,
 				5F3F5ED144344B5FACD09D1C /* GoalDTO.swift in Sources */,
 				9F300B5E2FDB508E0010B70B /* Secrets.swift in Sources */,
+				9F1003C52FDB56D000C7888E /* DisplayCompass.swift in Sources */,
+				9F1003C32FDB56B900C7888E /* DisplayBPM.swift in Sources */,
 				9FDC4E642FD8865F00C62F3C /* Retrospective.swift in Sources */,
 				9F300B632FDB5AAC0010B70B /* RecordsView.swift in Sources */,
 				9FDC4E6C2FD886A000C62F3C /* HomeView.swift in Sources */,
@@ -699,6 +729,7 @@
 				9F7C7ED92FD75EF3009961ED /* UserProfileView.swift in Sources */,
 				9F48C8ED2FDB1D59006D50B2 /* ProgressView.swift in Sources */,
 				9FB83B272FD88AFF007A06E0 /* YoutubeURLParser.swift in Sources */,
+				9F1003C12FDB564200C7888E /* MetronomeHeader.swift in Sources */,
 				9FB83B102FD8804D007A06E0 /* Recording.swift in Sources */,
 				9F2DA0062FD9E4A40058F384 /* PresetCatalog+Flauta.swift in Sources */,
 				9F664BB22FD8A6F600DEA9D7 /* PraticeSessionViewModel.swift in Sources */,
@@ -711,6 +742,7 @@
 				9FDC4E682FD8868100C62F3C /* SessionView.swift in Sources */,
 				9F880EEC2FD9E29800D9E169 /* SessionRepository.swift in Sources */,
 				9FE541D12FD890DD00675C89 /* OnboardingFormView.swift in Sources */,
+				9F1003CB2FDB575800C7888E /* BPMAdjustButtonsView.swift in Sources */,
 				23BB996F3C14482ABA9100B9 /* OnboardingDotsIndicator.swift in Sources */,
 				9F48C8F22FDB3465006D50B2 /* CreateObjectiveView.swift in Sources */,
 				36B5121B1B7C4053A0C13742 /* OnboardingTextOptionButton.swift in Sources */,

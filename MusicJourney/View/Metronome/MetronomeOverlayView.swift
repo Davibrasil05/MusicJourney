@@ -2,36 +2,75 @@ import SwiftUI
 
 struct MetronomeOverlayView: View {
     @ObservedObject var viewModel: PracticeSessionViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack(spacing: 12) {
-            Text("Metrônomo")
-                .font(.headline)
+        ZStack {
+            // Fundo da cor creme que você usa
+            Color("cardCream")
+                .ignoresSafeArea()
             
-            HStack(spacing: 20) {
-                // Botão Ligar/Desligar
-                Button(action: {
-                    viewModel.toggleMetronome()
-                }) {
-                    Image(systemName: viewModel.isMetronomePlaying ? "pause.circle.fill" : "play.circle.fill")
-                        .font(.system(size: 44))
-                        .foregroundColor(viewModel.isMetronomePlaying ? .orange : .blue)
-                }
+            VStack(spacing: 32) {
+                // 1. Header (Top)
+                MetronomeHeader(onClose: {
+                    presentationMode.wrappedValue.dismiss()
+                })
                 
-                // Controle de BPM
-                VStack(alignment: .leading) {
-                    Text("\(Int(viewModel.bpm)) BPM")
-                        .font(.subheadline)
-                        .fontWeight(.bold)
-                    
-                    Slider(value: $viewModel.bpm, in: 40...240, step: 1)
-                        .accentColor(.blue)
-                }
+                Spacer().frame(height: 16)
+                
+                // 2. Display BPM
+                DisplayBPM(bpm: viewModel.bpm)
+                
+                // 3. Display Compasso
+                DisplayCompass(
+                    beatsPerMeasure: viewModel.beatsPerMeasure,
+                    onTap: {
+                        viewModel.cycleTimeSignature()
+                    }
+                )
+                
+                Spacer().frame(height: 16)
+                
+                // 4. Bolinhas Indicadoras
+                BeatIndicatorView(
+                    currentBeat: viewModel.currentBeat,
+                    beatsPerMeasure: viewModel.beatsPerMeasure,
+                    isPlaying: viewModel.isMetronomePlaying
+                )
+                
+                Spacer()
+                
+                // 5. Card Controle (Slider + Play)
+                BPMControl(
+                    bpm: $viewModel.bpm,
+                    isPlaying: viewModel.isMetronomePlaying,
+                    onTogglePlay: {
+                        viewModel.toggleMetronome()
+                    }
+                )
+                .padding(.horizontal, 24)
+                
+                // 6. Ajustes Finos (Rodapé)
+                BPMAdjustButtonsView(
+                    onDecrement: {
+                        if viewModel.bpm > 40 { viewModel.bpm -= 1 }
+                    },
+                    onIncrement: {
+                        if viewModel.bpm < 240 { viewModel.bpm += 1 }
+                    },
+                    onStop: {
+                        viewModel.closeSession()
+                    }
+                )
+                .padding(.bottom, 40)
             }
-            .padding()
-            .background(Color(.systemGray6))
-            .cornerRadius(16)
         }
-        .padding()
+    }
+}
+
+// MARK: - Preview
+struct MetronomeOverlayView_Previews: PreviewProvider {
+    static var previews: some View {
+        MetronomeOverlayView(viewModel: PracticeSessionViewModel())
     }
 }
