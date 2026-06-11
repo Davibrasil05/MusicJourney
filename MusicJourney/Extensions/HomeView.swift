@@ -83,9 +83,9 @@ struct HomeView: View {
                         ForEach(viewModel.sortedGoals) { goal in
                             let state = viewModel.getGoalState(for: goal)
                             
-                            GoalCardView(goalName: goal.name ?? "", state: state)
-                                .onTapGesture {
-                                    if state == .active {
+                            if state == .active {
+                                GoalCardView(goalName: goal.name ?? "", state: state)
+                                    .onTapGesture {
                                         selectedGoal = goal
                                     }
                             } else {
