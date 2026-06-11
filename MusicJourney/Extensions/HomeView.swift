@@ -10,6 +10,9 @@ import SwiftUI
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel(objectiveRepo: ObjectiveRepository(), userRepo: UserViewModel())
     
+    // Controle do fullScreenCover da Sessão de Prática
+    @State private var selectedGoal: Goal? = nil
+    
     // NOVO: Variáveis para controlar o modal de adicionar META
     @State private var showingAddSheet = false
     @State private var newGoalName = ""
@@ -88,13 +91,14 @@ struct HomeView: View {
                         ForEach(viewModel.sortedGoals) { goal in
                             let state = viewModel.getGoalState(for: goal)
                             
-                            GoalCardView(goalName: goal.name ?? "", state: state)
-                                .onTapGesture {
-                                    if state == .active {
-                                        // Apenas metas ativas podem ser clicadas!
-                                        // Abra a PracticeSessionView
+                            if state == .active {
+                                GoalCardView(goalName: goal.name ?? "", state: state)
+                                    .onTapGesture {
+                                        selectedGoal = goal
                                     }
-                                }
+                            } else {
+                                GoalCardView(goalName: goal.name ?? "", state: state)
+                            }
                         }
                     }
                     .padding(.horizontal)
@@ -147,6 +151,18 @@ struct HomeView: View {
                         .disabled(newGoalName.isEmpty)
                     }
                 }
+            }
+        }
+        // Tela de Prática abre por cima de TUDO (sem TabBar, sem NavigationBar)
+        .fullScreenCover(item: $selectedGoal) { goal in
+            NavigationView {
+                PracticeSessionView(
+                    viewModel: SessionViewModel(
+                        goal: goal,
+                        sessionRepo: SessionRepository(),
+                        objectiveRepo: ObjectiveRepository()
+                    )
+                )
             }
         }
     }

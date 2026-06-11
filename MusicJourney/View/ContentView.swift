@@ -29,10 +29,12 @@ struct ContentView: View {
 struct MainTabView: View {
     var body: some View {
         TabView {
-            HomeView()
-                .tabItem {
-                    Label("Jornada", systemImage: "map.fill")
-                }
+            NavigationView {
+                HomeView()
+            }
+            .tabItem {
+                Label("Jornada", systemImage: "map.fill")
+            }
 
             UserProfileView()
                 .tabItem {

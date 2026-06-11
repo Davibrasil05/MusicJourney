@@ -7,7 +7,20 @@
 
 import SwiftUI
 
-import SwiftUI
+// MARK: - Shape customizado para arredondar apenas cantos específicos (iOS 15)
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(
+            roundedRect: rect,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
+        return Path(path.cgPath)
+    }
+}
 
 // MARK: - Componente do Botão da Grade
 struct ToolGridButton: View {
@@ -79,7 +92,8 @@ struct PracticeBottomSheet: View {
         .frame(maxWidth: .infinity)
         // Cor do fundo
         .background(Color("cardCream"))
-        .cornerRadius(32)
+        // Arredonda APENAS os cantos superiores
+        .clipShape(RoundedCorner(radius: 32, corners: [.topLeft, .topRight]))
         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: -5)
     }
 }
