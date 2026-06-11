@@ -84,10 +84,7 @@ struct UserProfileView: View {
                         NavigationLink(destination: MetronomeOverlayView(viewModel: PracticeSessionViewModel())) {
                             Label("Testar Metrônomo", systemImage: "metronome.fill")
                         }
-                        NavigationLink(destination: TestAudioRecordingView()) {
-                            Label("Testar Gravador", systemImage: "mic.fill")
-                        }
-                    }
+                                            }
 
                     // MARK: - Ferramentas de Teste
                     Section(header: Text("Ferramentas de Teste")) {

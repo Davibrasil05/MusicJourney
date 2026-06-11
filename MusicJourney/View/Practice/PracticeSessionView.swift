@@ -100,8 +100,8 @@ struct PracticeSessionView: View {
             switch modal {
             case .nota:
                 AddNoteModalView(annotationRepo: AnnotationRepository(), goal: viewModel.currentGoal, session: viewModel.activeSession)
-            case .audio:
-                Text("Modal de Áudio Aqui")
+            case .audio: 
+                AddAudioModalView(recordingRepo: RecordingRepository(), goal: viewModel.currentGoal, session: viewModel.activeSession)
             case .tablatura:
                 Text("Modal de Tablatura Aqui")
             case .metronomo:
