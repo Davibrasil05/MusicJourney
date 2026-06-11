@@ -11,15 +11,7 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel(objectiveRepo: ObjectiveRepository(), userRepo: UserRepository())
     @State private var selectedGoal: Goal?
     @State private var showingAddSheet = false
-    @State private var newGoalName = ""
-    @State private var newGoalDescription = ""
-    @State private var newGoalCategory = "Técnica"
-    @State private var newGoalDifficulty = "Média"
-    @State private var newGoalOrder: Int16 = 1
-    
-    let categories = ["Técnica", "Repertório", "Teoria", "Leitura", "Outros"]
-    let difficulties = ["Fácil", "Média", "Difícil", "Mestre"]
-    
+
     let backgroundColor = Color(red: 244/255, green: 241/255, blue: 234/255)
     
     var body: some View {
@@ -36,11 +28,10 @@ struct HomeView: View {
                         
                         Spacer()
                         
-                        // O botão só fica ativo se existir um objetivo! (Não dá pra criar meta do nada)
                         Button(action: { showingAddSheet = true }) {
                             Image(systemName: "plus")
                                 .font(.title2)
-                                .foregroundColor(viewModel.activeObjective == nil ? .gray.opacity(0.3) : .gray)
+                                .foregroundColor(.gray)
                                 .padding(12)
                                 .background(Color.gray.opacity(0.2))
                                 .clipShape(Circle())
@@ -104,7 +95,10 @@ struct HomeView: View {
             viewModel.loadHomeData()
         }
         .sheet(isPresented: $showingAddSheet) {
-            CreateObjectiveView(viewModel: viewModel)
+            CreateObjectiveView(onFinish: {
+                showingAddSheet = false
+                viewModel.loadHomeData()
+            })
         }
         .fullScreenCover(item: $selectedGoal, onDismiss: {
             viewModel.loadHomeData()
@@ -121,13 +115,4 @@ struct HomeView: View {
         }
     }
     
-    // Helper para limpar os campos
-    private func resetSheetState() {
-        newGoalName = ""
-        newGoalDescription = ""
-        newGoalCategory = "Técnica"
-        newGoalDifficulty = "Média"
-        newGoalOrder = 1
-        showingAddSheet = false
-    }
 }
