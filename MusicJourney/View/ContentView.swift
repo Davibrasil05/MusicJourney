@@ -29,7 +29,7 @@ struct ContentView: View {
 struct MainTabView: View {
     var body: some View {
         TabView {
-            ObjectiveListView()
+            HomeView()
                 .tabItem {
                     Label("Jornada", systemImage: "map.fill")
                 }
