@@ -19,6 +19,7 @@
 		9F2DA00A2FD9E5080058F384 /* PresetCatalog+Teclado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA0092FD9E5080058F384 /* PresetCatalog+Teclado.swift */; };
 		9F2DA00C2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA00B2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift */; };
 		9F2DA00E2FD9E5850058F384 /* PresetCatalog+Violao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA00D2FD9E5850058F384 /* PresetCatalog+Violao.swift */; };
+		9F4488052FDA04DB00258351 /* AnnotationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4488042FDA04DB00258351 /* AnnotationRepository.swift */; };
 		9F664BAF2FD8A6C700DEA9D7 /* MetroronomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */; };
 		9F664BB22FD8A6F600DEA9D7 /* PraticeSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */; };
 		9F667CF32FD3400D0068DE50 /* MusicJourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667CF22FD3400D0068DE50 /* MusicJourneyApp.swift */; };
@@ -98,6 +99,7 @@
 		9F2DA0092FD9E5080058F384 /* PresetCatalog+Teclado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Teclado.swift"; sourceTree = "<group>"; };
 		9F2DA00B2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Ukulele.swift"; sourceTree = "<group>"; };
 		9F2DA00D2FD9E5850058F384 /* PresetCatalog+Violao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Violao.swift"; sourceTree = "<group>"; };
+		9F4488042FDA04DB00258351 /* AnnotationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationRepository.swift; sourceTree = "<group>"; };
 		9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MetroronomeService.swift; path = MusicJourney/View/MetroronomeService.swift; sourceTree = SOURCE_ROOT; };
 		9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PraticeSessionViewModel.swift; sourceTree = "<group>"; };
 		9F664BB32FD8A70E00DEA9D7 /* MetronomeOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeOverlayView.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				9F7C7ED32FD75ECE009961ED /* UserViewRepository.swift */,
 				9F667CFB2FD340100068DE50 /* Persistence.swift */,
 				9F880EEB2FD9E29800D9E169 /* SessionRepository.swift */,
+				9F4488042FDA04DB00258351 /* AnnotationRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				9F667D252FD3409E0068DE50 /* HistoryView.swift in Sources */,
 				9F2DA0082FD9E4C60058F384 /* PresetCatalog+Guitarra.swift in Sources */,
 				9FDC4E622FD8865100C62F3C /* Components.swift in Sources */,
+				9F4488052FDA04DB00258351 /* AnnotationRepository.swift in Sources */,
 				9F2DA00C2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift in Sources */,
 				9F880EEA2FD9CED200D9E169 /* MetronomeOverlayView.swift in Sources */,
 				9F667D272FD340AC0068DE50 /* JourneyView.swift in Sources */,
