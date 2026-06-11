@@ -9,8 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel(objectiveRepo: ObjectiveRepository(), userRepo: UserViewModel())
-    
-    // NOVO: Variáveis para controlar o modal de adicionar META
     @State private var showingAddSheet = false
     @State private var newGoalName = ""
     @State private var newGoalDescription = ""
@@ -21,7 +19,6 @@ struct HomeView: View {
     let categories = ["Técnica", "Repertório", "Teoria", "Leitura", "Outros"]
     let difficulties = ["Fácil", "Média", "Difícil", "Mestre"]
     
-    // Cor de fundo do Figma (aproximada)
     let backgroundColor = Color(red: 244/255, green: 241/255, blue: 234/255)
     
     var body: some View {
@@ -51,12 +48,18 @@ struct HomeView: View {
                         .disabled(viewModel.activeObjective == nil)
                     }.padding()
                     
-                    // 2. INDICADOR DE NÍVEL
+                    // 2. INDICADOR DE NÍVEL (AGORA FUNCIONAL!)
                     HStack {
-                        Text("Lev. 4").bold()
-                        LevelProgressBar(percentage: 0.45) // 45% preenchido
-                        Text("45%").bold()
-                    }.padding()
+                        // Busca o level do usuário, ou mostra 1 se estiver carregando
+                        Text("Lev. \(viewModel.currentUser?.level ?? 1)").bold()
+                        
+                        // Transforma a XP atual em porcentagem (ex: 45 / 100.0 = 0.45)
+                        let xpAtual = Double(viewModel.currentUser?.xp ?? 0)
+                        LevelProgressBar(percentage: xpAtual / 100.0)
+                        
+                        // Mostra o texto com o valor exato da XP
+                        Text("\(Int(xpAtual))%").bold()
+                    }.padding(.horizontal)
                     
                     // 3. CARD DO OBJETIVO (O grandão vermelho)
                     HStack {
@@ -107,6 +110,9 @@ struct HomeView: View {
         .onAppear {
             viewModel.loadHomeData()
         }
+        .sheet(isPresented: $showingAddSheet) {
+                  CreateObjectiveView(viewModel: viewModel)
+              }
         // NOVO: Modal de Criação de META (Sheet)
         .sheet(isPresented: $showingAddSheet) {
             NavigationView {
