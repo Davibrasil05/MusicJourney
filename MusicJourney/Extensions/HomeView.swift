@@ -9,6 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel(objectiveRepo: ObjectiveRepository(), userRepo: UserViewModel())
+    
+    // Controle do fullScreenCover da Sessão de Prática
+    @State private var selectedGoal: Goal? = nil
+    
+    // NOVO: Variáveis para controlar o modal de adicionar META
     @State private var showingAddSheet = false
     @State private var newGoalName = ""
     @State private var newGoalDescription = ""
@@ -82,13 +87,14 @@ struct HomeView: View {
                         ForEach(viewModel.sortedGoals) { goal in
                             let state = viewModel.getGoalState(for: goal)
                             
-                            GoalCardView(goalName: goal.name ?? "", state: state)
-                                .onTapGesture {
-                                    if state == .active {
-                                        // Apenas metas ativas podem ser clicadas!
-                                        // Abra a PracticeSessionView
+                            if state == .active {
+                                GoalCardView(goalName: goal.name ?? "", state: state)
+                                    .onTapGesture {
+                                        selectedGoal = goal
                                     }
-                                }
+                            } else {
+                                GoalCardView(goalName: goal.name ?? "", state: state)
+                            }
                         }
                     }
                     .padding(.horizontal)
@@ -102,9 +108,58 @@ struct HomeView: View {
             viewModel.loadHomeData()
         }
         .sheet(isPresented: $showingAddSheet) {
-                  CreateObjectiveView(viewModel: viewModel)
-              }
-        
+            NavigationView {
+                Form {
+                    Section(header: Text("Informações Básicas")) {
+                        TextField("Nome da meta", text: $newGoalName)
+                        TextField("Breve descrição", text: $newGoalDescription)
+                    }
+                    
+                    Section(header: Text("Classificação e Ordem")) {
+                        Picker("Categoria", selection: $newGoalCategory) {
+                            ForEach(categories, id: \.self) { Text($0) }
+                        }
+                        Picker("Dificuldade", selection: $newGoalDifficulty) {
+                            ForEach(difficulties, id: \.self) { Text($0) }
+                        }
+                        Stepper("Ordem na trilha: \(newGoalOrder)º", value: $newGoalOrder, in: 1...20)
+                    }
+                }
+                .navigationTitle("Nova Meta")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Cancelar") {
+                            resetSheetState()
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Salvar") {
+                            if !newGoalName.isEmpty {
+                                // NOVO: Manda salvar a meta vinculando ao objetivo ativo
+                                if let objective = viewModel.activeObjective {
+                                    viewModel.addGoal(to: objective, name: newGoalName, textDescription: newGoalDescription, category: newGoalCategory, difficulty: newGoalDifficulty, order: newGoalOrder)
+                                    resetSheetState()
+                                }
+                            }
+                        }
+                        .disabled(newGoalName.isEmpty)
+                    }
+                }
+            }
+        }
+        // Tela de Prática abre por cima de TUDO (sem TabBar, sem NavigationBar)
+        .fullScreenCover(item: $selectedGoal) { goal in
+            NavigationView {
+                PracticeSessionView(
+                    viewModel: SessionViewModel(
+                        goal: goal,
+                        sessionRepo: SessionRepository(),
+                        objectiveRepo: ObjectiveRepository()
+                    )
+                )
+            }
+        }
     }
     
     // Helper para limpar os campos

@@ -44,7 +44,9 @@ struct PracticeSessionView: View {
                 )
                 .frame(height: UIScreen.main.bounds.height * 0.65)
             }
+            .ignoresSafeArea(edges: .bottom)
         }
+        .ignoresSafeArea(edges: .bottom)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             
