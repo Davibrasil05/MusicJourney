@@ -11,7 +11,7 @@ struct ObjectiveDetailView: View {
     var objective: Objective
     
     @State private var showingAddGoalSheet = false
- 
+    
     @State private var newGoalName = ""
     @State private var newGoalDescription = ""
     @State private var newGoalCategory = "Técnica"
@@ -35,8 +35,7 @@ struct ObjectiveDetailView: View {
                         .foregroundColor(.gray)
                 } else {
                     ForEach(goals) { goal in
-                        NavigationLink(destination: GoalDetailView(goal: goal)) {
-                            
+                        NavigationLink(destination: GoalDetailView()) {
                             HStack {
                                 // Mudou: Status agora é comparado como String
                                 Image(systemName: goal.status == "completed" ? "checkmark.square.fill" : "square")
@@ -69,7 +68,7 @@ struct ObjectiveDetailView: View {
                             }
                             .padding(.vertical, 4)
                         }
-                        }
+                    }
                     .onDelete { indexSet in
                         if let index = indexSet.first {
                             viewModel.deleteGoal(goal: goals[index])
