@@ -8,13 +8,17 @@
 import Foundation
 import CoreData
 
-class RecordingRepository {
+class RecordingRepository: ObservableObject {
 
     let context = PersistenceController.shared.container.viewContext
+    
+    // Variável publicada para as listas observarem
+    @Published var recordings: [Recording] = []
 
-    func createRecording(fileURL: String, duration: Double, goal: Goal, session: Session?) -> Recording {
+    func createRecording(title: String, fileURL: String, duration: Double, goal: Goal, session: Session?) -> Recording {
         let newRecording = Recording(context: context)
         newRecording.id = UUID()
+        newRecording.title = title // Novo campo obrigatório!
         newRecording.fileURL = fileURL
         newRecording.duration = duration
         newRecording.createdAt = Date()
@@ -23,39 +27,28 @@ class RecordingRepository {
         newRecording.session = session
 
         saveContext()
+        fetchRecordings(goal: goal)
         return newRecording
     }
 
-    //Busca gravacoes associadas a uma meta
-    func fetchRecordings(goal: Goal) -> [Recording] {
+    func fetchRecordings(goal: Goal) {
         let request = NSFetchRequest<Recording>(entityName: "Recording")
         request.predicate = NSPredicate(format: "goal == %@", goal)
-        request.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Recording.createdAt, ascending: false)
-        ]
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Recording.createdAt, ascending: false)]
 
         do {
-            return try context.fetch(request)
+            recordings = try context.fetch(request)
         } catch {
             print("Erro ao buscar gravações da meta: \(error)")
-            return []
         }
     }
-
-
-    //Busca todas as gravacoes associadas ao objetivo
-    func fetchRecordings(objective: Objective) -> [Recording] {
-        let request = NSFetchRequest<Recording>(entityName: "Recording")
-        request.predicate = NSPredicate(format: "goal.objective == %@", objective)
-        request.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Recording.createdAt, ascending: true)
-        ]
-
-        do {
-            return try context.fetch(request)
-        } catch {
-            print("Erro ao buscar gravações do objetivo: \(error)")
-            return []
+    
+    // NOVO: Função para o usuário editar o nome na aba de registros
+    func updateRecordingTitle(recording: Recording, newTitle: String) {
+        recording.title = newTitle
+        saveContext()
+        if let goal = recording.goal {
+            fetchRecordings(goal: goal)
         }
     }
 
@@ -66,19 +59,26 @@ class RecordingRepository {
 
     func deleteRecording(_ recording: Recording) {
         // 1. Apaga o arquivo físico do dispositivo
-        if let filePath = recording.fileURL {
+        if let filePath = recording.fileURL, let url = URL(string: filePath) {
             let fileManager = FileManager.default
-            if fileManager.fileExists(atPath: filePath) {
+            if fileManager.fileExists(atPath: url.path) {
                 do {
-                    try fileManager.removeItem(atPath: filePath)
+                    try fileManager.removeItem(at: url)
                 } catch {
                     print("Erro ao apagar arquivo de áudio: \(error)")
                 }
             }
         }
 
+        // 2. Apaga do Banco de Dados
+        let goal = recording.goal
         context.delete(recording)
         saveContext()
+        
+        // 3. Atualiza a lista na UI
+        if let goal = goal {
+            fetchRecordings(goal: goal)
+        }
     }
 
     private func saveContext() {
