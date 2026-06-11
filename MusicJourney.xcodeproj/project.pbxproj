@@ -93,6 +93,11 @@
 		D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028732BB7354CA2A777C0F5 /* OnboardingLevelStep.swift */; };
 		DD1B3C4D5E6F7A8B9C0D1E2F /* OnboardingGenreChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B3C4D5E6F7A8B9C0D1E3A /* OnboardingGenreChip.swift */; };
 		EE1B3C4D5E6F7A8B9C0D1E2F /* OnboardingPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */; };
+		19C00F8496DB405184CCADF9 /* CreateObjectiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140B43F450064B438C9ADC55 /* CreateObjectiveViewModel.swift */; };
+		BF77CC31188442419EA25CE2 /* AddGoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7E45A9DFF472BA31B9A69 /* AddGoalsViewModel.swift */; };
+		0ECB7DDDF4F5434BA2EE39FB /* AddGoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63E3467CB9047C497300CF5 /* AddGoalsView.swift */; };
+		F1649CC459FD44B18E64E87F /* GoalSuggestionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B17747982C48B586210059 /* GoalSuggestionCard.swift */; };
+		AC8E752293294AE79DC20B7A /* ManualGoalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE3ADAF1ACA432990D56EE1 /* ManualGoalSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +207,11 @@
 		DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInstrumentStep.swift; sourceTree = "<group>"; };
 		EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPrimaryButton.swift; sourceTree = "<group>"; };
 		F7764B744B6B45AC8CD2A2D3 /* OnboardingScheduleStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScheduleStep.swift; sourceTree = "<group>"; };
+		140B43F450064B438C9ADC55 /* CreateObjectiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateObjectiveViewModel.swift; sourceTree = "<group>"; };
+		1DE7E45A9DFF472BA31B9A69 /* AddGoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalsViewModel.swift; sourceTree = "<group>"; };
+		A63E3467CB9047C497300CF5 /* AddGoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalsView.swift; sourceTree = "<group>"; };
+		81B17747982C48B586210059 /* GoalSuggestionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSuggestionCard.swift; sourceTree = "<group>"; };
+		AAE3ADAF1ACA432990D56EE1 /* ManualGoalSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualGoalSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,7 +300,7 @@
 				9F48C8EC2FDB1D59006D50B2 /* ProgressView.swift */,
 			);
 			path = Components;
-			sourceTree = "<unknown>";
+			sourceTree = "<group>";
 		};
 		9F664BB02FD8A6D600DEA9D7 /* Metronome */ = {
 			isa = PBXGroup;
@@ -359,6 +369,7 @@
 				9FB83B1B2FD881E7007A06E0 /* Feedback */,
 				9FB83B1A2FD881DF007A06E0 /* Session */,
 				9FB83B192FD881D3007A06E0 /* GoalManagement */,
+				8FCBFB54A86048FFB564204C /* Components */,
 				9FB83B182FD881BD007A06E0 /* Objective */,
 				9FB83B172FD881B3007A06E0 /* Home */,
 				9FB83B162FD881AC007A06E0 /* Onboarding */,
@@ -458,6 +469,9 @@
 				9F7C7ED72FD75EF2009961ED /* ObjectiveDetailView.swift */,
 				9F7C7ED82FD75EF3009961ED /* ObjectiveListView.swift */,
 				9F48C8F12FDB3465006D50B2 /* CreateObjectiveView.swift */,
+				140B43F450064B438C9ADC55 /* CreateObjectiveViewModel.swift */,
+				A63E3467CB9047C497300CF5 /* AddGoalsView.swift */,
+				1DE7E45A9DFF472BA31B9A69 /* AddGoalsViewModel.swift */,
 			);
 			path = Objective;
 			sourceTree = "<group>";
@@ -556,7 +570,16 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-/* End PBXGroup section */
+		8FCBFB54A86048FFB564204C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				81B17747982C48B586210059 /* GoalSuggestionCard.swift */,
+				AAE3ADAF1ACA432990D56EE1 /* ManualGoalSheet.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+	/* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
 		9F667CEE2FD3400D0068DE50 /* MusicJourney */ = {
@@ -749,6 +772,11 @@
 				9F1003CB2FDB575800C7888E /* BPMAdjustButtonsView.swift in Sources */,
 				23BB996F3C14482ABA9100B9 /* OnboardingDotsIndicator.swift in Sources */,
 				9F48C8F22FDB3465006D50B2 /* CreateObjectiveView.swift in Sources */,
+				19C00F8496DB405184CCADF9 /* CreateObjectiveViewModel.swift in Sources */,
+				0ECB7DDDF4F5434BA2EE39FB /* AddGoalsView.swift in Sources */,
+				BF77CC31188442419EA25CE2 /* AddGoalsViewModel.swift in Sources */,
+				F1649CC459FD44B18E64E87F /* GoalSuggestionCard.swift in Sources */,
+				AC8E752293294AE79DC20B7A /* ManualGoalSheet.swift in Sources */,
 				36B5121B1B7C4053A0C13742 /* OnboardingTextOptionButton.swift in Sources */,
 				B7BB8BD989574EA09AC87917 /* OnboardingWelcomeStep.swift in Sources */,
 				D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */,

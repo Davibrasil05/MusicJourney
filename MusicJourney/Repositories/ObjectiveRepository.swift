@@ -34,9 +34,9 @@ class ObjectiveRepository: ObservableObject {
         }
     }
     
-    // MARK: - CREATE (Criar Objetivo) - ATUALIZADO
+    // MARK: - CREATE (Criar Objetivo)
     @discardableResult
-    func addObjective(name: String, descriptionText: String = "", deadline: Date? = nil, reminderTime: Date? = nil, isDailyReminder: Bool = false) -> Objective {
+    func addObjective(name: String, descriptionText: String = "", user: User? = nil, reminderTime: Date? = nil, isDailyReminder: Bool = false) -> Objective {
         let newObjective = Objective(context: context)
         newObjective.id = UUID()
         newObjective.name = name
@@ -44,34 +44,51 @@ class ObjectiveRepository: ObservableObject {
         newObjective.createdAt = Date()
         newObjective.progress = 0
         newObjective.status = "active"
-        
-        // NOVO: Adicionando os novos campos do Figma!
         newObjective.reminderTime = reminderTime
         newObjective.isDailyReminder = isDailyReminder
-        
+        newObjective.user = user
+
         saveContext()
         fetchObjectives()
-        
-        return newObjective // <- Agora a função devolve o que acabou de criar!
+
+        return newObjective
     }
-    
+
     // MARK: - CREATE (Criar Meta / Goal para um Objetivo)
-    func addGoal(to objective: Objective, name: String, textDescription: String, category: String, difficulty: String, order: Int16) {
+    @discardableResult
+    func addGoal(to objective: Objective, name: String, textDescription: String, category: String, difficulty: String, type: String = "practice", order: Int16) -> Goal {
         let newGoal = Goal(context: context)
         newGoal.id = UUID()
         newGoal.name = name
         newGoal.textDescription = textDescription
         newGoal.category = category
         newGoal.difficulty = difficulty
+        newGoal.type = type
         newGoal.order = order
         newGoal.isFinal = false
         newGoal.xpReward = 0
-        newGoal.status = "locked"
-        
+        // First goal in the trail starts unlocked; the rest stay locked
+        newGoal.status = order == 1 ? "unlocked" : "locked"
         newGoal.objective = objective
-        
+
         saveContext()
         fetchObjectives()
+        return newGoal
+    }
+
+    // MARK: - CREATE (batch from AI / manual pending list)
+    func addGoals(to objective: Objective, items: [(name: String, textDescription: String, category: String, difficulty: String, type: String)]) {
+        for (index, item) in items.enumerated() {
+            addGoal(
+                to: objective,
+                name: item.name,
+                textDescription: item.textDescription,
+                category: item.category,
+                difficulty: item.difficulty,
+                type: item.type,
+                order: Int16(index + 1)
+            )
+        }
     }
     
     // MARK: - UPDATE (Atualizar Objetivo)

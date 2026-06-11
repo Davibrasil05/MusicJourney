@@ -67,42 +67,5 @@ class HomeViewModel: ObservableObject {
         
         return .locked
     }
-    func addObjective(name: String, descriptionText: String) {
-    
-            objectiveRepo.addObjective(name: name, descriptionText: descriptionText)
-            
-            loadHomeData()
-        }
-    func addGoal(to objective: Objective, name: String, textDescription: String, category: String, difficulty: String, order: Int16) {
-            
-            objectiveRepo.addGoal(to: objective,
-                                  name: name,
-                                  textDescription: textDescription,
-                                  category: category,
-                                  difficulty: difficulty,
-                                  order: order)
-            
-            loadHomeData()
-        }
-    func saveFullObjective(title: String, deadline: Date, reminderTime: Date, isDailyReminder: Bool, tempGoals: [TempGoal]) {
-        
-        let newObjective = objectiveRepo.addObjective(name: title,
-                                                      descriptionText: "",
-                                                      reminderTime: reminderTime,
-                                                      isDailyReminder: isDailyReminder)
-        
-        for (index, tempGoal) in tempGoals.enumerated() {
-            if tempGoal.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { continue }
-            
-            objectiveRepo.addGoal(to: newObjective,
-                                  name: tempGoal.title,
-                                  textDescription: "",
-                                  category: "Outros",
-                                  difficulty: "Média",
-                                  order: Int16(index + 1))
-        }
-        
-        loadHomeData()
-    }
-   
+
 }
