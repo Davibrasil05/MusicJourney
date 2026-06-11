@@ -6,88 +6,94 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct UserProfileView: View {
-    @StateObject private var viewModel = UserViewModel()
-    
-    // NOVO: Instanciando o repositório de objetivos e as variáveis do modal
+    @StateObject private var viewModel = UserRepository()
     @StateObject private var objectiveRepo = ObjectiveRepository()
+
+    // Picker state — initialised from Core Data in onAppear
+    @State private var selectedInstrument: MusicInstrument = .violao
+    @State private var selectedLevel: MusicLevel = .iniciante
+    @State private var selectedSchedule: PracticeSchedule = .noite
+    @State private var selectedGenres: Set<MusicGenre> = []
+
     @State private var showingAddSheet = false
     @State private var newObjectiveName = ""
     @State private var newObjectiveDescription = ""
-    
+
     var body: some View {
         NavigationView {
             if let user = viewModel.currentUser {
                 Form {
-                    Section(header: Text("Quem é você?")) {
-                        TextField("Seu Nome", text: Binding(
-                            get: { user.name ?? "" }, set: { user.name = $0 }
-                        ))
-                        TextField("Qual seu instrumento?", text: Binding(
-                            get: { user.instrument ?? "" }, set: { user.instrument = $0 }
-                        ))
-                        TextField("Nível (ex: Intermediário)", text: Binding(
-                            get: { user.experienceLevel ?? "" }, set: { user.experienceLevel = $0 }
-                        ))
+
+                    // MARK: - Perfil Musical
+                    Section(header: Text("Perfil Musical")) {
+                        Picker("Instrumento", selection: $selectedInstrument) {
+                            ForEach(MusicInstrument.allCases) { instrument in
+                                Text(instrument.rawValue).tag(instrument)
+                            }
+                        }
+
+                        Picker("Nível", selection: $selectedLevel) {
+                            ForEach(MusicLevel.allCases) { level in
+                                Text(level.rawValue).tag(level)
+                            }
+                        }
+
+                        Picker("Horário de prática", selection: $selectedSchedule) {
+                            ForEach(PracticeSchedule.allCases) { schedule in
+                                Text(schedule.rawValue).tag(schedule)
+                            }
+                        }
+
+                        NavigationLink(destination: GenrePickerView(selectedGenres: $selectedGenres)) {
+                            HStack {
+                                Text("Gêneros")
+                                Spacer()
+                                Text(selectedGenres.isEmpty
+                                     ? "Nenhum"
+                                     : selectedGenres.map(\.rawValue).sorted().joined(separator: ", "))
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                            }
+                        }
                     }
-                    
-                    Section(header: Text("Sua Jornada (Status)")) {
+
+                    // MARK: - Jornada
+                    Section(header: Text("Sua Jornada")) {
                         HStack {
                             Text("Nível Musical")
                             Spacer()
-                            Text("Lvl \(user.level)")
-                                .fontWeight(.bold).foregroundColor(.blue)
+                            Text("Lvl \(user.level)").fontWeight(.bold).foregroundColor(.blue)
                         }
-                        
                         HStack {
                             Text("Experiência (XP)")
                             Spacer()
-                            Text("\(user.xp) / 100 XP")
-                                .foregroundColor(.green)
+                            Text("\(user.xp) / 100 XP").foregroundColor(.green)
                         }
-                        
                         HStack {
                             Text("Ofensiva (Dias Seguidos)")
                             Spacer()
-                            Text("🔥 \(user.streak) dias")
-                                .foregroundColor(.orange)
+                            Text("🔥 \(user.streak) dias").foregroundColor(.orange)
                         }
                     }
-                    
-                    // MARK: - Nova Seção: Ferramentas
+
+                    // MARK: - Ferramentas
                     Section(header: Text("Ferramentas de Prática")) {
-                        // O Metrônomo
                         NavigationLink(destination: MetronomeOverlayView(viewModel: PracticeSessionViewModel())) {
-                            HStack {
-                                Image(systemName: "metronome.fill")
-                                    .foregroundColor(.blue)
-                                Text("Testar Metrônomo")
-                            }
+                            Label("Testar Metrônomo", systemImage: "metronome.fill")
                         }
-                        
-                        // O GRAVADOR NOVO!
                         NavigationLink(destination: TestAudioRecordingView()) {
-                            HStack {
-                                Image(systemName: "mic.fill")
-                                    .foregroundColor(.red)
-                                Text("Testar Gravador")
-                            }
+                            Label("Testar Gravador", systemImage: "mic.fill")
                         }
                     }
-                    
-                    // MARK: - Nova Seção: Ferramentas de Teste
+
+                    // MARK: - Ferramentas de Teste
                     Section(header: Text("Ferramentas de Teste")) {
-                        // Botão para criar objetivo
                         Button(action: { showingAddSheet = true }) {
-                            HStack {
-                                Image(systemName: "target")
-                                    .foregroundColor(.purple)
-                                Text("Criar Objetivo de Teste")
-                            }
+                            Label("Criar Objetivo de Teste", systemImage: "target")
                         }
-                        
-                        // Um botão para você testar como a gamificação vai funcionar depois
                         Button(action: { viewModel.gainXP(amount: 15) }) {
                             Text("Praticar (Ganhar +15 XP)")
                                 .frame(maxWidth: .infinity)
@@ -102,10 +108,10 @@ struct UserProfileView: View {
                 .navigationTitle("Meu Perfil")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Salvar") { viewModel.saveChanges() }
+                        Button("Salvar") { saveProfile(to: user) }
                     }
                 }
-                // NOVO: Modal para criação do Objetivo colado no final do Form
+                .onAppear { loadProfile(from: user) }
                 .sheet(isPresented: $showingAddSheet) {
                     NavigationView {
                         Form {
@@ -118,17 +124,13 @@ struct UserProfileView: View {
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
-                                Button("Cancelar") {
-                                    resetSheetState()
-                                }
+                                Button("Cancelar") { resetSheetState() }
                             }
                             ToolbarItem(placement: .navigationBarTrailing) {
                                 Button("Salvar") {
-                                    if !newObjectiveName.isEmpty {
-                                        // Salva no banco de dados usando o repositório instanciado ali em cima
-                                        objectiveRepo.addObjective(name: newObjectiveName, descriptionText: newObjectiveDescription)
-                                        resetSheetState()
-                                    }
+                                    guard !newObjectiveName.isEmpty else { return }
+                                    objectiveRepo.addObjective(name: newObjectiveName, descriptionText: newObjectiveDescription)
+                                    resetSheetState()
                                 }
                                 .disabled(newObjectiveName.isEmpty)
                             }
@@ -140,11 +142,70 @@ struct UserProfileView: View {
             }
         }
     }
-    
-    // Helper para limpar os campos ao fechar a modal
+
+    // MARK: - Helpers
+
+    private func loadProfile(from user: User) {
+        selectedInstrument = MusicInstrument(rawValue: user.instrument ?? "") ?? .violao
+        selectedLevel      = MusicLevel(rawValue: user.experienceLevel ?? "") ?? .iniciante
+        selectedSchedule   = PracticeSchedule(rawValue: user.practiceSchedule ?? "") ?? .noite
+        let saved = user.genres as? [String] ?? []
+        selectedGenres     = Set(saved.compactMap { MusicGenre(rawValue: $0) })
+    }
+
+    private func saveProfile(to user: User) {
+        user.instrument      = selectedInstrument.rawValue
+        user.experienceLevel = selectedLevel.rawValue
+        user.level           = selectedLevel.levelValue
+        user.practiceSchedule = selectedSchedule.rawValue
+        user.genres          = selectedGenres.map(\.rawValue) as NSArray
+        viewModel.save()
+    }
+
     private func resetSheetState() {
         newObjectiveName = ""
         newObjectiveDescription = ""
         showingAddSheet = false
+    }
+}
+
+// MARK: - Genre Picker (sub-tela com checkmarks)
+
+private struct GenrePickerView: View {
+    @Binding var selectedGenres: Set<MusicGenre>
+
+    var body: some View {
+        List {
+            ForEach(MusicGenre.allCases) { genre in
+                Button(action: { toggle(genre) }) {
+                    HStack {
+                        Text(genre.rawValue).foregroundColor(.primary)
+                        Spacer()
+                        if selectedGenres.contains(genre) {
+                            Image(systemName: "checkmark").foregroundColor(.accentColor)
+                        }
+                    }
+                }
+            }
+        }
+        .navigationTitle("Gêneros")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private func toggle(_ genre: MusicGenre) {
+        if selectedGenres.contains(genre) {
+            selectedGenres.remove(genre)
+        } else {
+            selectedGenres.insert(genre)
+        }
+    }
+}
+
+struct UserProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        UserProfileView()
+            .environment(\.managedObjectContext,
+                         PersistenceController.preview.container.viewContext)
+            .previewDisplayName("UserProfileView")
     }
 }

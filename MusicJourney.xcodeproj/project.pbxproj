@@ -50,7 +50,6 @@
 		9F667D8C2FD885CC0068DE50 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667D8B2FD885CC0068DE50 /* Extensions.swift */; };
 		9F667D8E2FD885DC0068DE50 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667D8D2FD885DC0068DE50 /* Services.swift */; };
 		9F7C7ED42FD75ECE009961ED /* ObjectiveRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED22FD75ECD009961ED /* ObjectiveRepository.swift */; };
-		9F7C7ED52FD75ECE009961ED /* UserViewRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED32FD75ECE009961ED /* UserViewRepository.swift */; };
 		9F7C7ED92FD75EF3009961ED /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED62FD75EF2009961ED /* UserProfileView.swift */; };
 		9F7C7EDA2FD75EF3009961ED /* ObjectiveDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED72FD75EF2009961ED /* ObjectiveDetailView.swift */; };
 		9F7C7EDB2FD75EF3009961ED /* ObjectiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C7ED82FD75EF3009961ED /* ObjectiveListView.swift */; };
@@ -84,7 +83,8 @@
 		D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028732BB7354CA2A777C0F5 /* OnboardingLevelStep.swift */; };
 		DD1B3C4D5E6F7A8B9C0D1E2F /* OnboardingGenreChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B3C4D5E6F7A8B9C0D1E3A /* OnboardingGenreChip.swift */; };
 		EE1B3C4D5E6F7A8B9C0D1E2F /* OnboardingPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */; };
-/* End PBXBuildFile section */
+		27587AC8D6874AA9A2DB10BF /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CCD396F3CE4496844AC454 /* UserRepository.swift */; };
+		/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		9F667D052FD340110068DE50 /* PBXContainerItemProxy */ = {
@@ -148,7 +148,6 @@
 		9F667D8B2FD885CC0068DE50 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9F667D8D2FD885DC0068DE50 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Services.swift; path = MusicJourney/Extensions/Services.swift; sourceTree = SOURCE_ROOT; };
 		9F7C7ED22FD75ECD009961ED /* ObjectiveRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveRepository.swift; sourceTree = "<group>"; };
-		9F7C7ED32FD75ECE009961ED /* UserViewRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewRepository.swift; sourceTree = "<group>"; };
 		9F7C7ED62FD75EF2009961ED /* UserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		9F7C7ED72FD75EF2009961ED /* ObjectiveDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveDetailView.swift; sourceTree = "<group>"; };
 		9F7C7ED82FD75EF3009961ED /* ObjectiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveListView.swift; sourceTree = "<group>"; };
@@ -184,7 +183,8 @@
 		DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInstrumentStep.swift; sourceTree = "<group>"; };
 		EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPrimaryButton.swift; sourceTree = "<group>"; };
 		F7764B744B6B45AC8CD2A2D3 /* OnboardingScheduleStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScheduleStep.swift; sourceTree = "<group>"; };
-/* End PBXFileReference section */
+		59CCD396F3CE4496844AC454 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9F667CEC2FD3400D0068DE50 /* Frameworks */ = {
@@ -375,7 +375,7 @@
 			children = (
 				5938EB69AE644610BB6B42DF /* GeminiService.swift */,
 				9F7C7ED22FD75ECD009961ED /* ObjectiveRepository.swift */,
-				9F7C7ED32FD75ECE009961ED /* UserViewRepository.swift */,
+				59CCD396F3CE4496844AC454 /* UserRepository.swift */,
 				9F667CFB2FD340100068DE50 /* Persistence.swift */,
 				9F880EEB2FD9E29800D9E169 /* SessionRepository.swift */,
 				9F4488042FDA04DB00258351 /* AnnotationRepository.swift */,
@@ -705,7 +705,7 @@
 				9F4488112FDB00F800258351 /* HistoryViewModel.swift in Sources */,
 				7578F69B620143EBBF7B7779 /* OnboardingGenreStep.swift in Sources */,
 				33CCF1626BD9432BBB4BA50E /* OnboardingScheduleStep.swift in Sources */,
-				9F7C7ED52FD75ECE009961ED /* UserViewRepository.swift in Sources */,
+				27587AC8D6874AA9A2DB10BF /* UserRepository.swift in Sources */,
 				AA1B3C4D5E6F7A8B9C0D1E2F /* OnboardingStepHeader.swift in Sources */,
 				BB1B3C4D5E6F7A8B9C0D1E2F /* OnboardingOptionRow.swift in Sources */,
 				CC1B3C4D5E6F7A8B9C0D1E2F /* OnboardingInstrumentCard.swift in Sources */,

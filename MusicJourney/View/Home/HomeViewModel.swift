@@ -16,7 +16,7 @@ enum GoalState {
 class HomeViewModel: ObservableObject {
     
     private let objectiveRepo: ObjectiveRepository
-    private let userRepo: UserViewModel
+    private let userRepo: UserRepository
     
     @Published var viewState: HomeState = .noObjective
     @Published var activeObjective: Objective?
@@ -25,7 +25,7 @@ class HomeViewModel: ObservableObject {
     
     @Published var sortedGoals: [Goal] = []
     
-    init(objectiveRepo: ObjectiveRepository, userRepo: UserViewModel) {
+    init(objectiveRepo: ObjectiveRepository, userRepo: UserRepository) {
         self.objectiveRepo = objectiveRepo
         self.userRepo = userRepo
     }
