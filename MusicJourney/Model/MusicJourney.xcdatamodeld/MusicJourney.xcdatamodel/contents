@@ -40,8 +40,10 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="descriptionText" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isDailyReminder" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="progress" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="reminderTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="status" optional="YES" attributeType="String"/>
         <relationship name="goals" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Goal" inverseName="objective" inverseEntity="Goal"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="objective" inverseEntity="User"/>
@@ -80,10 +82,10 @@
     <elements>
         <element name="Achievement" positionX="-118.8275146484376" positionY="-339.2253570556641" width="128" height="164"/>
         <element name="Annotation" positionX="-11.08807373046875" positionY="-71.25056457519531" width="128" height="104"/>
-        <element name="Goal" positionX="-257.9225463867189" positionY="-146.4799346923828" width="128" height="254"/>
-        <element name="Objective" positionX="-447.0709838867188" positionY="-112.2295074462891" width="128" height="164"/>
+        <element name="Goal" positionX="-221.2150878906252" positionY="-166.7440185546875" width="128" height="254"/>
+        <element name="Objective" positionX="-362.3276977539062" positionY="45.50770568847651" width="128" height="208"/>
         <element name="Recording" positionX="218.2617187499999" positionY="-227.2450408935547" width="128" height="134"/>
         <element name="Session" positionX="166.3582153320313" positionY="27.47775268554685" width="128" height="119"/>
-        <element name="User" positionX="-458.3980102539062" positionY="-471.661376953125" width="142.8009033203125" height="209"/>
+        <element name="User" positionX="-405.9466552734375" positionY="-289.3365173339844" width="142.8009033203125" height="209"/>
     </elements>
 </model>

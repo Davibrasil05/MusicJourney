@@ -32,6 +32,7 @@
 		9F4488132FDB010B00258351 /* RetrospectiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4488122FDB010B00258351 /* RetrospectiveViewModel.swift */; };
 		9F48C8ED2FDB1D59006D50B2 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F48C8EC2FDB1D59006D50B2 /* ProgressView.swift */; };
 		9F48C8EF2FDB1DA4006D50B2 /* GoalCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F48C8EE2FDB1DA4006D50B2 /* GoalCardView.swift */; };
+		9F48C8F22FDB3465006D50B2 /* CreateObjectiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F48C8F12FDB3465006D50B2 /* CreateObjectiveView.swift */; };
 		9F664BAF2FD8A6C700DEA9D7 /* MetroronomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */; };
 		9F664BB22FD8A6F600DEA9D7 /* PraticeSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */; };
 		9F667CF32FD3400D0068DE50 /* MusicJourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F667CF22FD3400D0068DE50 /* MusicJourneyApp.swift */; };
@@ -121,8 +122,9 @@
 		9F44880E2FDB00E000258351 /* PracticeSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSessionViewModel.swift; sourceTree = "<group>"; };
 		9F4488102FDB00F800258351 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		9F4488122FDB010B00258351 /* RetrospectiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrospectiveViewModel.swift; sourceTree = "<group>"; };
-		9F48C8EC2FDB1D59006D50B2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProgressView.swift; path = MusicJourney/View/Goal/ProgressView.swift; sourceTree = SOURCE_ROOT; };
-		9F48C8EE2FDB1DA4006D50B2 /* GoalCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoalCardView.swift; path = MusicJourney/View/Goal/GoalCardView.swift; sourceTree = SOURCE_ROOT; };
+		9F48C8EC2FDB1D59006D50B2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProgressView.swift; path = MusicJourney/View/Home/Components/ProgressView.swift; sourceTree = SOURCE_ROOT; };
+		9F48C8EE2FDB1DA4006D50B2 /* GoalCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoalCardView.swift; path = MusicJourney/View/Home/Components/GoalCardView.swift; sourceTree = SOURCE_ROOT; };
+		9F48C8F12FDB3465006D50B2 /* CreateObjectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateObjectiveView.swift; sourceTree = "<group>"; };
 		9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MetroronomeService.swift; path = MusicJourney/View/MetroronomeService.swift; sourceTree = SOURCE_ROOT; };
 		9F664BB12FD8A6F500DEA9D7 /* PraticeSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PraticeSessionViewModel.swift; sourceTree = "<group>"; };
 		9F664BB32FD8A70E00DEA9D7 /* MetronomeOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeOverlayView.swift; sourceTree = "<group>"; };
@@ -216,6 +218,14 @@
 			);
 			path = Presets;
 			sourceTree = "<group>";
+		};
+9F48C8F02FDB3086006D50B2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9F48C8EE2FDB1DA4006D50B2 /* GoalCardView.swift */,
+				9F48C8EC2FDB1D59006D50B2 /* ProgressView.swift */,
+			);
+			path = Components;
 		};
 		9F4488142FDB1D6D00258351 /* components */ = {
 			isa = PBXGroup;
@@ -374,6 +384,7 @@
 		9FB83B172FD881B3007A06E0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9F48C8F02FDB3086006D50B2 /* Components */,
 				9FDC4E6B2FD886A000C62F3C /* HomeView.swift */,
 				9F44880A2FDB009E00258351 /* HomeViewModel.swift */,
 			);
@@ -385,6 +396,7 @@
 			children = (
 				9F7C7ED72FD75EF2009961ED /* ObjectiveDetailView.swift */,
 				9F7C7ED82FD75EF3009961ED /* ObjectiveListView.swift */,
+				9F48C8F12FDB3465006D50B2 /* CreateObjectiveView.swift */,
 			);
 			path = Objective;
 			sourceTree = "<group>";
@@ -437,8 +449,6 @@
 			children = (
 				9FDC4E612FD8865100C62F3C /* Components.swift */,
 				9FB83B282FD88B16007A06E0 /* YoutubePlayerView.swift */,
-				9F48C8EC2FDB1D59006D50B2 /* ProgressView.swift */,
-				9F48C8EE2FDB1DA4006D50B2 /* GoalCardView.swift */,
 			);
 			path = Componentes;
 			sourceTree = "<group>";
@@ -666,6 +676,7 @@
 				9F880EEC2FD9E29800D9E169 /* SessionRepository.swift in Sources */,
 				9FE541D12FD890DD00675C89 /* OnboardingFormView.swift in Sources */,
 				23BB996F3C14482ABA9100B9 /* OnboardingDotsIndicator.swift in Sources */,
+				9F48C8F22FDB3465006D50B2 /* CreateObjectiveView.swift in Sources */,
 				36B5121B1B7C4053A0C13742 /* OnboardingTextOptionButton.swift in Sources */,
 				B7BB8BD989574EA09AC87917 /* OnboardingWelcomeStep.swift in Sources */,
 				D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */,
