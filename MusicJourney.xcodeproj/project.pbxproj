@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BF2A948E7C34D1AAB681FBE /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BCDB9708D54363BA8F73E3 /* Secrets.swift */; };
 		108919B659194815B6441888 /* GeminiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5938EB69AE644610BB6B42DF /* GeminiService.swift */; };
 		23BB996F3C14482ABA9100B9 /* OnboardingDotsIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5EA7D73A64BA6B30114BE /* OnboardingDotsIndicator.swift */; };
 		33CCF1626BD9432BBB4BA50E /* OnboardingScheduleStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7764B744B6B45AC8CD2A2D3 /* OnboardingScheduleStep.swift */; };
@@ -14,6 +15,7 @@
 		58A8C6D456334176AC462E67 /* OnboardingInstrumentStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */; };
 		5F3F5ED144344B5FACD09D1C /* GoalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C815E018F8A34C00A12E6B5A /* GoalDTO.swift */; };
 		7578F69B620143EBBF7B7779 /* OnboardingGenreStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */; };
+		9F1003BE2FDB4DCA00C7888E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003BD2FDB4DCA00C7888E /* Secrets.swift */; };
 		9F2DA0002FD9D9F60058F384 /* PresetObjective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2D9FFF2FD9D9F60058F384 /* PresetObjective.swift */; };
 		9F2DA0022FD9DCD40058F384 /* PresetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA0012FD9DCD30058F384 /* PresetCatalog.swift */; };
 		9F2DA0062FD9E4A40058F384 /* PresetCatalog+Flauta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA0052FD9E4A40058F384 /* PresetCatalog+Flauta.swift */; };
@@ -108,6 +110,8 @@
 		2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGenreStep.swift; sourceTree = "<group>"; };
 		55C8AD54C2464292BFF98B49 /* OnboardingWelcomeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeStep.swift; sourceTree = "<group>"; };
 		5938EB69AE644610BB6B42DF /* GeminiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiService.swift; sourceTree = "<group>"; };
+		78BCDB9708D54363BA8F73E3 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		9F1003BD2FDB4DCA00C7888E /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		9F2D9FFF2FD9D9F60058F384 /* PresetObjective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetObjective.swift; sourceTree = "<group>"; };
 		9F2DA0012FD9DCD30058F384 /* PresetCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetCatalog.swift; sourceTree = "<group>"; };
 		9F2DA0052FD9E4A40058F384 /* PresetCatalog+Flauta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Flauta.swift"; sourceTree = "<group>"; };
@@ -284,6 +288,7 @@
 				9F667D212FD3402D0068DE50 /* View */,
 				9F667CF62FD340100068DE50 /* Assets.xcassets */,
 				9F667CF82FD340100068DE50 /* Preview Content */,
+				9F1003BD2FDB4DCA00C7888E /* Secrets.swift */,
 			);
 			path = MusicJourney;
 			sourceTree = "<group>";
@@ -651,7 +656,8 @@
 				9F667CF52FD3400D0068DE50 /* ContentView.swift in Sources */,
 				108919B659194815B6441888 /* GeminiService.swift in Sources */,
 				5F3F5ED144344B5FACD09D1C /* GoalDTO.swift in Sources */,
-				9FC650152FDB45360082A548 /* Secrets.swift in Sources */,
+				0BF2A948E7C34D1AAB681FBE /* Secrets.swift in Sources */,
+				9F1003BE2FDB4DCA00C7888E /* Secrets.swift in Sources */,
 				9FDC4E642FD8865F00C62F3C /* Retrospective.swift in Sources */,
 				9FDC4E6C2FD886A000C62F3C /* HomeView.swift in Sources */,
 				9F2DA00E2FD9E5850058F384 /* PresetCatalog+Violao.swift in Sources */,
