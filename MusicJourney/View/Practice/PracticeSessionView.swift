@@ -105,7 +105,7 @@ struct PracticeSessionView: View {
             case .tablatura:
                 Text("Modal de Tablatura Aqui")
             case .metronomo:
-                Text("Modal de Metrônomo Aqui")
+                MetronomeOverlayView(viewModel: PracticeSessionViewModel())
             }
         }
        
