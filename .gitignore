@@ -31,3 +31,7 @@ Contexto/
 .DS_Store
 UserInterfaceState.xcuserstate
 *.xcuserstate
+
+### API Keys ###
+Secrets.swift
+
