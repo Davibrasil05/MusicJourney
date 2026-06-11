@@ -61,17 +61,61 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "MusicJourney")
-        if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        container = Self.makeContainer(inMemory: inMemory, allowStoreReset: true)
+    }
+
+    // MARK: - Store loading
+
+    private static func makeContainer(inMemory: Bool, allowStoreReset: Bool) -> NSPersistentContainer {
+        let container = NSPersistentContainer(name: "MusicJourney")
+        configureStoreDescriptions(for: container, inMemory: inMemory)
+
+        var loadError: NSError?
+        container.loadPersistentStores { _, error in
+            loadError = error as NSError?
         }
-        container.viewContext.automaticallyMergesChangesFromParent = true
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // fatalError() causa o encerramento do app em caso de crash.
-                // Substitua em um app de produção se necessário.
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+
+        if let error = loadError {
+            #if DEBUG
+            if allowStoreReset, !inMemory,
+               let storeURL = container.persistentStoreDescriptions.first?.url,
+               destroyPersistentStore(at: storeURL) {
+                print("⚠️ Core Data: banco incompatível removido. Um banco novo será criado.")
+                return makeContainer(inMemory: inMemory, allowStoreReset: false)
             }
-        })
+            #endif
+            fatalError("Unresolved error \(error), \(error.userInfo)")
+        }
+
+        return container
+    }
+
+    private static func configureStoreDescriptions(for container: NSPersistentContainer, inMemory: Bool) {
+        guard let description = container.persistentStoreDescriptions.first else { return }
+
+        if inMemory {
+            description.url = URL(fileURLWithPath: "/dev/null")
+        }
+
+        description.setOption(true as NSNumber, forKey: NSMigratePersistentStoresAutomaticallyOption)
+        description.setOption(true as NSNumber, forKey: NSInferMappingModelAutomaticallyOption)
+        container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+
+    /// Remove sqlite + arquivos auxiliares (-shm, -wal) após falha de migração.
+    private static func destroyPersistentStore(at storeURL: URL) -> Bool {
+        let fileManager = FileManager.default
+        let relatedURLs = [
+            storeURL,
+            URL(fileURLWithPath: storeURL.path + "-shm"),
+            URL(fileURLWithPath: storeURL.path + "-wal")
+        ]
+
+        var removedAny = false
+        for url in relatedURLs where fileManager.fileExists(atPath: url.path) {
+            try? fileManager.removeItem(at: url)
+            removedAny = true
+        }
+        return removedAny
     }
 }
