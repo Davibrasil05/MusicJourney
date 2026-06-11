@@ -27,7 +27,6 @@ struct HomeView: View {
             
                 VStack(spacing: 24) {
                     
-                    // 1. TOP BAR (Fogo, Nível e Botão Mais)
                     HStack {
                         ZStack {
                             Circle().fill(Color.orange).frame(width: 50, height: 50)
@@ -45,7 +44,6 @@ struct HomeView: View {
                                 .background(Color.gray.opacity(0.2))
                                 .clipShape(Circle())
                         }
-                        .disabled(viewModel.activeObjective == nil)
                     }.padding()
                     
                     // 2. INDICADOR DE NÍVEL (AGORA FUNCIONAL!)
@@ -72,13 +70,6 @@ struct HomeView: View {
                         Spacer()
                             
                         
-//                        Image(systemName: "pencil")
-//                            .foregroundColor(.red)
-//                            .padding(8)
-//                            .background(Color.white)
-//                            .clipShape(Circle())
-//                            .offset(x: 10)
-//                        Spacer()
                     }
                     .padding(.horizontal)
                     .frame(height: 70)
@@ -113,48 +104,7 @@ struct HomeView: View {
         .sheet(isPresented: $showingAddSheet) {
                   CreateObjectiveView(viewModel: viewModel)
               }
-        // NOVO: Modal de Criação de META (Sheet)
-        .sheet(isPresented: $showingAddSheet) {
-            NavigationView {
-                Form {
-                    Section(header: Text("Informações Básicas")) {
-                        TextField("Nome da meta", text: $newGoalName)
-                        TextField("Breve descrição", text: $newGoalDescription)
-                    }
-                    
-                    Section(header: Text("Classificação e Ordem")) {
-                        Picker("Categoria", selection: $newGoalCategory) {
-                            ForEach(categories, id: \.self) { Text($0) }
-                        }
-                        Picker("Dificuldade", selection: $newGoalDifficulty) {
-                            ForEach(difficulties, id: \.self) { Text($0) }
-                        }
-                        Stepper("Ordem na trilha: \(newGoalOrder)º", value: $newGoalOrder, in: 1...20)
-                    }
-                }
-                .navigationTitle("Nova Meta")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button("Cancelar") {
-                            resetSheetState()
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Salvar") {
-                            if !newGoalName.isEmpty {
-                                // NOVO: Manda salvar a meta vinculando ao objetivo ativo
-                                if let objective = viewModel.activeObjective {
-                                    viewModel.addGoal(to: objective, name: newGoalName, textDescription: newGoalDescription, category: newGoalCategory, difficulty: newGoalDifficulty, order: newGoalOrder)
-                                    resetSheetState()
-                                }
-                            }
-                        }
-                        .disabled(newGoalName.isEmpty)
-                    }
-                }
-            }
-        }
+        
     }
     
     // Helper para limpar os campos
