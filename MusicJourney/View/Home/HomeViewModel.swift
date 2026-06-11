@@ -1,10 +1,3 @@
-//
-//  HomeViewModel.swift
-//  MusicJourney
-//
-//  Created by academy on 11/06/26.
-//
-
 import Foundation
 import CoreData
 
@@ -15,9 +8,15 @@ enum HomeState {
     case objectiveWithGoals    // Tem objetivo e metas (Mostra a trilha para praticar)
 }
 
-class HomeViewModel: ObservableObject{
+// NOVO: Os estados visuais do card da Meta
+enum GoalState {
+    case completed
+    case active
+    case locked
+}
+
+class HomeViewModel: ObservableObject {
     
-    // Repositórios injetados
     private let objectiveRepo: ObjectiveRepository
     private let userRepo: UserViewModel
     
@@ -26,58 +25,90 @@ class HomeViewModel: ObservableObject{
     @Published var currentGoal: Goal?
     @Published var currentUser: User?
     
+    // NOVO: Array ordenado de metas para a View conseguir fazer o ForEach e desenhar os cards
+    @Published var sortedGoals: [Goal] = []
+    
     init(objectiveRepo: ObjectiveRepository, userRepo: UserViewModel) {
         self.objectiveRepo = objectiveRepo
         self.userRepo = userRepo
     }
     
-    // Chamado no .onAppear da HomeView
     func loadHomeData() {
-        // 1. Carrega o usuário atual
         self.currentUser = userRepo.currentUser
-        
-        // 2. Busca o objetivo que está ativo
-        // Assumindo que a lista já vem ordenada do repositório, pegamos o primeiro "active"
+        objectiveRepo.fetchObjectives()
         if let active = objectiveRepo.objectives.first(where: { $0.status == "active" }) {
             self.activeObjective = active
             
-            // 3. Verifica se tem metas
             let goals = (active.goals?.allObjects as? [Goal]) ?? []
             
             if goals.isEmpty {
                 self.viewState = .objectiveWithoutGoals
+                self.sortedGoals = [] // Garante que a lista está vazia
             } else {
                 self.viewState = .objectiveWithGoals
-                // Descobre qual é a meta atual (a que está 'unlocked')
-                self.currentGoal = goals.first(where: { $0.status == "unlocked" })
+                
+                // NOVO: Ordena as metas pelo 'order' (passo 1, passo 2...)
+                self.sortedGoals = goals.sorted { $0.order < $1.order }
+                
+                // NOVO: A meta atual passa a ser a primeira que NÃO está concluída
+                self.currentGoal = self.sortedGoals.first(where: { $0.status != "completed" })
             }
         } else {
-            // Nenhum objetivo ativo encontrado
             self.activeObjective = nil
             self.viewState = .noObjective
+            self.sortedGoals = []
         }
         
-        // 4. Checa o Streak assim que o app abre
-        checkStreak()
+//        checkStreak()
     }
     
-    // Verifica se o usuário quebrou a sequência
-    private func checkStreak() {
-        guard let user = currentUser else { return }
-        
-        // ATENÇÃO: Para isso funcionar, o seu modelo 'User' no CoreData precisa ter
-        // um atributo chamado 'lastPracticeDate' do tipo Date.
-        guard let lastPractice = user.value(forKey: "lastPracticeDate") as? Date else { return }
-        
-        let calendar = Calendar.current
-        
-        // Se a última prática não foi nem hoje nem ontem... o streak quebrou!
-        if !calendar.isDateInToday(lastPractice) && !calendar.isDateInYesterday(lastPractice) {
-            user.streak = 0
-            userRepo.saveChanges()
-            // Atualiza a view
-            self.currentUser = user
+    // NOVO: Função que a View vai chamar para saber a cor/ícone do Card
+    func getGoalState(for goal: Goal) -> GoalState {
+        // Se já concluiu, é completed
+        if goal.status == "completed" {
+            return .completed
         }
+        
+        // Se a meta que estamos desenhando agora for igual a currentGoal, ela está ativa!
+        if goal.id == currentGoal?.id {
+            return .active
+        }
+        
+        // Se não é completed e não é a ativa, só pode estar bloqueada (ainda vai chegar lá)
+        return .locked
     }
-    
+    func addObjective(name: String, descriptionText: String) {
+            // Manda o repositório salvar no Core Data
+            objectiveRepo.addObjective(name: name, descriptionText: descriptionText)
+            
+            // Chama o loadHomeData para a tela atualizar e mostrar o objetivo vermelho!
+            loadHomeData()
+        }
+    func addGoal(to objective: Objective, name: String, textDescription: String, category: String, difficulty: String, order: Int16) {
+            
+            // Repassa para o Repository fazer a mágica no Core Data
+            objectiveRepo.addGoal(to: objective,
+                                  name: name,
+                                  textDescription: textDescription,
+                                  category: category,
+                                  difficulty: difficulty,
+                                  order: order)
+            
+            // Atualiza a tela pra exibir o novo card na mesma hora
+            loadHomeData()
+        }
+   
+//    private func checkStreak() {
+//        guard let user = currentUser else { return }
+//
+//        guard let lastPractice = user.value(forKey: "lastPracticeDate") as? Date else { return }
+//
+//        let calendar = Calendar.current
+//
+//        if !calendar.isDateInToday(lastPractice) && !calendar.isDateInYesterday(lastPractice) {
+//            user.streak = 0
+//            userRepo.saveChanges()
+//            self.currentUser = user
+//        }
+//    }
 }
