@@ -78,6 +78,9 @@
 		D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028732BB7354CA2A777C0F5 /* OnboardingLevelStep.swift */; };
 		DD1B3C4D5E6F7A8B9C0D1E2F /* OnboardingGenreChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B3C4D5E6F7A8B9C0D1E3A /* OnboardingGenreChip.swift */; };
 		EE1B3C4D5E6F7A8B9C0D1E2F /* OnboardingPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */; };
+		0BF2A948E7C34D1AAB681FBE /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BCDB9708D54363BA8F73E3 /* Secrets.swift */; };
+		5F3F5ED144344B5FACD09D1C /* GoalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C815E018F8A34C00A12E6B5A /* GoalDTO.swift */; };
+		108919B659194815B6441888 /* GeminiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5938EB69AE644610BB6B42DF /* GeminiService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +175,9 @@
 		DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInstrumentStep.swift; sourceTree = "<group>"; };
 		EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPrimaryButton.swift; sourceTree = "<group>"; };
 		F7764B744B6B45AC8CD2A2D3 /* OnboardingScheduleStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScheduleStep.swift; sourceTree = "<group>"; };
+		78BCDB9708D54363BA8F73E3 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		C815E018F8A34C00A12E6B5A /* GoalDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDTO.swift; sourceTree = "<group>"; };
+		5938EB69AE644610BB6B42DF /* GeminiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +249,7 @@
 		9F667CF12FD3400D0068DE50 /* MusicJourney */ = {
 			isa = PBXGroup;
 			children = (
+				78BCDB9708D54363BA8F73E3 /* Secrets.swift */,
 				9FB83B212FD88225007A06E0 /* App */,
 				9FB83B202FD8821E007A06E0 /* Extensions */,
 				9FB83B1F2FD88211007A06E0 /* Services */,
@@ -290,6 +297,7 @@
 		9F667D232FD340490068DE50 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C815E018F8A34C00A12E6B5A /* GoalDTO.swift */,
 				9F2DA00F2FD9E6400058F384 /* Presets */,
 				9F667CFD2FD340100068DE50 /* MusicJourney.xcdatamodeld */,
 				9FB83B072FD8800B007A06E0 /* User.swift */,
@@ -332,6 +340,7 @@
 		9FB83B152FD88093007A06E0 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				5938EB69AE644610BB6B42DF /* GeminiService.swift */,
 				9F7C7ED22FD75ECD009961ED /* ObjectiveRepository.swift */,
 				9F7C7ED32FD75ECE009961ED /* UserViewRepository.swift */,
 				9F667CFB2FD340100068DE50 /* Persistence.swift */,
@@ -613,6 +622,9 @@
 				9F880EE92FD9C6CF00D9E169 /* AudioRecordingView.swift in Sources */,
 				9F667D8E2FD885DC0068DE50 /* Services.swift in Sources */,
 				9F667CF52FD3400D0068DE50 /* ContentView.swift in Sources */,
+				108919B659194815B6441888 /* GeminiService.swift in Sources */,
+				5F3F5ED144344B5FACD09D1C /* GoalDTO.swift in Sources */,
+				0BF2A948E7C34D1AAB681FBE /* Secrets.swift in Sources */,
 				9FDC4E642FD8865F00C62F3C /* Retrospective.swift in Sources */,
 				9FDC4E6C2FD886A000C62F3C /* HomeView.swift in Sources */,
 				9F2DA00E2FD9E5850058F384 /* PresetCatalog+Violao.swift in Sources */,
