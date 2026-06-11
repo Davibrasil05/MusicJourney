@@ -300,7 +300,7 @@
 				9F48C8EC2FDB1D59006D50B2 /* ProgressView.swift */,
 			);
 			path = Components;
-			sourceTree = "<unknown>";
+			sourceTree = "<group>";
 		};
 		9F664BB02FD8A6D600DEA9D7 /* Metronome */ = {
 			isa = PBXGroup;
