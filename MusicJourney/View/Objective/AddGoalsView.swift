@@ -10,6 +10,7 @@ struct AddGoalsView: View {
     let onFinish: () -> Void
 
     @StateObject private var viewModel: AddGoalsViewModel
+    @Environment(\.presentationMode) var presentationMode
 
     init(objective: Objective, onFinish: @escaping () -> Void) {
         self.objective = objective
@@ -19,64 +20,111 @@ struct AddGoalsView: View {
 
     var body: some View {
         ZStack {
-            Color(.systemBackground).ignoresSafeArea()
+            Color("headerGreen").ignoresSafeArea()
 
-            ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
+            VStack(spacing: 0) {
 
-                    // MARK: Header
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(objective.name ?? "Objetivo")
-                            .font(.title2)
+                // MARK: Orange header
+                VStack(spacing: 6) {
+                    HStack {
+                        Button(action: { presentationMode.wrappedValue.dismiss() }) {
+                            HStack(spacing: 4) {
+                                Image(systemName: "chevron.left")
+                                    .font(.system(size: 14, weight: .semibold))
+                                Text("Casa")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                            }
+                            .foregroundColor(.white)
+                        }
+                        Spacer()
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 8)
+
+                    VStack(spacing: 6) {
+                        Text(objective.name ?? "Novo objetivo")
+                            .font(.title)
                             .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
                         Text("Adicione metas para alcançar esse objetivo")
                             .font(.subheadline)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.white.opacity(0.85))
+                            .multilineTextAlignment(.center)
                     }
-
-                    // MARK: AI Section
-                    aiSection
-
-                    // MARK: Error banner
-                    if let error = viewModel.aiErrorMessage {
-                        HStack(spacing: 8) {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .foregroundColor(.orange)
-                            Text(error)
-                                .font(.footnote)
-                                .foregroundColor(.primary)
-                        }
-                        .padding(12)
-                        .background(Color.orange.opacity(0.12))
-                        .cornerRadius(10)
-                    }
-
-                    // MARK: Manual section
-                    manualSection
-
-                    // MARK: Unified goal list
-                    if !viewModel.pendingGoals.isEmpty {
-                        goalsListSection
-                    }
-
-                    // MARK: Save button
-                    Button(action: { viewModel.saveGoals() }) {
-                        Text("Salvar metas")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(viewModel.hasSelectedGoals ? Color.accentColor : Color.gray)
-                            .cornerRadius(12)
-                    }
-                    .disabled(!viewModel.hasSelectedGoals)
-                    .padding(.top, 8)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 20)
                 }
-                .padding()
+
+                // MARK: Cream content card
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 24) {
+
+                        // MARK: AI Section
+                        aiSection
+
+                        // MARK: Error banner
+                        if let error = viewModel.aiErrorMessage {
+                            HStack(spacing: 8) {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundColor(Color("headerGreen"))
+                                Text(error)
+                                    .font(.footnote)
+                                    .foregroundColor(Color("textDark"))
+                            }
+                            .padding(12)
+                            .background(Color("headerGreen").opacity(0.10))
+                            .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color("headerGreen").opacity(0.3), lineWidth: 1)
+                            )
+                        }
+
+                        // MARK: Manual section
+                        manualSection
+
+                        // MARK: Unified goal list
+                        if !viewModel.pendingGoals.isEmpty {
+                            goalsListSection
+                        }
+
+                        // MARK: Save button
+                        Button(action: { viewModel.saveGoals() }) {
+                            Text("Salvar metas")
+                                .font(.headline)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding(16)
+                                .background(
+                                    viewModel.hasSelectedGoals
+                                        ? Color("primaryBlue")
+                                        : Color("inputGray")
+                                )
+                                .cornerRadius(12)
+                        }
+                        .disabled(!viewModel.hasSelectedGoals)
+                        .padding(.top, 4)
+
+                        Spacer(minLength: 32)
+                    }
+                    .padding(24)
+                }
+                .background(Color("cardCream"))
+                .cornerRadius(24, corners: [.topLeft, .topRight])
+                .ignoresSafeArea(edges: .bottom)
             }
         }
-        .navigationTitle("Metas")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarHidden(true)
+        .alert(isPresented: $viewModel.showAIErrorAlert) {
+            Alert(
+                title: Text("Não foi possível gerar"),
+                message: Text(viewModel.aiErrorMessage ?? "Tente novamente."),
+                dismissButton: .default(Text("OK"))
+            )
+        }
         .sheet(isPresented: $viewModel.showManualSheet) {
             ManualGoalSheet(
                 onSave: { name, desc, cat, diff in
@@ -94,29 +142,35 @@ struct AddGoalsView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Gerar com IA")
                 .font(.headline)
-                .fontWeight(.semibold)
+                .fontWeight(.bold)
+                .foregroundColor(Color("textDark"))
 
-            TextField("Adicionar foco (opcional, ex: dedilhado)", text: $viewModel.aiFocusText)
-                .padding()
-                .background(Color(.secondarySystemBackground))
+            TextField("Adicionar foco (ex: dedilhado, ritmo...)", text: $viewModel.aiFocusText)
+                .padding(14)
+                .background(Color("cardCream"))
                 .cornerRadius(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color("inputGray"), lineWidth: 1)
+                )
 
             Button(action: { viewModel.generateWithAI() }) {
-                HStack {
+                HStack(spacing: 8) {
                     if viewModel.isLoadingAI {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle(tint: .white))
                             .scaleEffect(0.85)
                     } else {
                         Image(systemName: "sparkles")
+                            .font(.system(size: 15, weight: .semibold))
                     }
                     Text(viewModel.isLoadingAI ? "Gerando…" : "Gerar metas com IA")
-                        .fontWeight(.semibold)
+                        .fontWeight(.bold)
                 }
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
-                .padding()
-                .background(viewModel.isLoadingAI ? Color.gray : Color.accentColor)
+                .padding(14)
+                .background(viewModel.isLoadingAI ? Color("inputGray") : Color("headerGreen"))
                 .cornerRadius(10)
             }
             .disabled(viewModel.isLoadingAI)
@@ -127,23 +181,27 @@ struct AddGoalsView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Adicionar manualmente")
                 .font(.headline)
-                .fontWeight(.semibold)
+                .fontWeight(.bold)
+                .foregroundColor(Color("textDark"))
 
             Button(action: { viewModel.showManualSheet = true }) {
-                HStack {
-                    Image(systemName: "plus.circle")
-                    Text("Adicionar meta")
-                        .fontWeight(.medium)
+                HStack(spacing: 8) {
+                    Image(systemName: "plus")
+                        .font(.system(size: 15, weight: .bold))
+                    Text("Adicionar objetivo")
+                        .fontWeight(.bold)
                 }
-                .foregroundColor(.accentColor)
+                .foregroundColor(Color("headerGreen"))
                 .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.accentColor.opacity(0.08))
+                .padding(14)
+                .background(Color("cardCream"))
                 .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder(style: StrokeStyle(lineWidth: 1.5, dash: [6]))
-                        .foregroundColor(Color.accentColor.opacity(0.4))
+                        .strokeBorder(
+                            style: StrokeStyle(lineWidth: 2, dash: [7])
+                        )
+                        .foregroundColor(Color("headerGreen"))
                 )
             }
         }
@@ -151,9 +209,16 @@ struct AddGoalsView: View {
 
     private var goalsListSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Metas selecionadas (\(viewModel.pendingGoals.filter { $0.isSelected }.count)/\(viewModel.pendingGoals.count))")
-                .font(.headline)
-                .fontWeight(.semibold)
+            HStack {
+                Text("Metas")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color("textDark"))
+                Spacer()
+                Text("\(viewModel.pendingGoals.filter { $0.isSelected }.count)/\(viewModel.pendingGoals.count) selecionadas")
+                    .font(.caption)
+                    .foregroundColor(Color("textDark").opacity(0.5))
+            }
 
             ForEach(viewModel.pendingGoals) { item in
                 GoalSuggestionCard(

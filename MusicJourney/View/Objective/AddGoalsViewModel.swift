@@ -32,6 +32,7 @@ class AddGoalsViewModel: ObservableObject {
     @Published var aiFocusText: String = ""
     @Published var isLoadingAI: Bool = false
     @Published var aiErrorMessage: String? = nil
+    @Published var showAIErrorAlert: Bool = false
     @Published var pendingGoals: [PendingGoalItem] = []
     @Published var showManualSheet: Bool = false
 
@@ -73,22 +74,48 @@ class AddGoalsViewModel: ObservableObject {
         }
     }
 
+    private func presentAIError(_ message: String) {
+        aiErrorMessage = message
+        showAIErrorAlert = true
+    }
+
+    /// Fast local guard for obviously non-musical focus text before calling the API.
+    private func isOffTopicFocus(_ focus: String) -> Bool {
+        let normalized = focus
+            .folding(options: .diacriticInsensitive, locale: .current)
+            .lowercased()
+
+        let blockedPhrases = [
+            "treino de peito", "treino de perna", "treino de costas", "treino de braco",
+            "treino de ombro", "treino de abdomen", "treino de gluteo",
+            "academia", "musculacao", "supino", "agachamento", "leg press",
+            "corrida", "emagrecer", "dieta", "financas", "investimento",
+            "programacao", "codigo", "matematica", "historia", "geografia"
+        ]
+
+        return blockedPhrases.contains { normalized.contains($0) }
+    }
+
     // MARK: - Actions
 
     func generateWithAI() {
         guard !isLoadingAI else { return }
 
         guard let profile = userProfile else {
-            aiErrorMessage = "Complete o onboarding antes de gerar metas."
+            presentAIError("Complete o onboarding antes de gerar metas.")
+            return
+        }
+
+        let objectiveTitle = objective.name ?? ""
+        let focus = aiFocusText.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if !focus.isEmpty && isOffTopicFocus(focus) {
+            presentAIError("Só consigo ajudar na sua jornada musical. Tente focar no seu instrumento!")
             return
         }
 
         isLoadingAI = true
         aiErrorMessage = nil
-
-        let objectiveName = objective.name ?? ""
-        let focus = aiFocusText.trimmingCharacters(in: .whitespacesAndNewlines)
-        let prompt = focus.isEmpty ? objectiveName : "\(objectiveName) — \(focus)"
 
         Task {
             do {
@@ -96,11 +123,15 @@ class AddGoalsViewModel: ObservableObject {
                     instrument: profile.instrument,
                     level: profile.experienceLevel,
                     genres: profile.genresJoined,
-                    objective: prompt
+                    objectiveTitle: objectiveTitle,
+                    focus: focus
                 )
 
                 if dtos.isEmpty {
-                    aiErrorMessage = "Só consigo ajudar na sua jornada musical. Tente focar no seu instrumento!"
+                    let message = focus.isEmpty
+                        ? "Só consigo ajudar na sua jornada musical. Tente focar no seu instrumento!"
+                        : "Só consigo ajudar na sua jornada musical. O foco informado não parece estar relacionado à música."
+                    presentAIError(message)
                 } else {
                     let newItems = dtos.map { dto in
                         PendingGoalItem(
@@ -118,18 +149,18 @@ class AddGoalsViewModel: ObservableObject {
             } catch let urlError as URLError {
                 switch urlError.code {
                 case .notConnectedToInternet, .networkConnectionLost, .timedOut:
-                    aiErrorMessage = "Sem conexão. Verifique sua internet e tente novamente."
+                    presentAIError("Sem conexão. Verifique sua internet e tente novamente.")
                 default:
-                    aiErrorMessage = "Não foi possível contatar a IA. Tente novamente."
+                    presentAIError("Não foi possível contatar a IA. Tente novamente.")
                 }
             } catch {
                 let msg = error.localizedDescription.lowercased()
                 if msg.contains("401") || msg.contains("unauthorized") || msg.contains("authentication") {
-                    aiErrorMessage = "Erro de autenticação da IA. Verifique sua chave em Secrets.swift."
+                    presentAIError("Erro de autenticação da IA. Verifique sua chave em Secrets.swift.")
                 } else if msg.contains("decode") || msg.contains("json") || msg.contains("invalid") {
-                    aiErrorMessage = "A IA retornou uma resposta inválida. Tente novamente."
+                    presentAIError("A IA retornou uma resposta inválida. Tente novamente.")
                 } else {
-                    aiErrorMessage = "Não consegui gerar metas para esse objetivo. Tente focar em algo musical."
+                    presentAIError("Não consegui gerar metas para esse objetivo. Tente focar em algo musical.")
                 }
             }
 

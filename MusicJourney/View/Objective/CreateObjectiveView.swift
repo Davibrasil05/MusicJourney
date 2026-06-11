@@ -15,9 +15,9 @@ struct CreateObjectiveView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color(.systemBackground).ignoresSafeArea()
+                Color("headerGreen").ignoresSafeArea()
 
-                // Hidden NavigationLink activated after objective is created
+                // Hidden NavigationLink — fires when navigateToGoals becomes true
                 NavigationLink(
                     destination: createdObjective.map { obj in
                         AddGoalsView(objective: obj, onFinish: onFinish)
@@ -25,58 +25,86 @@ struct CreateObjectiveView: View {
                     isActive: $navigateToGoals
                 ) { EmptyView() }.hidden()
 
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 32) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Qual é o seu objetivo?")
-                                .font(.title2)
-                                .fontWeight(.bold)
+                VStack(spacing: 0) {
 
-                            Text("Seja específico — isso ajuda a IA a gerar metas mais relevantes para você.")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                        }
-
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Título do objetivo")
-                                .font(.headline)
-                                .fontWeight(.semibold)
-
-                            TextField("Ex: Tocar Linkin Park", text: $viewModel.title)
-                                .padding()
-                                .background(Color(.secondarySystemBackground))
-                                .cornerRadius(10)
-                        }
-
-                        Button(action: {
-                            if let objective = viewModel.createObjective() {
-                                createdObjective = objective
-                                navigateToGoals = true
+                    // MARK: Orange header
+                    VStack(spacing: 6) {
+                        HStack {
+                            Button(action: onFinish) {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 16, weight: .semibold))
+                                    .foregroundColor(.white)
+                                    .padding(10)
+                                    .background(Color.white.opacity(0.2))
+                                    .clipShape(Circle())
                             }
-                        }) {
-                            Text("Continuar")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(viewModel.canContinue ? Color.accentColor : Color.gray)
-                                .cornerRadius(12)
+                            Spacer()
                         }
-                        .disabled(!viewModel.canContinue)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 8)
+
+                        VStack(spacing: 6) {
+                            Text("Novo objetivo")
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                            Text("Defina uma meta para praticar")
+                                .font(.subheadline)
+                                .foregroundColor(.white.opacity(0.85))
+                        }
+                        .padding(.vertical, 20)
                     }
-                    .padding()
+
+                    // MARK: Cream content card
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 28) {
+
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("Título do objetivo")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color("textDark"))
+
+                                TextField("Ex: Tocar Linkin Park", text: $viewModel.title)
+                                    .padding(14)
+                                    .background(Color("cardCream"))
+                                    .cornerRadius(10)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color("inputGray"), lineWidth: 1)
+                                    )
+                            }
+
+                            Button(action: {
+                                if let objective = viewModel.createObjective() {
+                                    createdObjective = objective
+                                    navigateToGoals = true
+                                }
+                            }) {
+                                Text("Continuar")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(16)
+                                    .background(
+                                        viewModel.canContinue
+                                            ? Color("primaryBlue")
+                                            : Color("inputGray")
+                                    )
+                                    .cornerRadius(12)
+                            }
+                            .disabled(!viewModel.canContinue)
+                        }
+                        .padding(24)
+                        .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.height * 0.6, alignment: .top)
+                    }
+                    .background(Color("cardCream"))
+                    .cornerRadius(24, corners: [.topLeft, .topRight])
+                    .ignoresSafeArea(edges: .bottom)
                 }
             }
-            .navigationTitle("Novo objetivo")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: onFinish) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
+            .navigationBarHidden(true)
         }
     }
 }

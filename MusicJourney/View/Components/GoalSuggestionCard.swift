@@ -16,59 +16,132 @@ struct GoalSuggestionCard: View {
     var body: some View {
         Button(action: onToggle) {
             HStack(alignment: .top, spacing: 12) {
-                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                    .font(.title3)
-                    .foregroundColor(isSelected ? .accentColor : Color(.tertiaryLabel))
-                    .padding(.top, 2)
+
+                // Checkbox circle — orange when selected, outlined when not
+                ZStack {
+                    Circle()
+                        .fill(isSelected ? Color("headerGreen") : Color.clear)
+                        .frame(width: 26, height: 26)
+                    Circle()
+                        .stroke(
+                            isSelected ? Color("headerGreen") : Color("inputGray"),
+                            lineWidth: 2
+                        )
+                        .frame(width: 26, height: 26)
+                    if isSelected {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundColor(.white)
+                    }
+                }
+                .padding(.top, 2)
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(name)
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .foregroundColor(.primary)
+                        .foregroundColor(Color("textDark"))
                         .multilineTextAlignment(.leading)
 
                     if !textDescription.isEmpty {
                         Text(textDescription)
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(Color("textDark").opacity(0.78))
                             .multilineTextAlignment(.leading)
                     }
 
                     HStack(spacing: 6) {
-                        TagBadge(text: category)
-                        TagBadge(text: difficulty)
+                        GoalTagBadge(text: category)
+                        DifficultyTagBadge(difficulty: difficulty)
                     }
                     .padding(.top, 2)
                 }
+
                 Spacer(minLength: 0)
             }
-            .padding(12)
+            .padding(14)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(isSelected ? Color.accentColor.opacity(0.08) : Color(.secondarySystemBackground))
+                    .fill(Color("cardCream"))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(isSelected ? Color.accentColor.opacity(0.4) : Color.clear, lineWidth: 1)
+                    .stroke(
+                        isSelected ? Color("headerGreen").opacity(0.5) : Color("inputGray").opacity(0.5),
+                        lineWidth: 1.2
+                    )
             )
         }
         .buttonStyle(.plain)
     }
 }
 
-private struct TagBadge: View {
+private struct GoalTagBadge: View {
     let text: String
 
     var body: some View {
         Text(text)
             .font(.caption2)
             .fontWeight(.medium)
-            .padding(.horizontal, 6)
-            .padding(.vertical, 2)
-            .background(Color(.tertiarySystemBackground))
-            .cornerRadius(4)
-            .foregroundColor(.secondary)
+            .padding(.horizontal, 7)
+            .padding(.vertical, 3)
+            .background(Color("inputGray").opacity(0.25))
+            .cornerRadius(5)
+            .foregroundColor(Color("textDark").opacity(0.7))
+    }
+}
+
+private struct DifficultyTagBadge: View {
+    let difficulty: String
+
+    private var style: (background: Color, foreground: Color) {
+        switch difficulty.normalizedDifficulty {
+        case .easy:
+            return (Color("difficultyEasyBg"), Color("difficultyEasyText"))
+        case .medium:
+            return (Color("difficultyMediumBg"), Color("difficultyMediumText"))
+        case .hard:
+            return (Color("difficultyHardBg"), Color("difficultyHardText"))
+        case .unknown:
+            return (Color("inputGray").opacity(0.25), Color("textDark").opacity(0.7))
+        }
+    }
+
+    var body: some View {
+        Text(difficulty)
+            .font(.caption2)
+            .fontWeight(.semibold)
+            .padding(.horizontal, 7)
+            .padding(.vertical, 3)
+            .background(style.background)
+            .cornerRadius(5)
+            .foregroundColor(style.foreground)
+    }
+}
+
+private enum NormalizedDifficulty {
+    case easy
+    case medium
+    case hard
+    case unknown
+}
+
+private extension String {
+    var normalizedDifficulty: NormalizedDifficulty {
+        let value = folding(options: .diacriticInsensitive, locale: .current)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+
+        switch value {
+        case "facil", "fácil":
+            return .easy
+        case "medio", "médio", "media", "média":
+            return .medium
+        case "desafio", "dificil", "difícil", "mestre":
+            return .hard
+        default:
+            return .unknown
+        }
     }
 }
 
@@ -91,8 +164,17 @@ struct GoalSuggestionCard_Previews: PreviewProvider {
                 isSelected: true,
                 onToggle: {}
             )
+            GoalSuggestionCard(
+                name: "Solo completo de Tempo Perdido",
+                textDescription: "Executar o solo com técnica limpa e timing consistente.",
+                category: "Repertório",
+                difficulty: "Desafio",
+                isSelected: false,
+                onToggle: {}
+            )
         }
         .padding()
+        .background(Color("cardCream"))
         .previewDisplayName("GoalSuggestionCard")
     }
 }

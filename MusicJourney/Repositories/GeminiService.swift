@@ -8,8 +8,15 @@ class GeminiService {
     ///   - instrument: Instrumento do usuário (ex: Violão)
     ///   - level: Nível de experiência (ex: Iniciante)
     ///   - genres: Gêneros musicais favoritos
-    ///   - objective: Título do objetivo digitado pelo usuário
-    func generateGoals(instrument: String, level: String, genres: String, objective: String) async throws -> [GoalDTO] {
+    ///   - objectiveTitle: Título do objetivo criado na tela anterior
+    ///   - focus: Foco opcional digitado na seção "Gerar com IA"
+    func generateGoals(
+        instrument: String,
+        level: String,
+        genres: String,
+        objectiveTitle: String,
+        focus: String = ""
+    ) async throws -> [GoalDTO] {
 
         let systemPrompt = """
         Você é o "MusicJourney Coach", um professor de música especialista, focado em psicologia da aprendizagem e na metodologia "Hábitos Atômicos" de James Clear.
@@ -17,18 +24,28 @@ class GeminiService {
         Você responde EXCLUSIVAMENTE com um objeto JSON válido, sem nenhum texto extra, sem blocos markdown (```json).
         """
 
+        let trimmedFocus = focus.trimmingCharacters(in: .whitespacesAndNewlines)
+        let focusLine = trimmedFocus.isEmpty
+            ? "- Foco adicional: (não informado)"
+            : "- Foco adicional: \(trimmedFocus)"
+
         let userPrompt = """
         [PERFIL DO USUÁRIO]
         - Instrumento: \(instrument)
         - Nível: \(level)
         - Gêneros Favoritos: \(genres)
-        - Objetivo Global: \(objective)
+        - Objetivo Global: \(objectiveTitle)
+        \(focusLine)
 
         [REGRAS DE GERAÇÃO]
         1. Gere entre 3 a 5 metas musicais práticas e específicas.
         2. Variabilidade: Ao menos 1 meta com difficulty "Fácil" e 1 com "Desafio".
-        3. Guardrail: Se o "Objetivo Global" for totalmente irrelevante a música ou instrumentos, retorne: {"goals": []}.
-        4. Saída: Retorne ESTRITAMENTE o objeto JSON abaixo, sem nenhum texto antes ou depois.
+        3. Guardrail — retorne {"goals": []} se QUALQUER condição abaixo for verdadeira:
+           a) O "Objetivo Global" for totalmente irrelevante à música ou instrumentos.
+           b) O "Foco adicional" foi informado e NÃO tem relação com música, prática instrumental ou aprendizado musical (ex: academia, treino de peito, dieta, finanças, programação). Nesse caso, retorne vazio mesmo que o Objetivo Global seja musical.
+           c) O "Foco adicional" contradiz ou desvia claramente do contexto musical do objetivo.
+        4. Quando o foco adicional for musical e relevante, use-o como prioridade na geração das metas.
+        5. Saída: Retorne ESTRITAMENTE o objeto JSON abaixo, sem nenhum texto antes ou depois.
 
         [ESTRUTURA JSON ESPERADA]
         {
