@@ -15,6 +15,7 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="text" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Goal" inverseName="notes" inverseEntity="Goal"/>
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="notes" inverseEntity="Session"/>
     </entity>
@@ -81,7 +82,7 @@
     </entity>
     <elements>
         <element name="Achievement" positionX="-118.8275146484376" positionY="-339.2253570556641" width="128" height="164"/>
-        <element name="Annotation" positionX="-11.08807373046875" positionY="-71.25056457519531" width="128" height="104"/>
+        <element name="Annotation" positionX="-11.08807373046875" positionY="-71.25056457519531" width="128" height="119"/>
         <element name="Goal" positionX="-221.2150878906252" positionY="-166.7440185546875" width="128" height="254"/>
         <element name="Objective" positionX="-362.3276977539062" positionY="45.50770568847651" width="128" height="208"/>
         <element name="Recording" positionX="218.2617187499999" positionY="-227.2450408935547" width="128" height="134"/>

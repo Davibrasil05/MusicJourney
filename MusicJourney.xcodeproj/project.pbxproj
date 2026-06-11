@@ -22,6 +22,8 @@
 		9F2DA00C2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA00B2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift */; };
 		9F2DA00E2FD9E5850058F384 /* PresetCatalog+Violao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DA00D2FD9E5850058F384 /* PresetCatalog+Violao.swift */; };
 		9F300B5E2FDB508E0010B70B /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F300B5D2FDB508E0010B70B /* Secrets.swift */; };
+		9F300B612FDB581B0010B70B /* AddNoteModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F300B602FDB581A0010B70B /* AddNoteModalView.swift */; };
+		9F300B632FDB5AAC0010B70B /* RecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F300B622FDB5AAB0010B70B /* RecordsView.swift */; };
 		9F3ADB3A2FDB1F8E0071CA0F /* PracticeTimerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3ADB392FDB1F8D0071CA0F /* PracticeTimerDisplay.swift */; };
 		9F3ADB3C2FDB25BC0071CA0F /* PracticeBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3ADB3B2FDB25BC0071CA0F /* PracticeBottomSheet.swift */; };
 		9F3ADB3E2FDB25DC0071CA0F /* PrimaryActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3ADB3D2FDB25DC0071CA0F /* PrimaryActionButton.swift */; };
@@ -116,6 +118,8 @@
 		9F2DA00B2FD9E55E0058F384 /* PresetCatalog+Ukulele.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Ukulele.swift"; sourceTree = "<group>"; };
 		9F2DA00D2FD9E5850058F384 /* PresetCatalog+Violao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresetCatalog+Violao.swift"; sourceTree = "<group>"; };
 		9F300B5D2FDB508E0010B70B /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		9F300B602FDB581A0010B70B /* AddNoteModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteModalView.swift; sourceTree = "<group>"; };
+		9F300B622FDB5AAB0010B70B /* RecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsView.swift; sourceTree = "<group>"; };
 		9F3ADB392FDB1F8D0071CA0F /* PracticeTimerDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeTimerDisplay.swift; sourceTree = "<group>"; };
 		9F3ADB3B2FDB25BC0071CA0F /* PracticeBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeBottomSheet.swift; sourceTree = "<group>"; };
 		9F3ADB3D2FDB25DC0071CA0F /* PrimaryActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryActionButton.swift; sourceTree = "<group>"; };
@@ -230,6 +234,15 @@
 			children = (
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		9F300B5F2FDB58060010B70B /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				9F300B602FDB581A0010B70B /* AddNoteModalView.swift */,
+				9F300B622FDB5AAB0010B70B /* RecordsView.swift */,
+			);
+			path = Annotation;
 			sourceTree = "<group>";
 		};
 		9F4488142FDB1D6D00258351 /* components */ = {
@@ -355,6 +368,7 @@
 		9F880EED2FD9E73100D9E169 /* Practice */ = {
 			isa = PBXGroup;
 			children = (
+				9F300B5F2FDB58060010B70B /* Annotation */,
 				9F4488142FDB1D6D00258351 /* components */,
 				9F880EF02FD9EA5C00D9E169 /* PracticeSessionView.swift */,
 				9F44880E2FDB00E000258351 /* PracticeSessionViewModel.swift */,
@@ -661,6 +675,7 @@
 				5F3F5ED144344B5FACD09D1C /* GoalDTO.swift in Sources */,
 				9F300B5E2FDB508E0010B70B /* Secrets.swift in Sources */,
 				9FDC4E642FD8865F00C62F3C /* Retrospective.swift in Sources */,
+				9F300B632FDB5AAC0010B70B /* RecordsView.swift in Sources */,
 				9FDC4E6C2FD886A000C62F3C /* HomeView.swift in Sources */,
 				9F2DA00E2FD9E5850058F384 /* PresetCatalog+Violao.swift in Sources */,
 				9F7C7ED42FD75ECE009961ED /* ObjectiveRepository.swift in Sources */,
@@ -708,6 +723,7 @@
 				9F7C7ED52FD75ECE009961ED /* UserViewRepository.swift in Sources */,
 				AA1B3C4D5E6F7A8B9C0D1E2F /* OnboardingStepHeader.swift in Sources */,
 				BB1B3C4D5E6F7A8B9C0D1E2F /* OnboardingOptionRow.swift in Sources */,
+				9F300B612FDB581B0010B70B /* AddNoteModalView.swift in Sources */,
 				CC1B3C4D5E6F7A8B9C0D1E2F /* OnboardingInstrumentCard.swift in Sources */,
 				DD1B3C4D5E6F7A8B9C0D1E2F /* OnboardingGenreChip.swift in Sources */,
 				9F880EE62FD9C5A600D9E169 /* AudioRecorderService.swift in Sources */,

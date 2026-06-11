@@ -13,7 +13,7 @@ struct PracticeSessionView: View {
     
     // Agora a tela recebe a ViewModel real que você nomeou como SessionViewModel
     @ObservedObject var viewModel: SessionViewModel
-    
+    @State private var goRecordsView = false
     var body: some View {
 
         ZStack(alignment: .bottom) {
@@ -49,6 +49,18 @@ struct PracticeSessionView: View {
         .ignoresSafeArea(edges: .bottom)
         .navigationBarBackButtonHidden(true)
         .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    goRecordsView = true // <- Mude a ação do botão
+                }) {
+                    Image(systemName: "folder.fill")
+                        .font(.system(size: 24))
+                        .foregroundColor(.black)
+                }
+                .background(
+                    NavigationLink(destination: RecordsView(goal: viewModel.currentGoal), isActive: $goRecordsView) { EmptyView() }
+                )
+            }
             
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
@@ -70,17 +82,7 @@ struct PracticeSessionView: View {
                 }
             }
             
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    print("Ver arquivos passados")
-                }) {
-                    Image(systemName: "folder.fill")
-                        .font(.system(size: 24))
-                        .foregroundColor(.black)
-                }
-            }
         }
-        // O alerta de saída que é disparado pela ViewModel
         .alert(isPresented: $viewModel.showQuitAlert) {
             Alert(
                 title: Text("Sair da Prática?"),
@@ -90,15 +92,14 @@ struct PracticeSessionView: View {
                     presentationMode.wrappedValue.dismiss()
                 },
                 secondaryButton: .cancel(Text("Continuar")) {
-                    viewModel.toggleTimer() // Volta a rodar o tempo
+                    viewModel.toggleTimer()
                 }
             )
         }
-        // Exemplo de como abrir as modais quando a variável activeModal mudar
         .sheet(item: $viewModel.activeModal) { modal in
             switch modal {
             case .nota:
-                Text("Modal de Anotação Aqui")
+                AddNoteModalView(annotationRepo: AnnotationRepository(), goal: viewModel.currentGoal, session: viewModel.activeSession)
             case .audio:
                 Text("Modal de Áudio Aqui")
             case .tablatura:
@@ -107,25 +108,10 @@ struct PracticeSessionView: View {
                 Text("Modal de Metrônomo Aqui")
             }
         }
-        // Observa se o tempo estava zerado e o usuário mandou sair, fechando a tela
+       
         .onChange(of: viewModel.timeElapsed) { _ in }
         .onReceive(viewModel.$showQuitAlert) { show in
-            // Fallback: Se ele tentou sair com 0 segundos, o showQuitAlert continua false
-            // Mas o timeElapsed seria 0. A ViewModel lida com deleteSession lá dentro.
-            // Para fechar a tela direto quando tempo = 0, melhor fazer via callback ou verificar.
         }
     }
 }
 
-// MARK: - Preview
-// O preview precisaria de um mock do CoreData para funcionar agora,
-// por isso eu comentei ele temporariamente para não quebrar seu Canvas.
-/*
-struct PracticeSessionView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            // PracticeSessionView(viewModel: mockViewModel)
-        }
-    }
-}
-*/

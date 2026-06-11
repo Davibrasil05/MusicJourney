@@ -2,64 +2,87 @@
 //  AnnotationRepository.swift
 //  MusicJourney
 //
-//  Created by academy on 10/06/26.
 //
 
 import Foundation
 import CoreData
 
-class AnnotationRepository {
-    
+class AnnotationRepository: ObservableObject {
     let context = PersistenceController.shared.container.viewContext
     
-    func createAnnotation(goal: Goal, session: Session?) -> Annotation{
+    // Lista de anotações que vai aparecer na tela de registros
+    @Published var annotations: [Annotation] = []
+    
+    // MARK: - CREATE
+    func createAnnotation(title: String, text: String, goal: Goal?, session: Session?) {
+        let newNote = Annotation(context: context)
+        newNote.id = UUID()
+        newNote.title = title // Novo campo adicionado!
+        newNote.text = text
+        newNote.createdAt = Date()
         
-        let newAnnotation = Annotation(context: context)
-        
-        newAnnotation.id = UUID()
-        newAnnotation.text = ""
-        newAnnotation.goal = goal
-        newAnnotation.session = session
-        newAnnotation.createdAt = Date()
+        if let goal = goal {
+            newNote.goal = goal
+        }
+        if let session = session {
+            newNote.session = session
+        }
         
         saveContext()
-        return newAnnotation
         
-    }
-    
-    func updateAnnotation(_ annotation: Annotation, newText: String) {
-        annotation.text = newText
-        saveContext()
-    }
-    
-    func fetchAnnotations(goal: Goal) -> [Annotation] {
-        let request = NSFetchRequest<Annotation>(entityName: "Annotation")
-        request.predicate = NSPredicate(format: "goal == %@", goal)
-        request.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Annotation.createdAt, ascending: false)
-        ]
-        
-        do {
-            return try context.fetch(request)
-        } catch {
-            print("Erro ao buscar anotações: \(error)")
-            return []
+        // Atualiza a lista logo após criar
+        if let goal = goal {
+            fetchAnnotations(for: goal)
         }
     }
     
-    func deleteAnnotation(_ annotation: Annotation) {
-        context.delete(annotation)
-        saveContext()
+    // MARK: - READ
+    func fetchAnnotations(for goal: Goal) {
+        let request = NSFetchRequest<Annotation>(entityName: "Annotation")
+        // Pega só as notas que pertencem a esta meta (Goal)
+        request.predicate = NSPredicate(format: "goal == %@", goal)
+        // Mais recentes primeiro
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Annotation.createdAt, ascending: false)]
+        
+        do {
+            annotations = try context.fetch(request)
+        } catch {
+            print("Erro ao buscar anotações: \(error)")
+        }
     }
     
+    // MARK: - UPDATE (Usado no "Editar nome")
+    func updateAnnotation(annotation: Annotation, newTitle: String?, newText: String?) {
+        if let title = newTitle {
+            annotation.title = title
+        }
+        if let text = newText {
+            annotation.text = text
+        }
+        
+        saveContext()
+        if let goal = annotation.goal {
+            fetchAnnotations(for: goal)
+        }
+    }
+    
+    // MARK: - DELETE
+    func deleteAnnotation(_ annotation: Annotation) {
+        let goal = annotation.goal
+        context.delete(annotation)
+        saveContext()
+        
+        if let goal = goal {
+            fetchAnnotations(for: goal)
+        }
+    }
+    
+    // MARK: - Save Helper
     private func saveContext() {
         do {
             try context.save()
         } catch {
-            print("Erro ao salvar anotação: \(error)")
+            print("Erro ao salvar anotação no Core Data: \(error)")
         }
     }
-    
-    
-    
 }
