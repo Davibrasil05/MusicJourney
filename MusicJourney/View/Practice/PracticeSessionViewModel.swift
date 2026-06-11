@@ -12,7 +12,7 @@ enum PracticeModal: Identifiable {
 class SessionViewModel: ObservableObject {
     
     // DEPENDÊNCIAS
-    private let currentGoal: Goal
+    let currentGoal: Goal
     private let sessionRepository: SessionRepository
     private let objectiveRepository: ObjectiveRepository
     
