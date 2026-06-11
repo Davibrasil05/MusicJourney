@@ -1,20 +1,33 @@
-//
-//  BPMControl.swift
-//  MusicJourney
-//
-//  Created by academy on 11/06/26.
-//
-
 import SwiftUI
 
 struct BPMControl: View {
+    @Binding var bpm: Double
+    var isPlaying: Bool
+    var onTogglePlay: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct BPMControl_Previews: PreviewProvider {
-    static var previews: some View {
-        BPMControl()
+        HStack(spacing: 16) {
+            Button(action: onTogglePlay) {
+                Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                    .font(.system(size: 44))
+                    .foregroundColor(.orange)
+            }
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text("\(Int(bpm)) BPM")
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                
+                Slider(value: $bpm, in: 40...240, step: 1)
+                    .accentColor(.orange)
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color(.systemGray4), lineWidth: 1)
+                .background(Color.clear)
+        )
     }
 }

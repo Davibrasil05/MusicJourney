@@ -1,20 +1,29 @@
-//
-//  DisplayCompass.swift
-//  MusicJourney
-//
-//  Created by academy on 11/06/26.
-//
-
 import SwiftUI
 
 struct DisplayCompass: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    var beatsPerMeasure: Int
+    var onTap: () -> Void
+    
+    private var signatureText: String {
+        switch beatsPerMeasure {
+        case 6: return "6/8"
+        default: return "\(beatsPerMeasure)/4"
+        }
     }
-}
-
-struct DisplayCompass_Previews: PreviewProvider {
-    static var previews: some View {
-        DisplayCompass()
+    
+    var body: some View {
+        VStack(spacing: 4) {
+            Text(signatureText)
+                .font(.system(size: 36, weight: .bold, design: .rounded))
+                .foregroundColor(.black)
+            
+            Text("Compasso")
+                .font(.subheadline)
+                .fontWeight(.medium)
+                .foregroundColor(.gray)
+        }
+        .onTapGesture {
+            onTap()
+        }
     }
 }

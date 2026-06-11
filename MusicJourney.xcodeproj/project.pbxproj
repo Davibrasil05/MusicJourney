@@ -14,7 +14,7 @@
 		58A8C6D456334176AC462E67 /* OnboardingInstrumentStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */; };
 		5F3F5ED144344B5FACD09D1C /* GoalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C815E018F8A34C00A12E6B5A /* GoalDTO.swift */; };
 		7578F69B620143EBBF7B7779 /* OnboardingGenreStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */; };
-		9F1003C12FDB564200C7888E /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C02FDB564200C7888E /* Header.swift */; };
+		9F1003C12FDB564200C7888E /* MetronomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C02FDB564200C7888E /* MetronomeHeader.swift */; };
 		9F1003C32FDB56B900C7888E /* DisplayBPM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C22FDB56B900C7888E /* DisplayBPM.swift */; };
 		9F1003C52FDB56D000C7888E /* DisplayCompass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C42FDB56D000C7888E /* DisplayCompass.swift */; };
 		9F1003C72FDB56F800C7888E /* BPMControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C62FDB56F800C7888E /* BPMControl.swift */; };
@@ -114,7 +114,7 @@
 		2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGenreStep.swift; sourceTree = "<group>"; };
 		55C8AD54C2464292BFF98B49 /* OnboardingWelcomeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeStep.swift; sourceTree = "<group>"; };
 		5938EB69AE644610BB6B42DF /* GeminiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiService.swift; sourceTree = "<group>"; };
-		9F1003C02FDB564200C7888E /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		9F1003C02FDB564200C7888E /* MetronomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeHeader.swift; sourceTree = "<group>"; };
 		9F1003C22FDB56B900C7888E /* DisplayBPM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayBPM.swift; sourceTree = "<group>"; };
 		9F1003C42FDB56D000C7888E /* DisplayCompass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCompass.swift; sourceTree = "<group>"; };
 		9F1003C62FDB56F800C7888E /* BPMControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMControl.swift; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 		9F1003BF2FDB562700C7888E /* components */ = {
 			isa = PBXGroup;
 			children = (
-				9F1003C02FDB564200C7888E /* Header.swift */,
+				9F1003C02FDB564200C7888E /* MetronomeHeader.swift */,
 				9F1003C22FDB56B900C7888E /* DisplayBPM.swift */,
 				9F1003C42FDB56D000C7888E /* DisplayCompass.swift */,
 				9F1003C62FDB56F800C7888E /* BPMControl.swift */,
@@ -714,7 +714,7 @@
 				9F7C7ED92FD75EF3009961ED /* UserProfileView.swift in Sources */,
 				9F48C8ED2FDB1D59006D50B2 /* ProgressView.swift in Sources */,
 				9FB83B272FD88AFF007A06E0 /* YoutubeURLParser.swift in Sources */,
-				9F1003C12FDB564200C7888E /* Header.swift in Sources */,
+				9F1003C12FDB564200C7888E /* MetronomeHeader.swift in Sources */,
 				9FB83B102FD8804D007A06E0 /* Recording.swift in Sources */,
 				9F2DA0062FD9E4A40058F384 /* PresetCatalog+Flauta.swift in Sources */,
 				9F664BB22FD8A6F600DEA9D7 /* PraticeSessionViewModel.swift in Sources */,

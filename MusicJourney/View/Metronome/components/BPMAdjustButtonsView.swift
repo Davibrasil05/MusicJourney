@@ -1,20 +1,33 @@
-//
-//  BPMAdjustButtonsView.swift
-//  MusicJourney
-//
-//  Created by academy on 11/06/26.
-//
-
 import SwiftUI
 
 struct BPMAdjustButtonsView: View {
+    var onDecrement: () -> Void
+    var onIncrement: () -> Void
+    var onStop: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct BPMAdjustButtonsView_Previews: PreviewProvider {
-    static var previews: some View {
-        BPMAdjustButtonsView()
+        HStack(spacing: 40) {
+            Button(action: onDecrement) {
+                Image(systemName: "minus")
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundColor(.black)
+            }
+            
+            Button(action: onStop) {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.blue)
+                    .frame(width: 44, height: 44)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.black, lineWidth: 2)
+                    )
+            }
+            
+            Button(action: onIncrement) {
+                Image(systemName: "plus")
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundColor(.black)
+            }
+        }
     }
 }

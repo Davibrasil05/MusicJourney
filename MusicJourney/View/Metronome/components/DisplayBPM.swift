@@ -1,20 +1,18 @@
-//
-//  DisplayBPM.swift
-//  MusicJourney
-//
-//  Created by academy on 11/06/26.
-//
-
 import SwiftUI
 
 struct DisplayBPM: View {
+    var bpm: Double
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct DisplayBPM_Previews: PreviewProvider {
-    static var previews: some View {
-        DisplayBPM()
+        VStack(spacing: 4) {
+            Text("\(Int(bpm))")
+                .font(.system(size: 72, weight: .bold, design: .rounded))
+                .foregroundColor(.black)
+            
+            Text("BPM")
+                .font(.subheadline)
+                .fontWeight(.medium)
+                .foregroundColor(.gray)
+        }
     }
 }

@@ -1,20 +1,35 @@
-//
-//  BeatIndicatorView.swift
-//  MusicJourney
-//
-//  Created by academy on 11/06/26.
-//
-
 import SwiftUI
 
 struct BeatIndicatorView: View {
+    var currentBeat: Int
+    var beatsPerMeasure: Int
+    var isPlaying: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(spacing: 16) {
+            ForEach(1...beatsPerMeasure, id: \.self) { beat in
+                Circle()
+                    .fill(beatColor(for: beat))
+                    .frame(
+                        width: beatSize(for: beat),
+                        height: beatSize(for: beat)
+                    )
+                    .animation(.easeInOut(duration: 0.1), value: currentBeat)
+            }
+        }
     }
-}
-
-struct BeatIndicatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        BeatIndicatorView()
+    
+    private func beatColor(for beat: Int) -> Color {
+        if isPlaying && beat == currentBeat {
+            return .orange
+        }
+        return Color(.systemGray4)
+    }
+    
+    private func beatSize(for beat: Int) -> CGFloat {
+        if isPlaying && beat == currentBeat {
+            return 32
+        }
+        return 24
     }
 }
