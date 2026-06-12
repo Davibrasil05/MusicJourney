@@ -57,7 +57,7 @@ struct HomeView: View {
                 }
                 
                 // 2. CAIXA INFERIOR (CREME) - Onde ficam o Título e os Cards
-                VStack(spacing: 30) {
+                VStack(spacing: 15) {
                     // CARD DO OBJETIVO
                     Text(viewModel.activeObjective?.name ?? "Crie um Objetivo Primeiro")
                         .font(.system(size: 22, weight: .bold))
@@ -71,6 +71,8 @@ struct HomeView: View {
                             let state = viewModel.getGoalState(for: goal)
                             
                             GoalCardView(goalName: goal.name ?? "", state: state)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 15)
                                 .onTapGesture { selectedGoal = goal }
                             
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -88,37 +90,38 @@ struct HomeView: View {
                                 .listRowInsets(EdgeInsets()) // Tira as margens padrão
                         }
                     }
-                    .listStyle(.plain) // Remove o fundo cinza da lista                }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color("cardCream"))
-                    // Usando a RoundedCorner já existente no projeto para arredondar o topo
-                    .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
-                    .ignoresSafeArea(edges: .bottom)
+                    .listStyle(.plain) // Remove o fundo cinza da lista
                 }
-            }
-            .navigationBarHidden(true)
-            .onAppear {
-                viewModel.loadHomeData()
-            }
-            .sheet(isPresented: $showingAddSheet) {
-                CreateObjectiveView(onFinish: {
-                    showingAddSheet = false
-                    viewModel.loadHomeData()
-                })
-            }
-            .fullScreenCover(item: $selectedGoal, onDismiss: {
-                viewModel.loadHomeData()
-            }) { goal in
-                NavigationView {
-                    PracticeSessionView(
-                        viewModel: SessionViewModel(
-                            goal: goal,
-                            sessionRepo: SessionRepository(),
-                            objectiveRepo: ObjectiveRepository()
-                        )
-                    )
-                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color("cardCream"))
+                // Usando a RoundedCorner já existente no projeto para arredondar o topo
+                .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
+                .ignoresSafeArea(edges: .bottom)
             }
         }
+        .navigationBarHidden(true)
+        .onAppear {
+            viewModel.loadHomeData()
+        }
+        .sheet(isPresented: $showingAddSheet) {
+            CreateObjectiveView(onFinish: {
+                showingAddSheet = false
+                viewModel.loadHomeData()
+            })
+        }
+        .fullScreenCover(item: $selectedGoal, onDismiss: {
+            viewModel.loadHomeData()
+        }) { goal in
+            NavigationView {
+                PracticeSessionView(
+                    viewModel: SessionViewModel(
+                        goal: goal,
+                        sessionRepo: SessionRepository(),
+                        objectiveRepo: ObjectiveRepository()
+                    )
+                )
+            }
+        }
+        
     }
 }
