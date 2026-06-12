@@ -27,19 +27,27 @@ struct ContentView: View {
 }
 
 struct MainTabView: View {
+    @EnvironmentObject var floatingPlayerVM: FloatingPlayerViewModel
+
     var body: some View {
-        TabView {
-            NavigationView {
-                HomeView()
-            }
-            .tabItem {
-                Label("Jornada", systemImage: "map.fill")
+        ZStack {
+            TabView {
+                NavigationView {
+                    HomeView()
+                }
+                .tabItem {
+                    Label("Jornada", systemImage: "map.fill")
+                }
+
+                UserProfileView()
+                    .tabItem {
+                        Label("Perfil", systemImage: "person.crop.circle.fill")
+                    }
             }
 
-            UserProfileView()
-                .tabItem {
-                    Label("Perfil", systemImage: "person.crop.circle.fill")
-                }
+            if floatingPlayerVM.isVisible {
+                FloatingYoutubePlayer(viewModel: floatingPlayerVM)
+            }
         }
     }
 }
