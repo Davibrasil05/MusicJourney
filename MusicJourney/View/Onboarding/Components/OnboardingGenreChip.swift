@@ -16,8 +16,7 @@ struct OnboardingGenreChip: View {
             Text(title)
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(isSelected ? Color("cardCream") : Color("textDark"))
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 14)
+                .frame(width: 167, height: 56)
                 .background(chipBackground)
         }
         .buttonStyle(PlainButtonStyle())
