@@ -40,7 +40,9 @@ struct PracticeSessionView: View {
                     onMetronomeTapped: { viewModel.openTool(.metronomo) },
                     onStartPracticeTapped: {
                         viewModel.completePractice()
-                    }
+                        presentationMode.wrappedValue.dismiss()
+                    },
+                    isFinishEnabled: viewModel.timeElapsed > 0
                 )
                 .frame(height: UIScreen.main.bounds.height * 0.65)
             }
