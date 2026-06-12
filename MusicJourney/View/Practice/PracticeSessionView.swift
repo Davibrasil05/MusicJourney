@@ -11,9 +11,10 @@ struct PracticeSessionView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    // Agora a tela recebe a ViewModel real que você nomeou como SessionViewModel
     @ObservedObject var viewModel: SessionViewModel
     @State private var goRecordsView = false
+    @StateObject private var metronomeViewModel = PracticeSessionViewModel()
+    
     var body: some View {
 
         ZStack(alignment: .bottom) {
@@ -109,7 +110,7 @@ struct PracticeSessionView: View {
             case .tablatura:
                 Text("Modal de Tablatura Aqui")
             case .metronomo:
-                MetronomeOverlayView(viewModel: PracticeSessionViewModel())
+                MetronomeOverlayView(viewModel: metronomeViewModel)
             }
         }
        
