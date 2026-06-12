@@ -23,11 +23,7 @@ struct HomeView: View {
                 
                 // 1. ÁREA SUPERIOR (LARANJA)
                 VStack(spacing: 20) {
-                    HStack {
-                        ZStack {
-                            Circle().fill(Color.orange.opacity(0.8)).frame(width: 50, height: 50)
-                            Image(systemName: "flame.fill").foregroundColor(.white).font(.title)
-                        }
+                    HStack() {
 
                         Spacer()
 
@@ -44,7 +40,7 @@ struct HomeView: View {
                     .padding(.top, 8)
 
                     // INDICADOR DE NÍVEL
-                    HStack {
+                    HStack(spacing: 16) {
                         Text("Lev. \(viewModel.currentUser?.level ?? 1)")
                             .bold()
                             .foregroundColor(.white)
@@ -56,7 +52,7 @@ struct HomeView: View {
                             .bold()
                             .foregroundColor(.white)
                     }
-                    .padding(.horizontal)
+                    .padding(.horizontal, 23)
                     .padding(.bottom, 30) // Respiro antes da caixa creme
                 }
                 

@@ -14,14 +14,14 @@ struct LevelProgressBar: View {
             ZStack(alignment: .leading) {
                
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color(white: 0.85))
-                    .frame(height: 12)
+                    .fill(Color("cardCream"))
+                    .frame(height: 27)
                 
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.orange)
-                    .frame(width: geometry.size.width * CGFloat(percentage), height: 12)
+                    .fill(Color("primaryBlue"))
+                    .frame(width: geometry.size.width * CGFloat(percentage), height: 27)
             }
         }
-        .frame(height: 12)
+        .frame(height: 27)
     }
 }
