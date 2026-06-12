@@ -597,7 +597,7 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-	/* End PBXGroup section */
+/* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
 		9F667CEE2FD3400D0068DE50 /* MusicJourney */ = {
