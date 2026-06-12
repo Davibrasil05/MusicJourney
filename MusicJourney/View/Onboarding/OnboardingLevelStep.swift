@@ -67,7 +67,7 @@ struct OnboardingLevelStep: View {
                         .foregroundColor(Color("textDark"))
                         .padding(.top, 28)
 
-                    VStack(spacing: 12) {
+                    VStack(spacing: 20) {
                         ForEach(MusicLevel.allCases) { level in
                             OnboardingTextOptionButton(
                                 title: level.rawValue,
