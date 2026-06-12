@@ -15,11 +15,12 @@ struct GoalCardView: View {
             // Fundo do card em formato de pílula (Capsule)
             RoundedRectangle(cornerRadius: 50)
                 .fill(bgColor)
-                .frame(width: 363, height: 100)
+                .frame(maxWidth: .infinity)
+                .frame(height: 100)
                 // Contorno do card
                 .overlay(
                     RoundedRectangle(cornerRadius: 50)
-                        .stroke(mainColor, lineWidth: 2)
+                        .strokeBorder(mainColor, lineWidth: 2)
                 )
             
             HStack(spacing: 0) {
@@ -57,7 +58,8 @@ struct GoalCardView: View {
                         .padding(.trailing, 24)
                 }
             }
-            .frame(width: 363, height: 100)
+            .frame(maxWidth: .infinity)
+            .frame(height: 100)
         }
     }
 }
