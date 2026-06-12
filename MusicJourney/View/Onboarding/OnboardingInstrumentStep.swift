@@ -12,7 +12,7 @@ struct OnboardingInstrumentStep: View {
     let onBack: () -> Void
     let onNext: () -> Void
 
-    private let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    private let columns = [GridItem(.flexible(), spacing: 28), GridItem(.flexible())]
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -68,9 +68,9 @@ struct OnboardingInstrumentStep: View {
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color("textDark"))
                         .multilineTextAlignment(.center)
-                        .padding(.top, 28)
+                        .padding(.top, 56)
 
-                    LazyVGrid(columns: columns, spacing: 14) {
+                    LazyVGrid(columns: columns, spacing: 28) {
                         ForEach(MusicInstrument.allCases) { instrument in
                             OnboardingInstrumentCard(
                                 title: instrument.rawValue,
@@ -80,7 +80,7 @@ struct OnboardingInstrumentStep: View {
                             )
                         }
                     }
-                    .padding(.bottom, 8)
+                    .padding(.bottom, 68)
                 }
                 .padding(.horizontal, 24)
             }
@@ -92,7 +92,7 @@ struct OnboardingInstrumentStep: View {
             )
             .padding(.horizontal, 24)
             .padding(.bottom, 36)
-            .padding(.top, 8)
+            .padding(.top, 0)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("cardCream"))
