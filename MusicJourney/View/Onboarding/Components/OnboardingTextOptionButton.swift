@@ -27,7 +27,7 @@ struct OnboardingTextOptionButton: View {
 
     private var buttonBackground: some View {
         RoundedRectangle(cornerRadius: 14)
-            .fill(isSelected ? Color("headerGreen") : Color.clear)
+            .fill(isSelected ? Color("headerGreen") : Color("backgroundCards"))
             .overlay(
                 RoundedRectangle(cornerRadius: 14)
                     .stroke(Color("headerGreen"), lineWidth: 1.5)

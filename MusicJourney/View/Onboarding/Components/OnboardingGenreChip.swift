@@ -26,7 +26,7 @@ struct OnboardingGenreChip: View {
 
     private var chipBackground: some View {
         Capsule()
-            .fill(isSelected ? Color("headerGreen") : Color.clear)
+            .fill(isSelected ? Color("headerGreen") : Color("backgroundCards"))
             .overlay(
                 Capsule()
                     .stroke(Color("headerGreen"), lineWidth: 1.5)

@@ -36,7 +36,7 @@ struct OnboardingInstrumentCard: View {
 
     private var cardBackground: some View {
         RoundedRectangle(cornerRadius: 16)
-            .fill(isSelected ? Color("headerGreen") : Color("inputGray"))
+            .fill(isSelected ? Color("headerGreen") : Color("backgroundCards"))
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(isSelected ? Color("headerGreen") : Color("headerGreen").opacity(0.3), lineWidth: 1.5)

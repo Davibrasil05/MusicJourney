@@ -13,16 +13,13 @@ struct OnboardingLevelStep: View {
     let onNext: () -> Void
 
     var body: some View {
-        GeometryReader { geometry in
+        ZStack(alignment: .top) {
+            Color("headerGreen").ignoresSafeArea()
+
             VStack(spacing: 0) {
                 headerSection
-                    .frame(height: geometry.size.height * 0.28)
-                    .background(Color("headerGreen"))
-
                 cardSection
-                    .frame(maxHeight: .infinity)
             }
-            .background(Color("headerGreen").ignoresSafeArea())
         }
     }
 
@@ -37,13 +34,13 @@ struct OnboardingLevelStep: View {
 
                 Text("Nível de experiência")
                     .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color("cardCream"))
+                    .foregroundColor(.white)
             }
             .frame(maxWidth: .infinity)
-            Spacer()
         }
         .padding(.horizontal, 24)
-        .padding(.top, 56)
+        .padding(.top, 20)
+        .padding(.bottom, 40)
     }
 
     private var backButton: some View {
@@ -93,11 +90,10 @@ struct OnboardingLevelStep: View {
             .padding(.bottom, 36)
             .padding(.top, 8)
         }
-        .background(
-            Color("cardCream")
-                .cornerRadius(32, corners: [.topLeft, .topRight])
-                .ignoresSafeArea(edges: .bottom)
-        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("cardCream"))
+        .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
+        .ignoresSafeArea(edges: .bottom)
     }
 }
 
