@@ -18,8 +18,7 @@ struct OnboardingPrimaryButton: View {
                 .foregroundColor(
                     isEnabled ? Color("cardCream") : Color("cardCream").opacity(0.5)
                 )
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
+                .frame(width: 362, height: 72)
                 .background(buttonBackground)
         }
         .disabled(!isEnabled)
@@ -29,7 +28,7 @@ struct OnboardingPrimaryButton: View {
 
     private var buttonBackground: some View {
         Capsule()
-            .fill(isEnabled ? Color("buttonPurple") : Color("inputGray"))
+            .fill(isEnabled ? Color("primaryBlue") : Color("inputGray"))
     }
 }
 

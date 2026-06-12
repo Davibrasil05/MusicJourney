@@ -16,8 +16,7 @@ struct OnboardingGenreChip: View {
             Text(title)
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(isSelected ? Color("cardCream") : Color("textDark"))
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 14)
+                .frame(width: 167, height: 56)
                 .background(chipBackground)
         }
         .buttonStyle(PlainButtonStyle())
@@ -26,7 +25,7 @@ struct OnboardingGenreChip: View {
 
     private var chipBackground: some View {
         Capsule()
-            .fill(isSelected ? Color("headerGreen") : Color.clear)
+            .fill(isSelected ? Color("headerGreen") : Color("backgroundCards"))
             .overlay(
                 Capsule()
                     .stroke(Color("headerGreen"), lineWidth: 1.5)

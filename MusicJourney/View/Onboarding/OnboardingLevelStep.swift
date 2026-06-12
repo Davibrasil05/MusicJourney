@@ -13,16 +13,18 @@ struct OnboardingLevelStep: View {
     let onNext: () -> Void
 
     var body: some View {
-        GeometryReader { geometry in
+        ZStack(alignment: .top) {
+            Color("headerGreen").ignoresSafeArea()
+
             VStack(spacing: 0) {
                 headerSection
-                    .frame(height: geometry.size.height * 0.28)
-                    .background(Color("headerGreen"))
-
                 cardSection
-                    .frame(maxHeight: .infinity)
             }
-            .background(Color("headerGreen").ignoresSafeArea())
+        }
+        .onAppear {
+            if selectedLevel == nil {
+                selectedLevel = .iniciante
+            }
         }
     }
 
@@ -37,13 +39,13 @@ struct OnboardingLevelStep: View {
 
                 Text("Nível de experiência")
                     .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color("cardCream"))
+                    .foregroundColor(.white)
             }
             .frame(maxWidth: .infinity)
-            Spacer()
         }
         .padding(.horizontal, 24)
-        .padding(.top, 56)
+        .padding(.top, 20)
+        .padding(.bottom, 40)
     }
 
     private var backButton: some View {
@@ -64,13 +66,13 @@ struct OnboardingLevelStep: View {
     private var cardSection: some View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 16) {
+                VStack(spacing: 50) {
                     Text("Qual o seu nível?")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color("textDark"))
-                        .padding(.top, 28)
+                        .padding(.top, 50)
 
-                    VStack(spacing: 12) {
+                    VStack(spacing: 20) {
                         ForEach(MusicLevel.allCases) { level in
                             OnboardingTextOptionButton(
                                 title: level.rawValue,
@@ -79,7 +81,7 @@ struct OnboardingLevelStep: View {
                             )
                         }
                     }
-                    .padding(.bottom, 8)
+                    .padding(.bottom, 120)
                 }
                 .padding(.horizontal, 24)
             }
@@ -89,15 +91,13 @@ struct OnboardingLevelStep: View {
                 isEnabled: canAdvance,
                 action: onNext
             )
-            .padding(.horizontal, 24)
-            .padding(.bottom, 36)
-            .padding(.top, 8)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 81)
         }
-        .background(
-            Color("cardCream")
-                .cornerRadius(32, corners: [.topLeft, .topRight])
-                .ignoresSafeArea(edges: .bottom)
-        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("cardCream"))
+        .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
+        .ignoresSafeArea(edges: .bottom)
     }
 }
 

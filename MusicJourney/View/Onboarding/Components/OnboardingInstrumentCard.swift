@@ -19,15 +19,14 @@ struct OnboardingInstrumentCard: View {
                     .renderingMode(.template)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 48, height: 48)
-                    .foregroundColor(isSelected ? Color("cardCream") : Color("textDark").opacity(0.35))
+                    .frame(width: 35, height: 35)
+                    .foregroundColor(isSelected ? Color("cardCream") : .black)
 
                 Text(title)
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(isSelected ? Color("cardCream") : Color("textDark"))
             }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 20)
+            .frame(width: 167, height: 140)
             .background(cardBackground)
         }
         .buttonStyle(PlainButtonStyle())
@@ -35,11 +34,11 @@ struct OnboardingInstrumentCard: View {
     }
 
     private var cardBackground: some View {
-        RoundedRectangle(cornerRadius: 16)
-            .fill(isSelected ? Color("headerGreen") : Color("inputGray"))
+        RoundedRectangle(cornerRadius: 30)
+            .fill(isSelected ? Color("headerGreen") : Color("backgroundCards"))
             .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(isSelected ? Color("headerGreen") : Color("headerGreen").opacity(0.3), lineWidth: 1.5)
+                RoundedRectangle(cornerRadius: 30)
+                    .stroke(isSelected ? Color("headerGreen") : Color("headerGreen").opacity(0.3), lineWidth: 2.5)
             )
     }
 }

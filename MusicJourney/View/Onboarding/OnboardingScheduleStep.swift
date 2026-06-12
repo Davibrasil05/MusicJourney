@@ -13,16 +13,18 @@ struct OnboardingScheduleStep: View {
     let onFinish: () -> Void
 
     var body: some View {
-        GeometryReader { geometry in
+        ZStack(alignment: .top) {
+            Color("headerGreen").ignoresSafeArea()
+
             VStack(spacing: 0) {
                 headerSection
-                    .frame(height: geometry.size.height * 0.28)
-                    .background(Color("headerGreen"))
-
                 cardSection
-                    .frame(maxHeight: .infinity)
             }
-            .background(Color("headerGreen").ignoresSafeArea())
+        }
+        .onAppear {
+            if selectedSchedule == nil {
+                selectedSchedule = .manha
+            }
         }
     }
 
@@ -37,13 +39,13 @@ struct OnboardingScheduleStep: View {
 
                 Text("Horário de praticar")
                     .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color("cardCream"))
+                    .foregroundColor(.white)
             }
             .frame(maxWidth: .infinity)
-            Spacer()
         }
         .padding(.horizontal, 24)
-        .padding(.top, 56)
+        .padding(.top, 20)
+        .padding(.bottom, 40)
     }
 
     private var backButton: some View {
@@ -64,21 +66,21 @@ struct OnboardingScheduleStep: View {
     private var cardSection: some View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 16) {
+                VStack(spacing: 24) {
                     Text("Qual horário você\nprefere praticar?")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color("textDark"))
                         .multilineTextAlignment(.center)
-                        .padding(.top, 28)
+                        .padding(.top, 56)
 
-                    VStack(spacing: 12) {
+                    VStack(spacing: 20) {
                         ForEach(PracticeSchedule.allCases) { schedule in
                             scheduleRow(schedule)
                         }
                     }
                     .padding(.bottom, 8)
                 }
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 15)
             }
 
             OnboardingPrimaryButton(
@@ -86,15 +88,13 @@ struct OnboardingScheduleStep: View {
                 isEnabled: canAdvance,
                 action: onFinish
             )
-            .padding(.horizontal, 24)
-            .padding(.bottom, 36)
-            .padding(.top, 8)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 81)
         }
-        .background(
-            Color("cardCream")
-                .cornerRadius(32, corners: [.topLeft, .topRight])
-                .ignoresSafeArea(edges: .bottom)
-        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("cardCream"))
+        .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
+        .ignoresSafeArea(edges: .bottom)
     }
 
     // MARK: - Schedule row
@@ -104,17 +104,18 @@ struct OnboardingScheduleStep: View {
 
         return Button(action: { selectedSchedule = schedule }) {
             HStack(spacing: 16) {
-                Image(schedule.assetName)
-                    .renderingMode(.template)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 36, height: 36)
-                    .foregroundColor(isSelected ? Color("cardCream") : Color("textDark").opacity(0.35))
-                    .padding(12)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(isSelected ? Color("cardCream").opacity(0.2) : Color("inputGray"))
-                    )
+                ZStack {
+                    Circle()
+                        .fill(isSelected ? Color("cardCream").opacity(0.2) : Color("inputGray"))
+                        .frame(width: 100, height: 100)
+
+                    Image(schedule.assetName)
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 36, height: 36)
+                        .foregroundColor(isSelected ? Color("cardCream") : Color.white)
+                }
 
                 Text(schedule.rawValue)
                     .font(.system(size: 17, weight: .semibold))
@@ -122,11 +123,14 @@ struct OnboardingScheduleStep: View {
 
                 Spacer()
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .frame(width: 363, height: 100)
             .background(
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(isSelected ? Color("headerGreen") : Color("inputGray"))
+                Capsule()
+                    .fill(isSelected ? Color("headerGreen") : Color("backgroundCards"))
+                    .overlay(
+                        Capsule()
+                            .stroke(isSelected ? Color("headerGreen") : Color("inputGray"), lineWidth: 1.5)
+                    )
             )
         }
         .buttonStyle(PlainButtonStyle())

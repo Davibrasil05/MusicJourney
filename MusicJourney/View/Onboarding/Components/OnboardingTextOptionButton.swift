@@ -17,8 +17,7 @@ struct OnboardingTextOptionButton: View {
             Text(title)
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(isSelected ? Color("cardCream") : Color("textDark"))
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
+                .frame(width: 362, height: 72)
                 .background(buttonBackground)
         }
         .buttonStyle(PlainButtonStyle())
@@ -26,10 +25,10 @@ struct OnboardingTextOptionButton: View {
     }
 
     private var buttonBackground: some View {
-        RoundedRectangle(cornerRadius: 14)
-            .fill(isSelected ? Color("headerGreen") : Color.clear)
+        Capsule()
+            .fill(isSelected ? Color("headerGreen") : Color("backgroundCards"))
             .overlay(
-                RoundedRectangle(cornerRadius: 14)
+                Capsule()
                     .stroke(Color("headerGreen"), lineWidth: 1.5)
             )
     }

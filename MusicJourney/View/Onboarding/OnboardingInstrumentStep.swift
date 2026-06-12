@@ -12,19 +12,21 @@ struct OnboardingInstrumentStep: View {
     let onBack: () -> Void
     let onNext: () -> Void
 
-    private let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    private let columns = [GridItem(.flexible(), spacing: 28), GridItem(.flexible())]
 
     var body: some View {
-        GeometryReader { geometry in
+        ZStack(alignment: .top) {
+            Color("headerGreen").ignoresSafeArea()
+
             VStack(spacing: 0) {
                 headerSection
-                    .frame(height: geometry.size.height * 0.28)
-                    .background(Color("headerGreen"))
-
                 cardSection
-                    .frame(maxHeight: .infinity)
             }
-            .background(Color("headerGreen").ignoresSafeArea())
+        }
+        .onAppear {
+            if selectedInstrument == nil {
+                selectedInstrument = .violao
+            }
         }
     }
 
@@ -39,13 +41,13 @@ struct OnboardingInstrumentStep: View {
 
                 Text("Instrumento")
                     .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color("cardCream"))
+                    .foregroundColor(.white)
             }
             .frame(maxWidth: .infinity)
-            Spacer()
         }
         .padding(.horizontal, 24)
-        .padding(.top, 56)
+        .padding(.top, 20)
+        .padding(.bottom, 40)
     }
 
     private var backButton: some View {
@@ -71,9 +73,9 @@ struct OnboardingInstrumentStep: View {
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color("textDark"))
                         .multilineTextAlignment(.center)
-                        .padding(.top, 28)
+                        .padding(.top, 56)
 
-                    LazyVGrid(columns: columns, spacing: 14) {
+                    LazyVGrid(columns: columns, spacing: 28) {
                         ForEach(MusicInstrument.allCases) { instrument in
                             OnboardingInstrumentCard(
                                 title: instrument.rawValue,
@@ -83,7 +85,7 @@ struct OnboardingInstrumentStep: View {
                             )
                         }
                     }
-                    .padding(.bottom, 8)
+                    .padding(.bottom, 68)
                 }
                 .padding(.horizontal, 24)
             }
@@ -93,15 +95,13 @@ struct OnboardingInstrumentStep: View {
                 isEnabled: canAdvance,
                 action: onNext
             )
-            .padding(.horizontal, 24)
-            .padding(.bottom, 36)
-            .padding(.top, 8)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 81)
         }
-        .background(
-            Color("cardCream")
-                .cornerRadius(32, corners: [.topLeft, .topRight])
-                .ignoresSafeArea(edges: .bottom)
-        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("cardCream"))
+        .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
+        .ignoresSafeArea(edges: .bottom)
     }
 }
 
