@@ -106,7 +106,7 @@ struct OnboardingScheduleStep: View {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
-                        .fill(isSelected ? Color("cardCream").opacity(0.2) : Color.white)
+                        .fill(isSelected ? Color("cardCream").opacity(0.2) : Color("inputGray"))
                         .frame(width: 100, height: 100)
 
                     Image(schedule.assetName)
@@ -114,7 +114,7 @@ struct OnboardingScheduleStep: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 36, height: 36)
-                        .foregroundColor(isSelected ? Color("cardCream") : Color("textDark").opacity(0.35))
+                        .foregroundColor(isSelected ? Color("cardCream") : Color.white)
                 }
 
                 Text(schedule.rawValue)
@@ -127,6 +127,10 @@ struct OnboardingScheduleStep: View {
             .background(
                 Capsule()
                     .fill(isSelected ? Color("headerGreen") : Color("backgroundCards"))
+                    .overlay(
+                        Capsule()
+                            .stroke(isSelected ? Color("headerGreen") : Color("inputGray"), lineWidth: 1.5)
+                    )
             )
         }
         .buttonStyle(PlainButtonStyle())
