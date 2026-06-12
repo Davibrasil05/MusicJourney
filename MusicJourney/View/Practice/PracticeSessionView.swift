@@ -34,6 +34,8 @@ struct PracticeSessionView: View {
                 Spacer()
                 
                 PracticeBottomSheet(
+                    goalName: viewModel.currentGoal.name ?? "",
+                    goalDescription: viewModel.currentGoal.textDescription ?? "",
                     onNoteTapped: { viewModel.openTool(.nota) },
                     onAudioTapped: { viewModel.openTool(.audio) },
                     onTabTapped: { viewModel.openTool(.tablatura) },
