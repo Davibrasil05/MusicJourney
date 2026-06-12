@@ -23,6 +23,11 @@ struct OnboardingInstrumentStep: View {
                 cardSection
             }
         }
+        .onAppear {
+            if selectedInstrument == nil {
+                selectedInstrument = .violao
+            }
+        }
     }
 
     // MARK: - Header

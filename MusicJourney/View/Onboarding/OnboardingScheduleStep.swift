@@ -21,6 +21,11 @@ struct OnboardingScheduleStep: View {
                 cardSection
             }
         }
+        .onAppear {
+            if selectedSchedule == nil {
+                selectedSchedule = .manha
+            }
+        }
     }
 
     // MARK: - Header
