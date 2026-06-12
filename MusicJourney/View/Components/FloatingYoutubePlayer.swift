@@ -30,12 +30,12 @@ struct FloatingYoutubePlayer: View {
                     ? geo.size.height - expandedHeight - geo.safeAreaInsets.bottom - 16
                     : geo.size.height - miniHeight - geo.safeAreaInsets.bottom - 80
 
-                let resolvedX = viewModel.isExpanded ? baseX : clamp(
+                let resolvedX = clamp(
                     baseX + viewModel.dragOffset.width,
                     min: 0,
                     max: geo.size.width - playerWidth
                 )
-                let resolvedY = viewModel.isExpanded ? baseY : clamp(
+                let resolvedY = clamp(
                     baseY + viewModel.dragOffset.height,
                     min: geo.safeAreaInsets.top,
                     max: geo.size.height - playerHeight - geo.safeAreaInsets.bottom
@@ -62,7 +62,6 @@ struct FloatingYoutubePlayer: View {
                 .shadow(color: .black.opacity(0.35), radius: 10, x: 0, y: 4)
                 .position(x: resolvedX + playerWidth / 2, y: resolvedY + playerHeight / 2)
                 .gesture(
-                    viewModel.isExpanded ? nil :
                     DragGesture()
                         .onChanged { value in
                             viewModel.dragOffset = value.translation

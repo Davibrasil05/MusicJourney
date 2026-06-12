@@ -50,10 +50,6 @@ struct PracticeSessionView: View {
                 .frame(height: UIScreen.main.bounds.height * 0.65)
             }
             .ignoresSafeArea(edges: .bottom)
-
-            if floatingPlayerVM.isVisible {
-                FloatingYoutubePlayer(viewModel: floatingPlayerVM)
-            }
         }
         .ignoresSafeArea(edges: .bottom)
         .navigationBarBackButtonHidden(true)

@@ -30,24 +30,21 @@ struct MainTabView: View {
     @EnvironmentObject var floatingPlayerVM: FloatingPlayerViewModel
 
     var body: some View {
-        ZStack {
-            TabView {
-                NavigationView {
-                    HomeView()
-                }
+        TabView {
+            NavigationView {
+                HomeView()
+            }
+            .tabItem {
+                Label("Jornada", systemImage: "map.fill")
+            }
+
+            UserProfileView()
                 .tabItem {
-                    Label("Jornada", systemImage: "map.fill")
+                    Label("Perfil", systemImage: "person.crop.circle.fill")
                 }
-
-                UserProfileView()
-                    .tabItem {
-                        Label("Perfil", systemImage: "person.crop.circle.fill")
-                    }
-            }
-
-            if floatingPlayerVM.isVisible {
-                FloatingYoutubePlayer(viewModel: floatingPlayerVM)
-            }
+        }
+        .onAppear {
+            floatingPlayerVM.installOverlayWindow()
         }
     }
 }
