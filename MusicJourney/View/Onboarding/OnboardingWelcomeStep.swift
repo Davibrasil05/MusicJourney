@@ -10,26 +10,45 @@ struct OnboardingWelcomeStep: View {
     let onNext: () -> Void
 
     var body: some View {
-        ZStack {
-            Color("cardCream").ignoresSafeArea()
+        ZStack(alignment: .top) {
+            Color("headerGreen").ignoresSafeArea()
 
             VStack(spacing: 0) {
-                dotsRow
-                    .padding(.top, 60)
+                // ÁREA LARANJA (TOPO)
+                VStack(spacing: 30) {
+                    dotsRow
+                        .padding(.top, 40)
+                    
+                    Text("Bem vindo!")
+                        .font(.system(size: 26, weight: .bold))
+                        .foregroundColor(.white)
+                }
+                .padding(.bottom, 50)
+                
+                // ÁREA CREME (INFERIOR)
+                VStack(spacing: 0) {
+                    Spacer()
+                    
+                    Text("Com o MusicJourney você cria metas\npara acompanhar sua evolução!")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                    
+                    Spacer()
 
-                Spacer()
-
-                welcomeContent
-
-                Spacer()
-
-                OnboardingPrimaryButton(
-                    title: "Começar",
-                    isEnabled: true,
-                    action: onNext
-                )
-                .padding(.horizontal, 24)
-                .padding(.bottom, 40)
+                    OnboardingPrimaryButton(
+                        title: "Começar",
+                        isEnabled: true,
+                        action: onNext
+                    )
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 40)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color("cardCream"))
+                .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
+                .ignoresSafeArea(edges: .bottom)
             }
         }
     }
@@ -38,19 +57,6 @@ struct OnboardingWelcomeStep: View {
         OnboardingDotsIndicator(currentStep: currentStep, totalSteps: 5)
     }
 
-    private var welcomeContent: some View {
-        VStack(spacing: 12) {
-            Text("Bem vindo!")
-                .font(.system(size: 26, weight: .bold))
-                .foregroundColor(Color("textDark"))
-
-            Text("Com o MusicJourney você cria\nmetas para acompanhar sua evolução")
-                .font(.system(size: 15))
-                .foregroundColor(Color("textDark").opacity(0.65))
-                .multilineTextAlignment(.center)
-        }
-        .padding(.horizontal, 32)
-    }
 }
 
 // MARK: - Preview

@@ -29,7 +29,7 @@ struct OnboardingPrimaryButton: View {
 
     private var buttonBackground: some View {
         Capsule()
-            .fill(isEnabled ? Color("buttonPurple") : Color("inputGray"))
+            .fill(isEnabled ? Color("primaryBlue") : Color("inputGray"))
     }
 }
 
