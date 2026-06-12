@@ -138,7 +138,7 @@ struct PracticeBottomSheet: View {
     var goalDescription: String
     var onNoteTapped: () -> Void
     var onAudioTapped: () -> Void
-    var onTabTapped: () -> Void
+    var onVideoTapped: () -> Void
     var onMetronomeTapped: () -> Void
     var onStartPracticeTapped: () -> Void
     var isFinishEnabled: Bool
@@ -166,7 +166,7 @@ struct PracticeBottomSheet: View {
             LazyVGrid(columns: columns, spacing: 16) {
                 ToolGridButton(title: "Nota", iconName: "square.and.pencil", action: onNoteTapped)
                 ToolGridButton(title: "Áudio", iconName: "mic.fill", action: onAudioTapped)
-                ToolGridButton(title: "Tablatura", iconName: "doc.text.fill", action: onTabTapped)
+                ToolGridButton(title: "Vídeo", iconName: "play.rectangle.fill", action: onVideoTapped)
                 ToolGridButton(title: "Metrônomo", iconName: "metronome.fill", action: onMetronomeTapped)
             }
             .padding(.horizontal, 24)
@@ -202,7 +202,7 @@ struct PracticeBottomSheet_Previews: PreviewProvider {
                 goalDescription: "Pratique o riff lentamente, focando na precisão dos dedos antes de aumentar o andamento.",
                 onNoteTapped: { print("Nota") },
                 onAudioTapped: { print("Audio") },
-                onTabTapped: { print("Tab") },
+                onVideoTapped: { print("Video") },
                 onMetronomeTapped: { print("Metronomo") },
                 onStartPracticeTapped: { print("Iniciar") },
                 isFinishEnabled: true

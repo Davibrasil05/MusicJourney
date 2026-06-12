@@ -104,6 +104,9 @@
 		DD1B3C4D5E6F7A8B9C0D1E2F /* OnboardingGenreChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B3C4D5E6F7A8B9C0D1E3A /* OnboardingGenreChip.swift */; };
 		EE1B3C4D5E6F7A8B9C0D1E2F /* OnboardingPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */; };
 		F1649CC459FD44B18E64E87F /* GoalSuggestionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B17747982C48B586210059 /* GoalSuggestionCard.swift */; };
+		8127CC6A52754C09A4A7C232 /* FloatingPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AE963BA21490D9313B618 /* FloatingPlayerViewModel.swift */; };
+		A24780F0C17340C3B94B58FC /* FloatingYoutubePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABEDCD0E31149F98CF94ACA /* FloatingYoutubePlayer.swift */; };
+		DA2870C50C43424E88F73558 /* YoutubeURLInputSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB674BD32E6B4F6B97C6F375 /* YoutubeURLInputSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +227,9 @@
 		DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInstrumentStep.swift; sourceTree = "<group>"; };
 		EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPrimaryButton.swift; sourceTree = "<group>"; };
 		F7764B744B6B45AC8CD2A2D3 /* OnboardingScheduleStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScheduleStep.swift; sourceTree = "<group>"; };
+		1B5AE963BA21490D9313B618 /* FloatingPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPlayerViewModel.swift; sourceTree = "<group>"; };
+		2ABEDCD0E31149F98CF94ACA /* FloatingYoutubePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingYoutubePlayer.swift; sourceTree = "<group>"; };
+		BB674BD32E6B4F6B97C6F375 /* YoutubeURLInputSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeURLInputSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +262,8 @@
 			children = (
 				81B17747982C48B586210059 /* GoalSuggestionCard.swift */,
 				AAE3ADAF1ACA432990D56EE1 /* ManualGoalSheet.swift */,
+				2ABEDCD0E31149F98CF94ACA /* FloatingYoutubePlayer.swift */,
+				BB674BD32E6B4F6B97C6F375 /* YoutubeURLInputSheet.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -437,6 +445,7 @@
 				9F4488142FDB1D6D00258351 /* components */,
 				9F880EF02FD9EA5C00D9E169 /* PracticeSessionView.swift */,
 				9F44880E2FDB00E000258351 /* PracticeSessionViewModel.swift */,
+				1B5AE963BA21490D9313B618 /* FloatingPlayerViewModel.swift */,
 			);
 			path = Practice;
 			sourceTree = "<group>";
@@ -767,6 +776,7 @@
 				9F7C7EDA2FD75EF3009961ED /* ObjectiveDetailView.swift in Sources */,
 				9F667D8A2FD884F40068DE50 /* testeapp.swift in Sources */,
 				9F44880F2FDB00E000258351 /* PracticeSessionViewModel.swift in Sources */,
+				8127CC6A52754C09A4A7C232 /* FloatingPlayerViewModel.swift in Sources */,
 				9FDC4E6A2FD8869400C62F3C /* GoalManagment.swift in Sources */,
 				9F2DA00A2FD9E5080058F384 /* PresetCatalog+Teclado.swift in Sources */,
 				9F667D252FD3409E0068DE50 /* HistoryView.swift in Sources */,
@@ -804,6 +814,8 @@
 				BF77CC31188442419EA25CE2 /* AddGoalsViewModel.swift in Sources */,
 				F1649CC459FD44B18E64E87F /* GoalSuggestionCard.swift in Sources */,
 				AC8E752293294AE79DC20B7A /* ManualGoalSheet.swift in Sources */,
+				A24780F0C17340C3B94B58FC /* FloatingYoutubePlayer.swift in Sources */,
+				DA2870C50C43424E88F73558 /* YoutubeURLInputSheet.swift in Sources */,
 				36B5121B1B7C4053A0C13742 /* OnboardingTextOptionButton.swift in Sources */,
 				B7BB8BD989574EA09AC87917 /* OnboardingWelcomeStep.swift in Sources */,
 				D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */,

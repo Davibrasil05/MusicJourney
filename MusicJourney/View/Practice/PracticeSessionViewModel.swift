@@ -4,7 +4,7 @@ import CoreData // Precisamos importar para usar as entidades
 
 // MARK: - Enums de Controle
 enum PracticeModal: Identifiable {
-    case nota, audio, tablatura, metronomo
+    case nota, audio, metronomo
     var id: Int { hashValue }
 }
 
