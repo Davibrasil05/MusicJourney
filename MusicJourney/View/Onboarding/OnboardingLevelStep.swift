@@ -21,6 +21,11 @@ struct OnboardingLevelStep: View {
                 cardSection
             }
         }
+        .onAppear {
+            if selectedLevel == nil {
+                selectedLevel = .iniciante
+            }
+        }
     }
 
     // MARK: - Header
@@ -65,7 +70,7 @@ struct OnboardingLevelStep: View {
                     Text("Qual o seu nível?")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color("textDark"))
-                        .padding(.top, 28)
+                        .padding(.top, 50)
 
                     VStack(spacing: 20) {
                         ForEach(MusicLevel.allCases) { level in
@@ -76,7 +81,7 @@ struct OnboardingLevelStep: View {
                             )
                         }
                     }
-                    .padding(.bottom, 8)
+                    .padding(.bottom, 120)
                 }
                 .padding(.horizontal, 24)
             }
