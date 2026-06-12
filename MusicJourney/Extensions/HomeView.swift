@@ -61,13 +61,13 @@ struct HomeView: View {
                 VStack(spacing: 15) {
                     // CARD DO OBJETIVO
                     VStack(spacing: 4) {
-                        Text(viewModel.activeObjective?.name ?? "Crie um Objetivo Primeiro")
+                        Text(viewModel.activeObjective?.name ?? "Crie um objetivo primeiro")
                             .font(.system(size: 22, weight: .bold))
                             .foregroundColor(.black)
                         
                         if viewModel.activeObjective == nil {
                             Spacer()
-                            Text("Adicione algum objetivo!")
+                            Text("Você não tem nenhum objetivo criado")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
