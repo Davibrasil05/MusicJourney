@@ -21,6 +21,10 @@ struct RecordsView: View {
     @State private var itemToEdit: EditItemType?
     @State private var newTitle: String = ""
     
+    // Controle de Navegação Programática
+    @State private var isNoteDetailActive = false
+    @State private var noteToOpen: Annotation?
+    
     // Enum para saber se estamos editando um Áudio ou uma Nota
     enum EditItemType {
         case nota(Annotation)
@@ -93,10 +97,6 @@ struct RecordsView: View {
                 .background(Color.white.opacity(0.5))
                 .cornerRadius(24)
                 .padding()
-                
-                // ==========================================
-                // CONTEÚDO PRINCIPAL (Listas)
-                // ==========================================
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
                         if selectedTab == 0 {
@@ -140,37 +140,63 @@ struct RecordsView: View {
                             }
                         } else {
                             // --- ABA DE NOTAS ---
-                            HStack {
-                                Image(systemName: "calendar")
-                                Text("Recentes")
-                                    .fontWeight(.bold)
-                            }
-                            .padding(.horizontal)
+                            let groupedAnnotations = groupAnnotationsByDate(annotationRepo.annotations)
                             
-                            if annotationRepo.annotations.isEmpty {
+                            if groupedAnnotations.isEmpty {
                                 Text("Nenhuma anotação encontrada.")
                                     .foregroundColor(.gray)
                                     .padding(.top, 40)
                                     .frame(maxWidth: .infinity, alignment: .center)
                             } else {
-                                ForEach(annotationRepo.annotations) { annotation in
-                                    AnnotationCard(
-                                        annotation: annotation,
-                                        onEdit: {
-                                            itemToEdit = .nota(annotation)
-                                            newTitle = annotation.title ?? ""
-                                            withAnimation { showingEditModal = true }
-                                        },
-                                        onDelete: {
-                                            annotationRepo.deleteAnnotation(annotation)
+                                ForEach(groupedAnnotations, id: \.date) { group in
+                                    VStack(alignment: .leading, spacing: 16) {
+                                        // Título da Data
+                                        HStack {
+                                            Image(systemName: "calendar")
+                                            Text(group.date)
+                                                .fontWeight(.bold)
                                         }
-                                    )
+                                        .padding(.horizontal)
+                                        
+                                        // Cards das Anotações
+                                        ForEach(group.items) { annotation in
+                                            AnnotationCard(
+                                                annotation: annotation,
+                                                onEdit: {
+                                                    itemToEdit = .nota(annotation)
+                                                    newTitle = annotation.title ?? ""
+                                                    withAnimation { showingEditModal = true }
+                                                },
+                                                onDelete: {
+                                                    annotationRepo.deleteAnnotation(annotation)
+                                                }
+                                            )
+                                            .onTapGesture {
+                                                noteToOpen = annotation
+                                                isNoteDetailActive = true
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                     .padding(.bottom, 30)
                 }
+                
+                // Link programático invisível para navegação
+                NavigationLink(
+                    destination: Group {
+                        if let note = noteToOpen {
+                            NoteDetailView(annotationRepo: annotationRepo, annotation: note)
+                        } else {
+                            EmptyView()
+                        }
+                    },
+                    isActive: $isNoteDetailActive,
+                    label: { EmptyView() }
+                )
+                .hidden()
             }
             
             // ==========================================
@@ -267,180 +293,22 @@ struct RecordsView: View {
         return dictionary.map { DateGroup(date: $0.key, items: $0.value) }
             .sorted { $0.date > $1.date }
     }
-}
-
-// MARK: - Componente do Card de Áudio (Expansível)
-struct RecordingCard: View {
-    let recording: Recording
-    @ObservedObject var audioService: AudioRecorderService
-    let onEdit: () -> Void
-    let onDelete: () -> Void
     
-    // Identifica se este exato card é o que está tocando agora
-    var isPlayingMe: Bool {
-        guard let myURLString = recording.fileURL, let myURL = URL(string: myURLString) else { return false }
-        return audioService.currentlyPlayingURL == myURL
+    struct AnnotationDateGroup {
+        let date: String
+        let items: [Annotation]
     }
     
-    var body: some View {
-        VStack(spacing: 0) {
-            
-            // --- TOPO DO CARD ---
-            HStack(spacing: 0) {
-                // Lado Laranja
-                ZStack {
-                    Color(red: 220/255, green: 110/255, blue: 0/255).opacity(isPlayingMe ? 0.3 : 1.0)
-                    Image(systemName: "mic.fill")
-                        .font(.largeTitle)
-                        .foregroundColor(isPlayingMe ? .black : .white)
-                }
-                .frame(width: 80)
-                
-                // Dados e Botões
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(recording.title ?? "Gravação sem nome")
-                            .font(.headline)
-                            .fontWeight(.bold)
-                        
-                        Text(formatDuration(recording.duration))
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                        
-                        if let date = recording.createdAt {
-                            Text(formatDate(date))
-                                .font(.caption2)
-                                .foregroundColor(.gray)
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    // Botão Play/Pause Dinâmico
-                    Button(action: {
-                        if isPlayingMe && audioService.isPlaying {
-                            audioService.pauseAudio()
-                        } else {
-                            if let urlString = recording.fileURL, let url = URL(string: urlString) {
-                                audioService.playAudio(url: url)
-                            }
-                        }
-                    }) {
-                        Image(systemName: (isPlayingMe && audioService.isPlaying) ? "pause.circle.fill" : "play.circle.fill")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(.gray.opacity(0.8))
-                    }
-                    
-                    // Os 3 Pontinhos
-                    Menu {
-                        Button(action: onEdit) {
-                            Label("Editar nome", systemImage: "pencil")
-                        }
-                        Button(role: .destructive, action: onDelete) {
-                            Label("Excluir", systemImage: "trash")
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .rotationEffect(.degrees(90))
-                            .foregroundColor(.gray)
-                            .padding()
-                    }
-                }
-                .padding()
-                .background(isPlayingMe ? Color.orange.opacity(0.1) : Color.white)
-            }
-            .frame(minHeight: 80)
-            
-            // --- ÁREA EXPANDIDA (O PLAYER) ---
-            if isPlayingMe {
-                VStack {
-                    // Slider
-                    HStack {
-                        Text(formatDuration(audioService.currentTime))
-                            .font(.caption2)
-                            .foregroundColor(.gray)
-                            .frame(width: 40)
-                        
-                        Slider(value: $audioService.currentTime, in: 0...audioService.duration) { editing in
-                            if !editing {
-                                audioService.seek(to: audioService.currentTime)
-                                audioService.resumeAudio()
-                            } else {
-                                audioService.pauseAudio()
-                            }
-                        }
-                        .accentColor(.orange)
-                        
-                        Text(formatDuration(audioService.duration))
-                            .font(.caption2)
-                            .foregroundColor(.gray)
-                            .frame(width: 40)
-                    }
-                    .padding(.horizontal)
-                    
-                    // Controles extras (Voltar, Excluir, Avançar)
-                    HStack(spacing: 40) {
-                        Button(action: { audioService.skipBackward() }) {
-                            Image(systemName: "gobackward.10").font(.title).foregroundColor(.black)
-                        }
-                        Button(action: onDelete) {
-                            Image(systemName: "trash.fill").font(.title).foregroundColor(.black)
-                        }
-                        Button(action: { audioService.skipForward() }) {
-                            Image(systemName: "goforward.10").font(.title).foregroundColor(.black)
-                        }
-                    }
-                    .padding(.top, 8)
-                }
-                .padding(.vertical)
-                .background(Color.orange.opacity(0.1))
-            }
+    func groupAnnotationsByDate(_ annotations: [Annotation]) -> [AnnotationDateGroup] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        
+        let dictionary = Dictionary(grouping: annotations) { ann -> String in
+            guard let date = ann.createdAt else { return "Desconhecido" }
+            return formatter.string(from: date)
         }
-        .cornerRadius(16)
-        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.orange, lineWidth: 1))
-        .padding(.horizontal)
-        .animation(.easeInOut, value: isPlayingMe)
-    }
-    
-    private func formatDuration(_ duration: Double) -> String {
-        let minutes = Int(duration) / 60
-        let seconds = Int(duration) % 60
-        return String(format: "%dmin %02ds", minutes, seconds)
-    }
-    private func formatDate(_ date: Date) -> String {
-        let f = DateFormatter(); f.dateFormat = "dd/MM/yyyy • HH:mm"; return f.string(from: date)
-    }
-}
-
-// MARK: - Componente do Card de Nota
-struct AnnotationCard: View {
-    let annotation: Annotation
-    let onEdit: () -> Void
-    let onDelete: () -> Void
-    var body: some View {
-        HStack(spacing: 0) {
-            ZStack {
-                Color(red: 220/255, green: 110/255, blue: 0/255)
-                Image(systemName: "square.and.pencil").font(.largeTitle).foregroundColor(.white)
-            }.frame(width: 80)
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Text(annotation.title ?? "Nota sem título").font(.headline).fontWeight(.bold)
-                    Spacer()
-                    Menu {
-                        Button(action: onEdit) { Label("Editar nome", systemImage: "pencil") }
-                        Button(role: .destructive, action: onDelete) { Label("Excluir", systemImage: "trash") }
-                    } label: { Image(systemName: "ellipsis").rotationEffect(.degrees(90)).foregroundColor(.gray).padding(.horizontal, 8) }
-                }
-                Text(annotation.text ?? "").font(.caption).foregroundColor(.gray).lineLimit(2)
-                if let date = annotation.createdAt {
-                    Text(formatDate(date)).font(.caption2).foregroundColor(.gray)
-                }
-            }.padding().background(Color.white)
-        }.cornerRadius(16).overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.orange, lineWidth: 1)).padding(.horizontal)
-    }
-    private func formatDate(_ date: Date) -> String {
-        let f = DateFormatter(); f.dateFormat = "dd/MM/yyyy • HH:mm"; return f.string(from: date)
+        
+        return dictionary.map { AnnotationDateGroup(date: $0.key, items: $0.value) }
+            .sorted { $0.date > $1.date }
     }
 }
