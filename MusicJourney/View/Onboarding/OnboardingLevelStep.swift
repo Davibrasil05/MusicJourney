@@ -66,7 +66,7 @@ struct OnboardingLevelStep: View {
     private var cardSection: some View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 16) {
+                VStack(spacing: 50) {
                     Text("Qual o seu nível?")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color("textDark"))
