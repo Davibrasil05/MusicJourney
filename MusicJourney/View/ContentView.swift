@@ -30,6 +30,17 @@ struct ContentView: View {
 struct MainTabView: View {
     @EnvironmentObject var floatingPlayerVM: FloatingPlayerViewModel
 
+    init() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = .clear
+        
+        UITabBar.appearance().standardAppearance = appearance
+        if #available(iOS 15.0, *) {
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+        }
+    }
+
     var body: some View {
         TabView {
             NavigationView {

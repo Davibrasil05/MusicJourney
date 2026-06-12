@@ -32,13 +32,13 @@ struct RecordsView: View {
     }
     
     // Cores do App
-    let headerOrange = Color(red: 220/255, green: 110/255, blue: 0/255)
-    let bgColor = Color(red: 235/255, green: 233/255, blue: 226/255)
+    let headerOrange = Color("headerGreen")
+    let bgColor = Color("cardCream")
     let primaryBlue = Color(red: 45/255, green: 58/255, blue: 180/255)
     
     var body: some View {
-        ZStack {
-            bgColor.ignoresSafeArea()
+        ZStack(alignment: .top) {
+            headerOrange.ignoresSafeArea()
             
             VStack(spacing: 0) {
                 // ==========================================
@@ -67,13 +67,16 @@ struct RecordsView: View {
                         .padding(.bottom, 24)
                 }
                 .padding(.top, 40)
-                .background(headerOrange.ignoresSafeArea(edges: .top))
                 
                 // ==========================================
-                // SEGMENTED CONTROL (Abas)
+                // ÁREA DE CONTEÚDO (CREME)
                 // ==========================================
-                HStack {
-                    Button(action: { selectedTab = 0 }) {
+                VStack(spacing: 0) {
+                    // ==========================================
+                    // SEGMENTED CONTROL (Abas)
+                    // ==========================================
+                    HStack {
+                        Button(action: { selectedTab = 0 }) {
                         Text("Audio")
                             .fontWeight(.bold)
                             .frame(maxWidth: .infinity)
@@ -183,6 +186,11 @@ struct RecordsView: View {
                     }
                     .padding(.bottom, 30)
                 }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(bgColor)
+            .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
+            .ignoresSafeArea(edges: .bottom)
                 
                 // Link programático invisível para navegação
                 NavigationLink(
@@ -225,7 +233,7 @@ struct RecordsView: View {
                         .padding()
                         .background(Color.white)
                         .cornerRadius(8)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.orange, lineWidth: 1))
+                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("headerGreen"), lineWidth: 1))
                     
                     HStack(spacing: 16) {
                         Button(action: { withAnimation { showingEditModal = false } }) {
@@ -260,7 +268,7 @@ struct RecordsView: View {
                     }
                 }
                 .padding()
-                .background(Color(red: 235/255, green: 233/255, blue: 226/255))
+                .background(Color("cardCream"))
                 .cornerRadius(24)
                 .padding(.horizontal, 24)
             }

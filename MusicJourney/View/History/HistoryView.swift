@@ -52,9 +52,8 @@ struct HistoryView: View {
                 
                 // 2. CAIXA INFERIOR (CREME)
                 VStack(spacing: 24) {
-                    Text("Relembre\nseus objetivos!")
-                        .font(.title)
-                        .fontWeight(.bold)
+                    Text("Relembre seus objetivos!")
+                        .font(.system(size: 22, weight: .bold))
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
                         .padding(.top, 40)
