@@ -109,6 +109,48 @@ class SessionViewModel: ObservableObject {
         // Finaliza o timer
         timer?.invalidate()
         
+        if currentGoal.status != "completed" {
+            // Marca a meta atual como concluída
+            currentGoal.status = "completed"
+            currentGoal.completedAt = Date()
+            
+            // Encontra o usuário através da relação (Meta -> Objetivo -> Usuário) e dá o XP
+            if let objective = currentGoal.objective, let user = objective.user {
+                // Se a meta tiver uma recompensa maior que 0, dá a recompensa. Senão, dá 15 de padrão.
+                let xpGained = currentGoal.xpReward > 0 ? currentGoal.xpReward : 15
+                user.xp += Int16(xpGained)
+                
+                // Sistema de Level Up Automático
+                while user.xp >= 100 {
+                    user.level += 1
+                    user.xp -= 100
+                }
+            }
+            
+            // Encontra e desbloqueia a PRÓXIMA meta da trilha
+            if let objective = currentGoal.objective, let allGoals = objective.goals?.allObjects as? [Goal] {
+                // Organiza todas as metas por ordem
+                let sortedGoals = allGoals.sorted { $0.order < $1.order }
+                
+                // Procura a meta que tem a Ordem exatamente 1 número maior que a atual
+                if let nextGoal = sortedGoals.first(where: { $0.order == currentGoal.order + 1 }) {
+                    // Desbloqueia ela!
+                    nextGoal.status = "unlocked"
+                } else {
+                    // Se não tem próxima meta, significa que o objetivo foi concluído!
+                    objective.status = "completed"
+                    objective.completedAt = Date()
+                }
+            }
+            
+            // Salva todas as alterações (Status, XP e Próxima Meta) no Core Data
+            do {
+                try currentGoal.managedObjectContext?.save()
+            } catch {
+                print("Erro ao salvar progresso da meta: \(error)")
+            }
+        }
+        
         // TODO: Ir para a tela de feedback
     }
 }

@@ -14,7 +14,8 @@ struct PracticeSessionView: View {
     
     @ObservedObject var viewModel: SessionViewModel
     @State private var goRecordsView = false
-
+    @StateObject private var metronomeViewModel = PracticeSessionViewModel()
+    
     var body: some View {
 
         ZStack(alignment: .bottom) {
@@ -108,7 +109,7 @@ struct PracticeSessionView: View {
             case .audio:
                 AddAudioModalView(recordingRepo: RecordingRepository(), goal: viewModel.currentGoal, session: viewModel.activeSession)
             case .metronomo:
-                MetronomeOverlayView(viewModel: PracticeSessionViewModel())
+                MetronomeOverlayView(viewModel: metronomeViewModel)
             }
         }
         .sheet(isPresented: $floatingPlayerVM.showURLInputSheet) {
