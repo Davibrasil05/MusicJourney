@@ -25,15 +25,30 @@ class HomeViewModel: ObservableObject {
     
     @Published var sortedGoals: [Goal] = []
     
+    // Popup state
+    @Published var showCompletedPopup = false
+    @Published var justCompletedObjective: Objective?
+    
     init(objectiveRepo: ObjectiveRepository, userRepo: UserRepository) {
         self.objectiveRepo = objectiveRepo
         self.userRepo = userRepo
     }
     
     func loadHomeData() {
+        let previousActiveId = self.activeObjective?.id
+        
         self.currentUser = userRepo.currentUser
         userRepo.fetchUser()
         objectiveRepo.fetchObjectives()
+        
+        // Check if the previously active objective just became completed
+        if let prevId = previousActiveId,
+           let objective = objectiveRepo.objectives.first(where: { $0.id == prevId }),
+           objective.status == "completed" {
+            self.justCompletedObjective = objective
+            self.showCompletedPopup = true
+        }
+        
         if let active = objectiveRepo.objectives.first(where: { $0.status == "active" }) {
             self.activeObjective = active
             

@@ -84,6 +84,9 @@
 		9FBCFA132FDC725000419A24 /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCFA122FDC725000419A24 /* NoteDetailView.swift */; };
 		9FBCFA152FDC755B00419A24 /* RecordingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCFA142FDC755B00419A24 /* RecordingCard.swift */; };
 		9FBCFA172FDC758700419A24 /* AnnotationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCFA162FDC758700419A24 /* AnnotationCard.swift */; };
+		9FBCFA202FDC95C900419A24 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCFA1F2FDC95C900419A24 /* GoalsView.swift */; };
+		9FBCFA242FDC962200419A24 /* ObjectiveCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCFA232FDC962200419A24 /* ObjectiveCard.swift */; };
+		9FBCFA262FDC967200419A24 /* CompletedObjectivePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCFA252FDC967200419A24 /* CompletedObjectivePopup.swift */; };
 		9FDC4E622FD8865100C62F3C /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E612FD8865100C62F3C /* Components.swift */; };
 		9FDC4E642FD8865F00C62F3C /* Retrospective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E632FD8865F00C62F3C /* Retrospective.swift */; };
 		9FDC4E662FD8867500C62F3C /* FeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E652FD8867500C62F3C /* FeedBack.swift */; };
@@ -199,6 +202,9 @@
 		9FBCFA122FDC725000419A24 /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
 		9FBCFA142FDC755B00419A24 /* RecordingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCard.swift; sourceTree = "<group>"; };
 		9FBCFA162FDC758700419A24 /* AnnotationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationCard.swift; sourceTree = "<group>"; };
+		9FBCFA1F2FDC95C900419A24 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
+		9FBCFA232FDC962200419A24 /* ObjectiveCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveCard.swift; sourceTree = "<group>"; };
+		9FBCFA252FDC967200419A24 /* CompletedObjectivePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedObjectivePopup.swift; sourceTree = "<group>"; };
 		9FDC4E612FD8865100C62F3C /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Components.swift; path = MusicJourney/Extensions/Components.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E632FD8865F00C62F3C /* Retrospective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Retrospective.swift; path = MusicJourney/Extensions/Retrospective.swift; sourceTree = SOURCE_ROOT; };
 		9FDC4E652FD8867500C62F3C /* FeedBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeedBack.swift; path = MusicJourney/Extensions/FeedBack.swift; sourceTree = SOURCE_ROOT; };
@@ -316,6 +322,7 @@
 			children = (
 				9F48C8EE2FDB1DA4006D50B2 /* GoalCardView.swift */,
 				9F48C8EC2FDB1D59006D50B2 /* ProgressView.swift */,
+				9FBCFA252FDC967200419A24 /* CompletedObjectivePopup.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -438,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				9F880EF32FD9F53400D9E169 /* GoalDetailView.swift */,
+				9FBCFA1F2FDC95C900419A24 /* GoalsView.swift */,
 			);
 			path = Goal;
 			sourceTree = "<group>";
@@ -531,6 +539,7 @@
 		9FB83B1D2FD881FA007A06E0 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				9FBCFA222FDC95FC00419A24 /* Components */,
 				9F667D242FD3409E0068DE50 /* HistoryView.swift */,
 				9F4488102FDB00F800258351 /* HistoryViewModel.swift */,
 			);
@@ -572,6 +581,14 @@
 				9F667D892FD884F40068DE50 /* testeapp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		9FBCFA222FDC95FC00419A24 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9FBCFA232FDC962200419A24 /* ObjectiveCard.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		FF1B3C4D5E6F7A8B9C0D1E2F /* Components */ = {
@@ -779,6 +796,7 @@
 				9F880EEC2FD9E29800D9E169 /* SessionRepository.swift in Sources */,
 				9FE541D12FD890DD00675C89 /* OnboardingFormView.swift in Sources */,
 				9F1003CB2FDB575800C7888E /* BPMAdjustButtonsView.swift in Sources */,
+				9FBCFA262FDC967200419A24 /* CompletedObjectivePopup.swift in Sources */,
 				23BB996F3C14482ABA9100B9 /* OnboardingDotsIndicator.swift in Sources */,
 				9F48C8F22FDB3465006D50B2 /* CreateObjectiveView.swift in Sources */,
 				19C00F8496DB405184CCADF9 /* CreateObjectiveViewModel.swift in Sources */,
@@ -789,11 +807,13 @@
 				36B5121B1B7C4053A0C13742 /* OnboardingTextOptionButton.swift in Sources */,
 				B7BB8BD989574EA09AC87917 /* OnboardingWelcomeStep.swift in Sources */,
 				D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */,
+				9FBCFA242FDC962200419A24 /* ObjectiveCard.swift in Sources */,
 				58A8C6D456334176AC462E67 /* OnboardingInstrumentStep.swift in Sources */,
 				9F4488112FDB00F800258351 /* HistoryViewModel.swift in Sources */,
 				7578F69B620143EBBF7B7779 /* OnboardingGenreStep.swift in Sources */,
 				33CCF1626BD9432BBB4BA50E /* OnboardingScheduleStep.swift in Sources */,
 				27587AC8D6874AA9A2DB10BF /* UserRepository.swift in Sources */,
+				9FBCFA202FDC95C900419A24 /* GoalsView.swift in Sources */,
 				AA1B3C4D5E6F7A8B9C0D1E2F /* OnboardingStepHeader.swift in Sources */,
 				BB1B3C4D5E6F7A8B9C0D1E2F /* OnboardingOptionRow.swift in Sources */,
 				9F300B612FDB581B0010B70B /* AddNoteModalView.swift in Sources */,

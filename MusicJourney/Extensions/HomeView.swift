@@ -138,6 +138,21 @@ struct HomeView: View {
                 )
             }
         }
+        .overlay(
+            Group {
+                if viewModel.showCompletedPopup, let obj = viewModel.justCompletedObjective {
+                    CompletedObjectivePopUp(
+                        objectiveName: obj.name ?? "",
+                        completionDate: obj.completedAt ?? Date(),
+                        onClose: {
+                            withAnimation {
+                                viewModel.showCompletedPopup = false
+                            }
+                        }
+                    )
+                }
+            }
+        )
         
     }
 }

@@ -1,14 +1,20 @@
 //
-//  HistoryView.swift
+//  GoalsView.swift
 //  MusicJourney
 //
-//  Created by Academy on 05/06/26.
+//  Created by Academy on 12/06/26.
 //
 
 import SwiftUI
 
-struct HistoryView: View {
-    @StateObject private var viewModel = HistoryViewModel()
+struct GoalsView: View {
+    let objective: Objective
+    @Environment(\.presentationMode) var presentationMode
+    
+    private var sortedGoals: [Goal] {
+        let allGoals = objective.goals?.allObjects as? [Goal] ?? []
+        return allGoals.sorted { $0.order < $1.order }
+    }
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -18,50 +24,36 @@ struct HistoryView: View {
                 // 1. ÁREA SUPERIOR (LARANJA)
                 VStack(spacing: 20) {
                     HStack() {
-                        Spacer()
-                        
-                        // Botão + (mesmo da Home)
-                        Button(action: { }) {
-                            Image(systemName: "plus")
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "chevron.left")
                                 .font(.title2)
                                 .foregroundColor(.white)
                                 .padding(12)
                                 .background(Color.black.opacity(0.15))
                                 .clipShape(Circle())
                         }
+                        Spacer()
                     }
                     .padding(.horizontal)
                     .padding(.top, 8)
                     
-                    // INDICADOR DE NÍVEL
-                    HStack(spacing: 16) {
-                        Text("Lev. \(viewModel.currentUser?.level ?? 1)")
-                            .bold()
-                            .foregroundColor(.white)
-                        
-                        let xpAtual = Double(viewModel.currentUser?.xp ?? 0)
-                        LevelProgressBar(percentage: xpAtual / 100.0)
-                        
-                        Text("\(Int(xpAtual))%")
-                            .bold()
-                            .foregroundColor(.white)
-                    }
-                    .padding(.horizontal, 23)
-                    .padding(.bottom, 30)
+                    Spacer().frame(height: 10)
                 }
                 
                 // 2. CAIXA INFERIOR (CREME)
                 VStack(spacing: 24) {
-                    Text("Relembre\nseus objetivos!")
+                    Text("Suas metas do\nobjetivo \(objective.name ?? "")")
                         .font(.title)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
                         .padding(.top, 40)
                     
-                    if viewModel.completedObjectives.isEmpty {
+                    if sortedGoals.isEmpty {
                         Spacer()
-                        Text("Você ainda não concluiu nenhum objetivo.\nContinue praticando!")
+                        Text("Este objetivo não tem metas.")
                             .multilineTextAlignment(.center)
                             .foregroundColor(.gray)
                             .padding()
@@ -69,20 +61,20 @@ struct HistoryView: View {
                     } else {
                         ScrollView(showsIndicators: false) {
                             VStack(spacing: 16) {
-                                ForEach(viewModel.completedObjectives) { objective in
-                                    NavigationLink(destination: GoalsView(objective: objective)) {
-                                        ObjectiveCard(objective: objective)
+                                ForEach(sortedGoals) { goal in
+                                    NavigationLink(destination: RecordsView(goal: goal)) {
+                                        GoalCardView(goalName: goal.name ?? "", state: .completed)
                                     }
                                     .buttonStyle(PlainButtonStyle())
                                 }
                             }
                             .padding(.top, 10)
-                            // Padding extra para não ficar escondido sob a TabBar
                             .padding(.bottom, 120)
+                            .padding(.horizontal, 15)
                         }
                     }
                 }
-                .padding()
+               
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color("cardCream"))
                 .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
@@ -90,8 +82,6 @@ struct HistoryView: View {
             }
         }
         .navigationBarHidden(true)
-        .onAppear {
-            viewModel.loadCompletedObjectives()
-        }
     }
 }
+
