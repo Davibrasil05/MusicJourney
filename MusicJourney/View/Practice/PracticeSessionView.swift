@@ -10,10 +10,11 @@ import SwiftUI
 struct PracticeSessionView: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var floatingPlayerVM: FloatingPlayerViewModel
     
-    // Agora a tela recebe a ViewModel real que você nomeou como SessionViewModel
     @ObservedObject var viewModel: SessionViewModel
     @State private var goRecordsView = false
+
     var body: some View {
 
         ZStack(alignment: .bottom) {
@@ -38,7 +39,7 @@ struct PracticeSessionView: View {
                     goalDescription: viewModel.currentGoal.textDescription ?? "",
                     onNoteTapped: { viewModel.openTool(.nota) },
                     onAudioTapped: { viewModel.openTool(.audio) },
-                    onTabTapped: { viewModel.openTool(.tablatura) },
+                    onVideoTapped: { floatingPlayerVM.presentURLInput() },
                     onMetronomeTapped: { viewModel.openTool(.metronomo) },
                     onStartPracticeTapped: {
                         viewModel.completePractice()
@@ -104,13 +105,24 @@ struct PracticeSessionView: View {
             switch modal {
             case .nota:
                 AddNoteModalView(annotationRepo: AnnotationRepository(), goal: viewModel.currentGoal, session: viewModel.activeSession)
-            case .audio: 
+            case .audio:
                 AddAudioModalView(recordingRepo: RecordingRepository(), goal: viewModel.currentGoal, session: viewModel.activeSession)
-            case .tablatura:
-                Text("Modal de Tablatura Aqui")
             case .metronomo:
                 MetronomeOverlayView(viewModel: PracticeSessionViewModel())
             }
+        }
+        .sheet(isPresented: $floatingPlayerVM.showURLInputSheet) {
+            YoutubeURLInputSheet(
+                onOpen: { videoID in
+                    floatingPlayerVM.videoID = videoID
+                    floatingPlayerVM.isExpanded = false
+                    floatingPlayerVM.dragOffset = .zero
+                    floatingPlayerVM.showURLInputSheet = false
+                },
+                onCancel: {
+                    floatingPlayerVM.showURLInputSheet = false
+                }
+            )
         }
        
         .onChange(of: viewModel.timeElapsed) { _ in }

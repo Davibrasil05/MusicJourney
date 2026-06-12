@@ -4,6 +4,7 @@
 //
 //  Created by Academy on 05/06/26.
 //
+
 import SwiftUI
 import CoreData
 
@@ -27,6 +28,8 @@ struct ContentView: View {
 }
 
 struct MainTabView: View {
+    @EnvironmentObject var floatingPlayerVM: FloatingPlayerViewModel
+
     var body: some View {
         TabView {
             NavigationView {
@@ -40,6 +43,9 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Perfil", systemImage: "person.crop.circle.fill")
                 }
+        }
+        .onAppear {
+            floatingPlayerVM.installOverlayWindow()
         }
     }
 }
