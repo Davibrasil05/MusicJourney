@@ -12,13 +12,13 @@ struct NoteDetailView: View {
     @State private var showingEditModal = false
     @State private var newTitle: String = ""
     
-    let headerOrange = Color(red: 220/255, green: 110/255, blue: 0/255)
-    let bgColor = Color(red: 235/255, green: 233/255, blue: 226/255)
+    let headerOrange = Color("headerGreen")
+    let bgColor = Color("cardCream")
     let primaryBlue = Color(red: 45/255, green: 58/255, blue: 180/255)
     
     var body: some View {
-        ZStack {
-            bgColor.ignoresSafeArea()
+        ZStack(alignment: .top) {
+            headerOrange.ignoresSafeArea()
             
             VStack(spacing: 0) {
                 // Header Laranja
@@ -68,22 +68,20 @@ struct NoteDetailView: View {
                         .foregroundColor(.white)
                         .padding(.bottom, 24)
                 }
-                .padding(.top, 50)
-                .background(headerOrange.ignoresSafeArea(edges: .top))
+                .padding(.top, 40)
                 
                 // Área de texto com cantos arredondados
-                ZStack(alignment: .topLeading) {
-                    Color(red: 247/255, green: 246/255, blue: 242/255)
-                        .clipShape(RoundedCorner(radius: 32, corners: [.topLeft, .topRight]))
-                        .ignoresSafeArea(edges: .bottom)
-                    
+                VStack(spacing: 0) {
                     TextEditor(text: $text)
                         .font(.body)
                         .foregroundColor(.black)
                         .padding(24)
                         .background(Color.clear)
-                        
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color("cardCream"))
+                .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
+                .ignoresSafeArea(edges: .bottom)
             }
             
             // Modal Escuro (Editar Nome)
@@ -110,7 +108,7 @@ struct NoteDetailView: View {
                         .padding()
                         .background(Color.white)
                         .cornerRadius(8)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.orange, lineWidth: 1))
+                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("headerGreen"), lineWidth: 1))
                     
                     HStack(spacing: 16) {
                         Button(action: { withAnimation { showingEditModal = false } }) {
@@ -138,7 +136,7 @@ struct NoteDetailView: View {
                     }
                 }
                 .padding()
-                .background(Color(red: 235/255, green: 233/255, blue: 226/255))
+                .background(Color("cardCream"))
                 .cornerRadius(24)
                 .padding(.horizontal, 24)
             }
@@ -146,6 +144,7 @@ struct NoteDetailView: View {
         .navigationBarHidden(true)
         .onAppear {
             self.text = annotation.text ?? ""
+            UITextView.appearance().backgroundColor = .clear
         }
         .onDisappear {
             saveNote()

@@ -9,7 +9,7 @@ struct AnnotationCard: View {
             HStack(spacing: 0) {
                 // Lado Laranja
                 ZStack {
-                    Color(red: 220/255, green: 110/255, blue: 0/255)
+                    Color("headerGreen")
                     Image(systemName: "square.and.pencil")
                         .font(.largeTitle)
                         .foregroundColor(.white)
@@ -54,7 +54,7 @@ struct AnnotationCard: View {
             .frame(minHeight: 80)
         }
         .cornerRadius(16)
-        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.orange, lineWidth: 1))
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color("headerGreen"), lineWidth: 1))
         .padding(.horizontal)
     }
     

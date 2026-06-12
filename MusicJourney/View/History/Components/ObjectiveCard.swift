@@ -21,7 +21,7 @@ struct ObjectiveCard: View {
         HStack(spacing: 0) {
             // Lado Laranja com o ícone
             ZStack {
-                Color(red: 220/255, green: 110/255, blue: 0/255)
+                Color("headerGreen")
                 Image(systemName: iconName)
                     .font(.largeTitle)
                     .foregroundColor(.white)
@@ -48,7 +48,7 @@ struct ObjectiveCard: View {
         }
         .frame(minHeight: 100)
         .clipShape(Capsule())
-        .overlay(Capsule().stroke(Color(red: 220/255, green: 110/255, blue: 0/255), lineWidth: 2))
+        .overlay(Capsule().stroke(Color("headerGreen"), lineWidth: 2))
     }
     
     private func formatDate(_ date: Date) -> String {

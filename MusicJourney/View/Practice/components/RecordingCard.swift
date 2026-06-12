@@ -21,7 +21,7 @@ struct RecordingCard: View {
             HStack(spacing: 0) {
                 // Lado Laranja
                 ZStack {
-                    Color(red: 220/255, green: 110/255, blue: 0/255).opacity(isPlayingMe ? 0.3 : 1.0)
+                    Color("headerGreen").opacity(isPlayingMe ? 0.3 : 1.0)
                     Image(systemName: "mic.fill")
                         .font(.largeTitle)
                         .foregroundColor(isPlayingMe ? .black : .white)
@@ -80,7 +80,7 @@ struct RecordingCard: View {
                     }
                 }
                 .padding()
-                .background(isPlayingMe ? Color.orange.opacity(0.1) : Color.white)
+                .background(isPlayingMe ? Color("headerGreen").opacity(0.1) : Color.white)
             }
             .frame(minHeight: 80)
             
@@ -102,7 +102,7 @@ struct RecordingCard: View {
                                 audioService.pauseAudio()
                             }
                         }
-                        .accentColor(.orange)
+                        .accentColor(Color("headerGreen"))
                         
                         Text(formatDuration(audioService.duration))
                             .font(.caption2)
@@ -126,11 +126,11 @@ struct RecordingCard: View {
                     .padding(.top, 8)
                 }
                 .padding(.vertical)
-                .background(Color.orange.opacity(0.1))
+                .background(Color("headerGreen").opacity(0.1))
             }
         }
         .cornerRadius(16)
-        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.orange, lineWidth: 1))
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color("headerGreen"), lineWidth: 1))
         .padding(.horizontal)
         .animation(.easeInOut, value: isPlayingMe)
     }

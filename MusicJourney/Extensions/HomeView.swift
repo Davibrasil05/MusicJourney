@@ -14,7 +14,6 @@ struct HomeView: View {
     @State private var showDeleteAlert = false
     @State private var goalToDelete: Goal?
     
-    let backgroundColor = Color(red: 244/255, green: 241/255, blue: 234/255)
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -61,10 +60,19 @@ struct HomeView: View {
                 // 2. CAIXA INFERIOR (CREME) - Onde ficam o Título e os Cards
                 VStack(spacing: 15) {
                     // CARD DO OBJETIVO
-                    Text(viewModel.activeObjective?.name ?? "Crie um Objetivo Primeiro")
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(.black)
-                        .padding(.top, 40) // Distância do topo curvo
+                    VStack(spacing: 4) {
+                        Text(viewModel.activeObjective?.name ?? "Crie um Objetivo Primeiro")
+                            .font(.system(size: 22, weight: .bold))
+                            .foregroundColor(.black)
+                        
+                        if viewModel.activeObjective == nil {
+                            Spacer()
+                            Text("Adicione algum objetivo!")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    .padding(.top, 40) // Distância do topo curvo
                     
                     // LISTA DE METAS
                     // Em vez de ScrollView e VStack, usamos List
