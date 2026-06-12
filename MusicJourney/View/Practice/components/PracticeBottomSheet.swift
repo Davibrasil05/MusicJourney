@@ -63,6 +63,7 @@ struct PracticeBottomSheet: View {
     var onTabTapped: () -> Void
     var onMetronomeTapped: () -> Void
     var onStartPracticeTapped: () -> Void
+    var isFinishEnabled: Bool
     
     // Configuração das duas colunas da Grid
     let columns = [
@@ -81,10 +82,10 @@ struct PracticeBottomSheet: View {
             .padding(.horizontal, 24)
             .padding(.top, 40)
             
-            // O botão principal que fizemos no passo anterior
-            PrimaryActionButton(title: "Iniciar prática") {
+            PrimaryActionButton(title: "Concluir") {
                 onStartPracticeTapped()
             }
+            .disabled(!isFinishEnabled)
             
             // Empurra tudo para cima e deixa um respiro no fundo
             Spacer()
@@ -112,7 +113,8 @@ struct PracticeBottomSheet_Previews: PreviewProvider {
                 onAudioTapped: { print("Audio") },
                 onTabTapped: { print("Tab") },
                 onMetronomeTapped: { print("Metronomo") },
-                onStartPracticeTapped: { print("Iniciar") }
+                onStartPracticeTapped: { print("Iniciar") },
+                isFinishEnabled: true
             )
             // Faz o card cobrir aquela margem branca do fundo da tela
             .ignoresSafeArea(edges: .bottom)
