@@ -83,9 +83,8 @@ struct OnboardingScheduleStep: View {
                 isEnabled: canAdvance,
                 action: onFinish
             )
-            .padding(.horizontal, 15)
-            .padding(.bottom, 36)
-            .padding(.top, 8)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 81)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("cardCream"))

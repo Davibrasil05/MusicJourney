@@ -90,9 +90,8 @@ struct OnboardingInstrumentStep: View {
                 isEnabled: canAdvance,
                 action: onNext
             )
-            .padding(.horizontal, 24)
-            .padding(.bottom, 36)
-            .padding(.top, 0)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 81)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("cardCream"))
