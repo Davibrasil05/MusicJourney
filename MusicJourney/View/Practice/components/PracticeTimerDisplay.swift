@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct PracticeTimerDisplay: View {
-    // A string do tempo atual (ex: "00:00" ou "05:30")
     var timeString: String
     
-    // Para mudar o texto de instrução dependendo do estado
     var isRunning: Bool
     
-    // Ação que será executada quando o usuário tocar no cronômetro
     var onTapped: () -> Void
     
     var body: some View {
@@ -27,10 +24,8 @@ struct PracticeTimerDisplay: View {
                 .font(.system(size: 22, weight: .medium))
                 .foregroundColor(.white)
         }
-        // contentShape garante que clicar no espaço vazio entre os textos também conte como toque
         .contentShape(Rectangle())
         .onTapGesture {
-            // Avisa a View/ViewModel principal que o usuário tocou aqui
             onTapped()
         }
     }
