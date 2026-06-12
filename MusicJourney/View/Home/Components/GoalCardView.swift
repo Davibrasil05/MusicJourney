@@ -1,52 +1,65 @@
-//
-//  GoalCardView.swift
-//  MusicJourney
-//
-//  Created by Academy on 11/06/26.
-//
-
 import SwiftUI
+
 struct GoalCardView: View {
     var goalName: String
     var state: GoalState
     
     var body: some View {
-        HStack(spacing: 16) {
-            // O ícone da esquerda muda de cor se estiver bloqueado
-            ZStack {
-                Circle()
-                    .fill(state == .locked ? Color.gray.opacity(0.4) : Color.orange)
-                    .frame(width: 50, height: 50)
+        let isLocked = state == .locked
+        // A cor laranja é chamada de headerGreen no seu Assets
+        let mainColor = isLocked ? Color.gray : Color("headerGreen")
+        // O fundo da tag onde fica o nome
+        let bgColor = Color("backgroundCards")
+        
+        ZStack(alignment: .leading) {
+            // Fundo do card em formato de pílula (Capsule)
+            RoundedRectangle(cornerRadius: 50)
+                .fill(bgColor)
+                .frame(maxWidth: .infinity)
+                .frame(height: 100)
+                // Contorno do card
+                .overlay(
+                    RoundedRectangle(cornerRadius: 50)
+                        .strokeBorder(mainColor, lineWidth: 2)
+                )
+            
+            HStack(spacing: 0) {
+                // Círculo esquerdo (Laranja se ativo, Cinza se bloqueado)
+                ZStack {
+                    Circle()
+                        .fill(mainColor)
+                        .frame(width: 100, height: 100)
+                    
+                    // Ícone no meio do círculo
+                    Image(systemName: isLocked ? "music.note" : "guitars.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(bgColor) // Cor do ícone = backgroundCards
+                }
                 
-                Image(systemName: "guitars.fill") // Use seu ícone correto aqui
-                    .foregroundColor(state == .locked ? .gray : .white)
+                // Espaçamento exato de 20 entre o círculo e o texto
+                Spacer().frame(width: 20)
+                
+                // Título da Meta
+                Text(goalName)
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(isLocked ? .gray : .black)
+                
+                Spacer()
+                
+                // Cadeado (Se bloqueado)
+                if isLocked {
+                    Image(systemName: "lock.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 24)
+                        .foregroundColor(.gray)
+                        .padding(.trailing, 24)
+                }
             }
-            
-            // O texto fica clarinho se estiver bloqueado
-            Text(goalName)
-                .font(.headline)
-                .foregroundColor(state == .locked ? .gray : .black)
-            
-            Spacer()
-            
-            // O cadeado gigante na direita (só aparece se estiver locked)
-            if state == .locked {
-                Image(systemName: "lock.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 30, height: 40)
-                    .foregroundColor(Color.gray.opacity(0.5))
-            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 100)
         }
-        .padding()
-        .frame(height: 90) // Altura fixa aproximada do Figma
-        // As cores de fundo mudam baseadas no estado
-        .background(state == .locked ? Color.gray.opacity(0.15) : Color(white: 0.95))
-        .cornerRadius(16)
-        // A borda laranja só aparece quando a meta está ATIVA
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(state == .active ? Color.orange : Color.clear, lineWidth: 2)
-        )
     }
 }

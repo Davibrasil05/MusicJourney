@@ -16,74 +16,80 @@ struct HomeView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            backgroundColor.ignoresSafeArea()
+            // O fundo da tela inteira agora passa a ser a cor laranja (headerGreen)
+            Color("headerGreen").ignoresSafeArea()
 
-            VStack(spacing: 20) {
+            VStack(spacing: 0) {
+                
+                // 1. ÁREA SUPERIOR (LARANJA)
+                VStack(spacing: 20) {
+                    HStack() {
 
-                HStack {
-                    ZStack {
-                        Circle().fill(Color.orange).frame(width: 50, height: 50)
-                        Image(systemName: "flame.fill").foregroundColor(.white).font(.title)
-                    }
+                        Spacer()
 
-                    Spacer()
-
-                    Button(action: { showingAddSheet = true }) {
-                        Image(systemName: "plus")
-                            .font(.title2)
-                            .foregroundColor(.gray)
-                            .padding(12)
-                            .background(Color.gray.opacity(0.2))
-                            .clipShape(Circle())
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.top, 8)
-
-                // INDICADOR DE NÍVEL
-                HStack {
-                    Text("Lev. \(viewModel.currentUser?.level ?? 1)").bold()
-
-                    let xpAtual = Double(viewModel.currentUser?.xp ?? 0)
-                    LevelProgressBar(percentage: xpAtual / 100.0)
-
-                    Text("\(Int(xpAtual))%").bold()
-                }
-                .padding(.horizontal)
-
-                // CARD DO OBJETIVO
-                HStack {
-                    Text(viewModel.activeObjective?.name ?? "Crie um Objetivo Primeiro")
-                        .font(.title)
-                        .bold()
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .frame(height: 70, alignment: .center)
-                .cornerRadius(12)
-                .shadow(color: .black.opacity(0.15), radius: 5, x: 0, y: 3)
-
-                // LISTA DE METAS
-                ScrollView {
-                    VStack(spacing: 16) {
-                        ForEach(viewModel.sortedGoals) { goal in
-                            let state = viewModel.getGoalState(for: goal)
-
-                            if state == .active {
-                                GoalCardView(goalName: goal.name ?? "", state: state)
-                                    .onTapGesture {
-                                        selectedGoal = goal
-                                    }
-                            } else {
-                                GoalCardView(goalName: goal.name ?? "", state: state)
-                            }
+                        Button(action: { showingAddSheet = true }) {
+                            Image(systemName: "plus")
+                                .font(.title2)
+                                .foregroundColor(.white)
+                                .padding(12)
+                                .background(Color.black.opacity(0.15))
+                                .clipShape(Circle())
                         }
                     }
                     .padding(.horizontal)
-                    .padding(.bottom, 100)
+                    .padding(.top, 8)
+
+                    // INDICADOR DE NÍVEL
+                    HStack(spacing: 16) {
+                        Text("Lev. \(viewModel.currentUser?.level ?? 1)")
+                            .bold()
+                            .foregroundColor(.white)
+
+                        let xpAtual = Double(viewModel.currentUser?.xp ?? 0)
+                        LevelProgressBar(percentage: xpAtual / 100.0)
+
+                        Text("\(Int(xpAtual))%")
+                            .bold()
+                            .foregroundColor(.white)
+                    }
+                    .padding(.horizontal, 23)
+                    .padding(.bottom, 30) // Respiro antes da caixa creme
                 }
+                
+                // 2. CAIXA INFERIOR (CREME) - Onde ficam o Título e os Cards
+                VStack(spacing: 30) {
+                    // CARD DO OBJETIVO
+                    Text(viewModel.activeObjective?.name ?? "Crie um Objetivo Primeiro")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.black)
+                        .padding(.top, 40) // Distância do topo curvo
+
+                    // LISTA DE METAS
+                    ScrollView {
+                        VStack(spacing: 20) {
+                            ForEach(viewModel.sortedGoals) { goal in
+                                let state = viewModel.getGoalState(for: goal)
+
+                                if state == .active {
+                                    GoalCardView(goalName: goal.name ?? "", state: state)
+                                        .onTapGesture {
+                                            selectedGoal = goal
+                                        }
+                                } else {
+                                    GoalCardView(goalName: goal.name ?? "", state: state)
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 15)
+                        .padding(.bottom, 100)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color("cardCream"))
+                // Usando a RoundedCorner já existente no projeto para arredondar o topo
+                .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
+                .ignoresSafeArea(edges: .bottom)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
         .navigationBarHidden(true)
         .onAppear {
