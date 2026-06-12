@@ -11,6 +11,8 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel(objectiveRepo: ObjectiveRepository(), userRepo: UserRepository())
     @State private var selectedGoal: Goal?
     @State private var showingAddSheet = false
+    @State private var showDeleteAlert = false
+    @State private var goalToDelete: Goal?
     
     let backgroundColor = Color(red: 244/255, green: 241/255, blue: 234/255)
     
@@ -77,8 +79,8 @@ struct HomeView: View {
                             
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button(role: .destructive) {
-                                        // Chamar a função da ViewModel para deletar a meta
-                                        viewModel.deleteGoal(goal)
+                                        goalToDelete = goal
+                                        showDeleteAlert = true
                                     } label: {
                                         Label("Deletar", systemImage: "trash")
                                     }
@@ -102,6 +104,20 @@ struct HomeView: View {
         .navigationBarHidden(true)
         .onAppear {
             viewModel.loadHomeData()
+        }
+        .alert("Excluir meta", isPresented: $showDeleteAlert, presenting: goalToDelete) { goal in
+            // Os dois botões do popup
+            Button("Cancelar", role: .cancel) {
+                // Não faz nada, o iOS já fecha sozinho
+            }
+            
+            Button("Excluir", role: .destructive) {
+                // Função de deletar
+                viewModel.deleteGoal(goal)
+            }
+        } message: { goal in
+            // O texto pequeno debaixo do título
+            Text("Tem certeza que deseja excluir?\nEssa ação não pode ser desfeita.")
         }
         .sheet(isPresented: $showingAddSheet) {
             CreateObjectiveView(onFinish: {
