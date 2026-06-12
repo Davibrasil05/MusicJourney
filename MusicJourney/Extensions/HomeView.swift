@@ -11,22 +11,22 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel(objectiveRepo: ObjectiveRepository(), userRepo: UserRepository())
     @State private var selectedGoal: Goal?
     @State private var showingAddSheet = false
-
+    
     let backgroundColor = Color(red: 244/255, green: 241/255, blue: 234/255)
     
     var body: some View {
         ZStack(alignment: .top) {
             // O fundo da tela inteira agora passa a ser a cor laranja (headerGreen)
             Color("headerGreen").ignoresSafeArea()
-
+            
             VStack(spacing: 0) {
                 
                 // 1. ÁREA SUPERIOR (LARANJA)
                 VStack(spacing: 20) {
                     HStack() {
-
+                        
                         Spacer()
-
+                        
                         Button(action: { showingAddSheet = true }) {
                             Image(systemName: "plus")
                                 .font(.title2)
@@ -38,16 +38,16 @@ struct HomeView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 8)
-
+                    
                     // INDICADOR DE NÍVEL
                     HStack(spacing: 16) {
                         Text("Lev. \(viewModel.currentUser?.level ?? 1)")
                             .bold()
                             .foregroundColor(.white)
-
+                        
                         let xpAtual = Double(viewModel.currentUser?.xp ?? 0)
                         LevelProgressBar(percentage: xpAtual / 100.0)
-
+                        
                         Text("\(Int(xpAtual))%")
                             .bold()
                             .foregroundColor(.white)
@@ -63,57 +63,62 @@ struct HomeView: View {
                         .font(.system(size: 22, weight: .bold))
                         .foregroundColor(.black)
                         .padding(.top, 40) // Distância do topo curvo
-
+                    
                     // LISTA DE METAS
-                    ScrollView {
-                        VStack(spacing: 20) {
-                            ForEach(viewModel.sortedGoals) { goal in
-                                let state = viewModel.getGoalState(for: goal)
-
-                                if state == .active {
-                                    GoalCardView(goalName: goal.name ?? "", state: state)
-                                        .onTapGesture {
-                                            selectedGoal = goal
-                                        }
-                                } else {
-                                    GoalCardView(goalName: goal.name ?? "", state: state)
+                    // Em vez de ScrollView e VStack, usamos List
+                    List {
+                        ForEach(viewModel.sortedGoals) { goal in
+                            let state = viewModel.getGoalState(for: goal)
+                            
+                            GoalCardView(goalName: goal.name ?? "", state: state)
+                                .onTapGesture { selectedGoal = goal }
+                            
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(role: .destructive) {
+                                        // Chamar a função da ViewModel para deletar a meta
+                                        viewModel.deleteGoal(goal)
+                                    } label: {
+                                        Label("Deletar", systemImage: "trash")
+                                    }
                                 }
-                            }
+                            
+                            // Esses dois comandos tiram o estilo feio padrão da List do iOS
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
+                                .listRowInsets(EdgeInsets()) // Tira as margens padrão
                         }
-                        .padding(.horizontal, 15)
-                        .padding(.bottom, 100)
                     }
+                    .listStyle(.plain) // Remove o fundo cinza da lista                }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color("cardCream"))
+                    // Usando a RoundedCorner já existente no projeto para arredondar o topo
+                    .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
+                    .ignoresSafeArea(edges: .bottom)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color("cardCream"))
-                // Usando a RoundedCorner já existente no projeto para arredondar o topo
-                .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))
-                .ignoresSafeArea(edges: .bottom)
             }
-        }
-        .navigationBarHidden(true)
-        .onAppear {
-            viewModel.loadHomeData()
-        }
-        .sheet(isPresented: $showingAddSheet) {
-            CreateObjectiveView(onFinish: {
-                showingAddSheet = false
+            .navigationBarHidden(true)
+            .onAppear {
                 viewModel.loadHomeData()
-            })
-        }
-        .fullScreenCover(item: $selectedGoal, onDismiss: {
-            viewModel.loadHomeData()
-        }) { goal in
-            NavigationView {
-                PracticeSessionView(
-                    viewModel: SessionViewModel(
-                        goal: goal,
-                        sessionRepo: SessionRepository(),
-                        objectiveRepo: ObjectiveRepository()
+            }
+            .sheet(isPresented: $showingAddSheet) {
+                CreateObjectiveView(onFinish: {
+                    showingAddSheet = false
+                    viewModel.loadHomeData()
+                })
+            }
+            .fullScreenCover(item: $selectedGoal, onDismiss: {
+                viewModel.loadHomeData()
+            }) { goal in
+                NavigationView {
+                    PracticeSessionView(
+                        viewModel: SessionViewModel(
+                            goal: goal,
+                            sessionRepo: SessionRepository(),
+                            objectiveRepo: ObjectiveRepository()
+                        )
                     )
-                )
+                }
             }
         }
     }
-    
 }

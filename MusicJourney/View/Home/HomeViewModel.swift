@@ -67,5 +67,13 @@ class HomeViewModel: ObservableObject {
         
         return .locked
     }
+    
+    func deleteGoal(_ goal: Goal) {
+        // Chama o seu repositório para apagar do CoreData
+        objectiveRepo.deleteGoal(goal: goal) // (Assumindo que você tenha essa função no repositório)
+        
+        // Recarrega os dados para a tela atualizar na mesma hora e a meta sumir visualmente
+        loadHomeData()
+    }
 
 }
