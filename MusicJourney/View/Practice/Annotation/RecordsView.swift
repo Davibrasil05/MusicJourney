@@ -49,9 +49,12 @@ struct RecordsView: View {
                         Button(action: { presentationMode.wrappedValue.dismiss() }) {
                             HStack {
                                 Image(systemName: "chevron.left")
+                                    .font(.system(size: 16, weight: .bold))
                                 Text("Voltar")
+                                    .font(.system(size: 18, weight: .medium))
                             }
-                            .foregroundColor(.black)
+                            
+                            .foregroundColor(.white)
                         }
                         Spacer()
                     }
