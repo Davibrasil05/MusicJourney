@@ -151,9 +151,9 @@ struct UserProfileView: View {
                             }
                             .buttonStyle(PlainButtonStyle())
                         }
-
+                        Spacer()
                         ProfileSectionHeader(title: "Sua jornada")
-
+                        
                         VStack(spacing: 12) {
                             ProfileInfoRow(
                                 title: "Nível musical",

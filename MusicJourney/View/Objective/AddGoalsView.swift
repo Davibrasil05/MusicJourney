@@ -31,7 +31,7 @@ struct AddGoalsView: View {
                             HStack(spacing: 4) {
                                 Image(systemName: "chevron.left")
                                     .font(.system(size: 14, weight: .semibold))
-                                Text("Casa")
+                                Text("Voltar")
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
                             }

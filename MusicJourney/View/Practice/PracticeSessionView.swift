@@ -86,7 +86,7 @@ struct PracticeSessionView: View {
                 }) {
                     Image(systemName: "folder.fill")
                         .font(.system(size: 24))
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                 }
                 .background(
                     NavigationLink(destination: RecordsView(goal: viewModel.currentGoal), isActive: $goRecordsView) { EmptyView() }
@@ -109,7 +109,7 @@ struct PracticeSessionView: View {
                         Text("Voltar")
                             .font(.system(size: 18, weight: .medium))
                     }
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                 }
             }
             

@@ -66,7 +66,7 @@ struct OnboardingOptionRow: View {
 
     private var radioButton: some View {
         ZStack {
-            Circle()
+            RoundedRectangle(cornerRadius: 20)
                 .stroke(
                     isSelected ? Color("buttonPurple") : Color("textDark").opacity(0.3),
                     lineWidth: 2
@@ -74,7 +74,7 @@ struct OnboardingOptionRow: View {
                 .frame(width: 22, height: 22)
 
             if isSelected {
-                Circle()
+                RoundedRectangle(cornerRadius: 20)
                     .fill(Color("buttonPurple"))
                     .frame(width: 12, height: 12)
             }
@@ -82,10 +82,10 @@ struct OnboardingOptionRow: View {
     }
 
     private var rowBackground: some View {
-        RoundedRectangle(cornerRadius: 14)
+        RoundedRectangle(cornerRadius: 20)
             .fill(Color("inputGray"))
             .overlay(
-                RoundedRectangle(cornerRadius: 14)
+                RoundedRectangle(cornerRadius: 20)
                     .stroke(
                         isSelected ? Color("buttonPurple") : Color.clear,
                         lineWidth: 2

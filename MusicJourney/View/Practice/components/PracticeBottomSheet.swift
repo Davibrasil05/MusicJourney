@@ -37,7 +37,7 @@ struct ToolGridButton: View {
                 Image(systemName: iconName)
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 32)
+                    .frame(width: 32, height: 32)
                     .foregroundColor(Color("textDark"))
                 
                 Text(title)
@@ -167,7 +167,7 @@ struct PracticeBottomSheet: View {
             .padding(.top, 28)
 
             LazyVGrid(columns: columns, spacing: 24) {
-                ToolGridButton(title: "Nota", iconName: "square.and.pencil", action: onNoteTapped)
+                ToolGridButton(title: "Nota", iconName: "doc.text.fill", action: onNoteTapped)
                 ToolGridButton(title: "Áudio", iconName: "mic.fill", action: onAudioTapped)
                 ToolGridButton(title: "Vídeo", iconName: "play.rectangle.fill", action: onVideoTapped)
                 ToolGridButton(title: "Metrônomo", iconName: "metronome.fill", action: onMetronomeTapped)

@@ -40,6 +40,9 @@ struct MainTabView: View {
         if #available(iOS 15.0, *) {
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
+        
+        // Define o estilo da NavigationBar como 'black', o que força o iOS a usar a barra de status com ícones brancos!
+        UINavigationBar.appearance().barStyle = .black
     }
 
     var body: some View {

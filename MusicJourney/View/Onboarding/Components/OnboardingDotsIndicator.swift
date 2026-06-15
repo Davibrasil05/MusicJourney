@@ -13,7 +13,7 @@ struct OnboardingDotsIndicator: View {
     var body: some View {
         HStack(spacing: 8) {
             ForEach(0..<totalSteps, id: \.self) { index in
-                Circle()
+                RoundedRectangle(cornerRadius: 20)
                     .fill(dotColor(for: index))
                     .frame(width: dotSize(for: index), height: dotSize(for: index))
                     .animation(.easeInOut(duration: 0.25), value: currentStep)
