@@ -18,37 +18,51 @@ struct ObjectiveCard: View {
     }
     
     var body: some View {
-        HStack(spacing: 0) {
-            // Lado Laranja com o ícone
-            ZStack {
-                Color("headerGreen")
-                Image(systemName: iconName)
-                    .font(.largeTitle)
-                    .foregroundColor(.white)
-            }
-            .frame(width: 100) // Mais largo para o Capsule não esmagar
+        let mainColor = Color("headerGreen")
+        let bgColor = Color("backgroundCards")
+        
+        ZStack(alignment: .leading) {
+            RoundedRectangle(cornerRadius: 50)
+                .fill(bgColor)
+                .frame(maxWidth: .infinity)
+                .frame(height: 100)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 50)
+                        .strokeBorder(mainColor, lineWidth: 2)
+                )
             
-            // Dados (Nome e Data)
-            VStack(alignment: .leading, spacing: 12) {
-                Text(objective.name ?? "Objetivo Concluído")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-                
-                if let date = objective.completedAt {
-                    Text(formatDate(date))
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+            HStack(spacing: 0) {
+                ZStack {
+                    Circle()
+                        .fill(mainColor)
+                        .frame(width: 100, height: 100)
+                    
+                    Image(systemName: iconName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(bgColor)
                 }
+                
+                Spacer().frame(width: 20)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(objective.name ?? "Objetivo Concluído")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.black)
+                    
+                    if let date = objective.completedAt {
+                        Text(formatDate(date))
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                }
+                
+                Spacer()
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 24)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.clear)
+            .frame(maxWidth: .infinity)
+            .frame(height: 100)
         }
-        .frame(minHeight: 100)
-        .clipShape(Capsule())
-        .overlay(Capsule().stroke(Color("headerGreen"), lineWidth: 2))
     }
     
     private func formatDate(_ date: Date) -> String {

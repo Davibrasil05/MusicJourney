@@ -30,7 +30,7 @@ struct GoalsView: View {
                             Image(systemName: "chevron.left")
                                 .font(.title2)
                                 .foregroundColor(.white)
-                                .padding(12)
+                                .padding(8)
                                 .background(Color.black.opacity(0.15))
                                 .clipShape(Circle())
                         }
@@ -43,13 +43,21 @@ struct GoalsView: View {
                 }
                 
                 // 2. CAIXA INFERIOR (CREME)
-                VStack(spacing: 24) {
-                    Text("Suas metas do\nobjetivo \(objective.name ?? "")")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.black)
-                        .padding(.top, 40)
+                VStack(spacing: 15) {
+                    HStack{
+                        Text("Suas metas do objetivo \(objective.name ?? "")")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(.top, 40)
+                            .padding(.horizontal)
+                        
+                        Spacer()
+                        
+                    }
                     
                     if sortedGoals.isEmpty {
                         Spacer()

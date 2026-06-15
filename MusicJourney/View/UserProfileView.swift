@@ -40,17 +40,17 @@ struct UserProfileView: View {
                 VStack(spacing: 20) {
                     HStack {
                         Text("Meu Perfil")
-                            .font(.title2.bold())
+                            .font(.title2)
                             .foregroundColor(.white)
+                            .bold()
 
                         Spacer()
 
                         Button(action: { saveProfile(to: user) }) {
                             Text("Salvar")
-                                .font(.subheadline.bold())
+                                .bold()
                                 .foregroundColor(.white)
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 8)
+                                .padding(8)
                                 .background(Color.black.opacity(0.15))
                                 .clipShape(Capsule())
                         }
