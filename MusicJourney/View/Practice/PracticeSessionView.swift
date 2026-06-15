@@ -51,6 +51,31 @@ struct PracticeSessionView: View {
                 .frame(height: UIScreen.main.bounds.height * 0.65)
             }
             .ignoresSafeArea(edges: .bottom)
+            
+            // OVERLAY DA ANOTAÇÃO (BottomSheet falso)
+            if viewModel.activeModal == .nota {
+                Color.black.opacity(0.4)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation {
+                            viewModel.activeModal = nil
+                        }
+                    }
+                
+                AddNoteModalView(
+                    annotationRepo: AnnotationRepository(),
+                    goal: viewModel.currentGoal,
+                    session: viewModel.activeSession,
+                    onClose: {
+                        withAnimation {
+                            viewModel.activeModal = nil
+                        }
+                    }
+                )
+                .frame(height: UIScreen.main.bounds.height * 0.55) // Metade da tela
+                .transition(.move(edge: .bottom))
+                .zIndex(1) // Garante que fique acima de tudo
+            }
         }
         .ignoresSafeArea(edges: .bottom)
         .navigationBarBackButtonHidden(true)
@@ -102,14 +127,21 @@ struct PracticeSessionView: View {
                 }
             )
         }
-        .sheet(item: $viewModel.activeModal) { modal in
+        .sheet(item: Binding(
+            get: { viewModel.activeModal == .nota ? nil : viewModel.activeModal },
+            set: { newValue in
+                if viewModel.activeModal != .nota {
+                    viewModel.activeModal = newValue
+                }
+            }
+        )) { modal in
             switch modal {
-            case .nota:
-                AddNoteModalView(annotationRepo: AnnotationRepository(), goal: viewModel.currentGoal, session: viewModel.activeSession)
             case .audio:
                 AddAudioModalView(recordingRepo: RecordingRepository(), goal: viewModel.currentGoal, session: viewModel.activeSession)
             case .metronomo:
                 MetronomeOverlayView(viewModel: metronomeViewModel)
+            default:
+                EmptyView()
             }
         }
         .sheet(isPresented: $floatingPlayerVM.showURLInputSheet) {
