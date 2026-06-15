@@ -45,7 +45,7 @@ struct GoalSuggestionCard: View {
 
                     if !textDescription.isEmpty {
                         Text(textDescription)
-                            .font(.caption)
+                            .font(.system(size: 14))
                             .foregroundColor(Color("textDark").opacity(0.78))
                             .multilineTextAlignment(.leading)
                     }
