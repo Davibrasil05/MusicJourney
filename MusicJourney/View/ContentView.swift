@@ -65,6 +65,12 @@ struct MainTabView: View {
         }
         .onAppear {
             floatingPlayerVM.installOverlayWindow()
+            Task {
+                let userRepo = UserRepository()
+                if let user = userRepo.currentUser {
+                    await PracticeNotificationService.shared.syncReminder(forUser: user)
+                }
+            }
         }
     }
 }
