@@ -22,18 +22,18 @@ struct ObjectiveCard: View {
         let bgColor = Color("backgroundCards")
         
         ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 50)
+            RoundedRectangle(cornerRadius: 20)
                 .fill(bgColor)
                 .frame(maxWidth: .infinity)
                 .frame(height: 100)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 50)
+                    RoundedRectangle(cornerRadius: 20)
                         .strokeBorder(mainColor, lineWidth: 2)
                 )
             
             HStack(spacing: 0) {
                 ZStack {
-                    Circle()
+                    RoundedRectangle(cornerRadius: 20)
                         .fill(mainColor)
                         .frame(width: 100, height: 100)
                     
@@ -49,6 +49,8 @@ struct ObjectiveCard: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(objective.name ?? "Objetivo Concluído")
                         .font(.system(size: 16, weight: .bold))
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                         .foregroundColor(.black)
                     
                     if let date = objective.completedAt {

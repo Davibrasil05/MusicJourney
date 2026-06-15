@@ -22,6 +22,8 @@ struct AnnotationCard: View {
                         Text(annotation.title ?? "Nota sem título")
                             .font(.headline)
                             .fontWeight(.bold)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
                         
                         Text(annotation.text ?? "")
                             .font(.caption)

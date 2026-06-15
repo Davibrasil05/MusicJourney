@@ -57,7 +57,7 @@ struct HistoryView: View {
                 // 2. CAIXA INFERIOR (CREME)
                 VStack(spacing: 15) {
                     HStack{
-                        Text("Relembre seus objetivos!")
+                        Text("Reveja seus registros!")
                             .font(.system(size: 22, weight: .bold))
                             .multilineTextAlignment(.center)
                             .foregroundColor(.black)

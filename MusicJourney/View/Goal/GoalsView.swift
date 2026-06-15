@@ -45,15 +45,16 @@ struct GoalsView: View {
                 // 2. CAIXA INFERIOR (CREME)
                 VStack(spacing: 15) {
                     HStack{
-                        Text("Suas metas do objetivo \(objective.name ?? "")")
+                        Text("Suas metas de \(objective.name ?? "")")
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                             .multilineTextAlignment(.leading)
-                            .lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
                             .padding(.top, 40)
                             .padding(.horizontal)
+                            .lineLimit(2)
+                            .truncationMode(.tail)
                         
                         Spacer()
                         
