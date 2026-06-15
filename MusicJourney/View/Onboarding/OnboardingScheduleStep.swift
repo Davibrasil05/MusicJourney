@@ -105,7 +105,7 @@ struct OnboardingScheduleStep: View {
         return Button(action: { selectedSchedule = schedule }) {
             HStack(spacing: 16) {
                 ZStack {
-                    Circle()
+                    RoundedRectangle(cornerRadius: 20)
                         .fill(isSelected ? Color("cardCream").opacity(0.2) : Color("inputGray"))
                         .frame(width: 100, height: 100)
 
@@ -125,10 +125,10 @@ struct OnboardingScheduleStep: View {
             }
             .frame(width: 363, height: 100)
             .background(
-                Capsule()
+                RoundedRectangle(cornerRadius: 20)
                     .fill(isSelected ? Color("headerGreen") : Color("backgroundCards"))
                     .overlay(
-                        Capsule()
+                        RoundedRectangle(cornerRadius: 20)
                             .stroke(isSelected ? Color("headerGreen") : Color("inputGray"), lineWidth: 1.5)
                     )
             )

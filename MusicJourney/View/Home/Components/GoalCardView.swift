@@ -17,20 +17,20 @@ struct GoalCardView: View {
         
         ZStack(alignment: .leading) {
             // Fundo do card em formato de pílula (Capsule)
-            RoundedRectangle(cornerRadius: 50)
+            RoundedRectangle(cornerRadius: 20)
                 .fill(bgColor)
                 .frame(maxWidth: .infinity)
                 .frame(height: 100)
                 // Contorno do card
                 .overlay(
-                    RoundedRectangle(cornerRadius: 50)
+                    RoundedRectangle(cornerRadius: 20)
                         .strokeBorder(mainColor, lineWidth: 2)
                 )
             
             HStack(spacing: 0) {
                 // Círculo esquerdo (Verde se concluído, Laranja se ativo, Cinza se bloqueado)
                 ZStack {
-                    Circle()
+                    RoundedRectangle(cornerRadius: 20)
                         .fill(mainColor)
                         .frame(width: 100, height: 100)
                     

@@ -22,7 +22,7 @@ struct ProfilePickerRow<Content: View>: View {
                         .foregroundColor(.secondary)
                     Text(value)
                         .font(.body.bold())
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("headerGreen"))
                 }
                 Spacer()
                 picker
@@ -68,7 +68,7 @@ struct ProfileNavigationRow: View {
                         .foregroundColor(.secondary)
                     Text(value)
                         .font(.body.bold())
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("headerGreen"))
                         .lineLimit(2)
                 }
                 Spacer()

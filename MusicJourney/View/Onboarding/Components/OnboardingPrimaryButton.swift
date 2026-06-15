@@ -27,7 +27,7 @@ struct OnboardingPrimaryButton: View {
     }
 
     private var buttonBackground: some View {
-        Capsule()
+        RoundedRectangle(cornerRadius: 20)
             .fill(isEnabled ? Color("primaryBlue") : Color("inputGray"))
     }
 }
