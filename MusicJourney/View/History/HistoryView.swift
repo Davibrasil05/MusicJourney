@@ -61,9 +61,10 @@ struct HistoryView: View {
                     if viewModel.completedObjectives.isEmpty {
                         Spacer()
                         Text("Você ainda não concluiu nenhum objetivo.\nContinue praticando!")
+                            .font(.subheadline)
                             .multilineTextAlignment(.center)
                             .foregroundColor(.gray)
-                            .padding()
+                            .padding(.bottom, 100)
                         Spacer()
                     } else {
                         ScrollView(showsIndicators: false) {

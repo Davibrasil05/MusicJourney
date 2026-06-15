@@ -60,47 +60,56 @@ struct HomeView: View {
                 // 2. CAIXA INFERIOR (CREME) - Onde ficam o Título e os Cards
                 VStack(spacing: 15) {
                     // CARD DO OBJETIVO
-                    VStack(spacing: 4) {
-                        Text(viewModel.activeObjective?.name ?? "Crie um objetivo primeiro")
-                            .font(.system(size: 22, weight: .bold))
-                            .foregroundColor(.black)
-                        
-                        if viewModel.activeObjective == nil {
-                            Spacer()
-                            Text("Você não tem nenhum objetivo criado")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                        }
-                    }
-                    .padding(.top, 40) // Distância do topo curvo
+                    Text(viewModel.activeObjective?.name ?? "Crie um objetivo")
+                        .font(.system(size: 22, weight: .bold))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.black)
+                        .padding(.top, 40) // Distância do topo curvo
                     
-                    // LISTA DE METAS
-                    // Em vez de ScrollView e VStack, usamos List
-                    List {
-                        ForEach(viewModel.sortedGoals) { goal in
-                            let state = viewModel.getGoalState(for: goal)
-                            
-                            GoalCardView(goalName: goal.name ?? "", state: state)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 15)
-                                .onTapGesture { selectedGoal = goal }
-                            
-                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    Button(role: .destructive) {
-                                        goalToDelete = goal
-                                        showDeleteAlert = true
-                                    } label: {
-                                        Label("Deletar", systemImage: "trash")
+                    if viewModel.activeObjective == nil {
+                        Spacer()
+                        Text("Você não tem nenhum\nobjetivo criado")
+                            .font(.subheadline)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.gray)
+                            .padding(.bottom, 100)
+                        Spacer()
+                    } else if viewModel.sortedGoals.isEmpty {
+                        Spacer()
+                        Text("Você não tem \nnenhuma meta criada")
+                            .font(.subheadline)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.gray)
+                            .padding(.bottom, 100)
+                        Spacer()
+                    } else {
+                        // LISTA DE METAS
+                        List {
+                            ForEach(viewModel.sortedGoals) { goal in
+                                let state = viewModel.getGoalState(for: goal)
+                                
+                                GoalCardView(goalName: goal.name ?? "", state: state)
+                                    .padding(.vertical, 10)
+                                    .padding(.horizontal, 15)
+                                    .onTapGesture { selectedGoal = goal }
+                                
+                                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                        Button(role: .destructive) {
+                                            goalToDelete = goal
+                                            showDeleteAlert = true
+                                        } label: {
+                                            Label("Deletar", systemImage: "trash")
+                                        }
                                     }
-                                }
-                            
-                            // Esses dois comandos tiram o estilo feio padrão da List do iOS
-                                .listRowSeparator(.hidden)
-                                .listRowBackground(Color.clear)
-                                .listRowInsets(EdgeInsets()) // Tira as margens padrão
+                                
+                                // Esses dois comandos tiram o estilo feio padrão da List do iOS
+                                    .listRowSeparator(.hidden)
+                                    .listRowBackground(Color.clear)
+                                    .listRowInsets(EdgeInsets()) // Tira as margens padrão
+                            }
                         }
+                        .listStyle(.plain) // Remove o fundo cinza da lista
                     }
-                    .listStyle(.plain) // Remove o fundo cinza da lista
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color("cardCream"))

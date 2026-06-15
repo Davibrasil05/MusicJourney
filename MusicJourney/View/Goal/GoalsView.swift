@@ -53,10 +53,11 @@ struct GoalsView: View {
                     
                     if sortedGoals.isEmpty {
                         Spacer()
-                        Text("Este objetivo não tem metas.")
+                        Text("Você não tem \nnenhuma meta criada")
+                            .font(.subheadline)
                             .multilineTextAlignment(.center)
                             .foregroundColor(.gray)
-                            .padding()
+                            .padding(.bottom, 100)
                         Spacer()
                     } else {
                         ScrollView(showsIndicators: false) {
