@@ -27,7 +27,15 @@ class SessionViewModel: ObservableObject {
     
     // ESTADO DA INTERFACE
     @Published var showQuitAlert: Bool = false
+    @Published var showEarlyFinishWarning: Bool = false
+    @Published var practiceCompleted: Bool = false
     @Published var activeModal: PracticeModal? = nil
+    
+    static let minimumPracticeDuration = 180 // 3 minutos
+    
+    var isPracticeStarted: Bool {
+        isRunning || timeElapsed > 0
+    }
     
     // INICIALIZADOR
     init(goal: Goal, sessionRepo: SessionRepository, objectiveRepo: ObjectiveRepository) {
@@ -97,7 +105,35 @@ class SessionViewModel: ObservableObject {
         }
     }
     
-    /// O usuário tocou em Iniciar/Concluir (O botão roxão)
+    func startPractice() {
+        guard !isRunning else { return }
+        startTimer()
+    }
+    
+    func handlePrimaryButtonTap() {
+        if !isPracticeStarted {
+            startPractice()
+        } else if timeElapsed >= Self.minimumPracticeDuration {
+            completePractice()
+        } else {
+            pauseTimer()
+            showEarlyFinishWarning = true
+        }
+    }
+    
+    func dismissEarlyFinishWarning() {
+        showEarlyFinishWarning = false
+        if timeElapsed > 0 {
+            startTimer()
+        }
+    }
+    
+    func confirmEarlyFinish() {
+        showEarlyFinishWarning = false
+        completePractice()
+    }
+    
+    /// O usuário tocou em Concluir (O botão roxão)
     func completePractice() {
         pauseTimer()
         
@@ -151,6 +187,6 @@ class SessionViewModel: ObservableObject {
             }
         }
         
-        // TODO: Ir para a tela de feedback
+        practiceCompleted = true
     }
 }
