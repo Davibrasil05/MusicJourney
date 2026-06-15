@@ -18,6 +18,10 @@ struct HistoryView: View {
                 // 1. ÁREA SUPERIOR (LARANJA)
                 VStack(spacing: 20) {
                     HStack() {
+                        Text("Histórico")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .bold()
                         Spacer()
                         
                         // Botão + (mesmo da Home)
@@ -25,7 +29,7 @@ struct HistoryView: View {
                             Image(systemName: "plus")
                                 .font(.title2)
                                 .foregroundColor(.white)
-                                .padding(12)
+                                .padding(8)
                                 .background(Color.black.opacity(0.15))
                                 .clipShape(Circle())
                         }
@@ -51,12 +55,16 @@ struct HistoryView: View {
                 }
                 
                 // 2. CAIXA INFERIOR (CREME)
-                VStack(spacing: 24) {
-                    Text("Relembre seus objetivos!")
-                        .font(.system(size: 22, weight: .bold))
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.black)
-                        .padding(.top, 40)
+                VStack(spacing: 15) {
+                    HStack{
+                        Text("Relembre seus objetivos!")
+                            .font(.system(size: 22, weight: .bold))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.black)
+                            .padding(.top, 40)
+                            .padding(.horizontal)
+                        Spacer()
+                    }
                     
                     if viewModel.completedObjectives.isEmpty {
                         Spacer()
@@ -67,22 +75,22 @@ struct HistoryView: View {
                             .padding(.bottom, 100)
                         Spacer()
                     } else {
-                        ScrollView(showsIndicators: false) {
-                            VStack(spacing: 16) {
-                                ForEach(viewModel.completedObjectives) { objective in
-                                    NavigationLink(destination: GoalsView(objective: objective)) {
-                                        ObjectiveCard(objective: objective)
-                                    }
-                                    .buttonStyle(PlainButtonStyle())
+                        List {
+                            ForEach(viewModel.completedObjectives) { objective in
+                                NavigationLink(destination: GoalsView(objective: objective)) {
+                                    ObjectiveCard(objective: objective)
                                 }
+                                .buttonStyle(PlainButtonStyle())
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 15)
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
+                                .listRowInsets(EdgeInsets())
                             }
-                            .padding(.top, 10)
-                            // Padding extra para não ficar escondido sob a TabBar
-                            .padding(.bottom, 120)
                         }
+                        .listStyle(.plain)
                     }
                 }
-                .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color("cardCream"))
                 .clipShape(RoundedCorner(radius: 40, corners: [.topLeft, .topRight]))

@@ -25,6 +25,10 @@ struct HomeView: View {
                 // 1. ÁREA SUPERIOR (LARANJA)
                 VStack(spacing: 20) {
                     HStack() {
+                        Text("Jornada")
+                            .foregroundColor(.white)
+                            .bold()
+                            .font(.title2)
                         
                         Spacer()
                         
@@ -32,7 +36,7 @@ struct HomeView: View {
                             Image(systemName: "plus")
                                 .font(.title2)
                                 .foregroundColor(.white)
-                                .padding(12)
+                                .padding(8)
                                 .background(Color.black.opacity(0.15))
                                 .clipShape(Circle())
                         }
@@ -60,11 +64,16 @@ struct HomeView: View {
                 // 2. CAIXA INFERIOR (CREME) - Onde ficam o Título e os Cards
                 VStack(spacing: 15) {
                     // CARD DO OBJETIVO
-                    Text(viewModel.activeObjective?.name ?? "Crie um objetivo")
-                        .font(.system(size: 22, weight: .bold))
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.black)
-                        .padding(.top, 40) // Distância do topo curvo
+                    HStack{
+                        Text(viewModel.activeObjective?.name ?? "Crie um objetivo")
+                            .font(.system(size: 22, weight: .bold))
+                        
+                            .foregroundColor(.black)
+                            .padding(.top, 40) // Distância do topo curvo
+                            .padding(.horizontal)
+                        Spacer()
+                        
+                    }
                     
                     if viewModel.activeObjective == nil {
                         Spacer()
