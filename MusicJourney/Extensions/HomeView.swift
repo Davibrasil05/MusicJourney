@@ -103,27 +103,23 @@ struct HomeView: View {
                     } else {
                         // LISTA DE METAS
                         List {
-                            ForEach(viewModel.sortedGoals) { goal in
-                                let state = viewModel.getGoalState(for: goal)
-                                
-                                GoalCardView(goalName: goal.name ?? "", state: state)
-                                    .padding(.vertical, 10)
+                            ForEach(viewModel.openGoals) { goal in
+                                goalRow(for: goal)
+                            }
+                            
+                            if !viewModel.completedGoals.isEmpty {
+                                Text("Metas concluídas")
+                                    .font(.system(size: 22, weight: .bold))
+                                    .foregroundColor(.black)
+                                    .padding(.top, 20)
                                     .padding(.horizontal, 15)
-                                    .onTapGesture { selectedGoal = goal }
-                                
-                                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                        Button(role: .destructive) {
-                                            goalToDelete = goal
-                                            showDeleteAlert = true
-                                        } label: {
-                                            Label("Deletar", systemImage: "trash")
-                                        }
-                                    }
-                                
-                                // Esses dois comandos tiram o estilo feio padrão da List do iOS
                                     .listRowSeparator(.hidden)
                                     .listRowBackground(Color.clear)
-                                    .listRowInsets(EdgeInsets()) // Tira as margens padrão
+                                    .listRowInsets(EdgeInsets())
+                                
+                                ForEach(viewModel.completedGoals) { goal in
+                                    goalRow(for: goal)
+                                }
                             }
                         }
                         .listStyle(.plain) // Remove o fundo cinza da lista
@@ -203,5 +199,25 @@ struct HomeView: View {
             }
         )
         
+    }
+    
+    private func goalRow(for goal: Goal) -> some View {
+        let state = viewModel.getGoalState(for: goal)
+        
+        return GoalCardView(goalName: goal.name ?? "", state: state)
+            .padding(.vertical, 10)
+            .padding(.horizontal, 15)
+            .onTapGesture { selectedGoal = goal }
+            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                Button(role: .destructive) {
+                    goalToDelete = goal
+                    showDeleteAlert = true
+                } label: {
+                    Label("Deletar", systemImage: "trash")
+                }
+            }
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
+            .listRowInsets(EdgeInsets())
     }
 }
