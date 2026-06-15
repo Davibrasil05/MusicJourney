@@ -42,7 +42,6 @@ struct MainTabView: View {
         }
         
         // Define o estilo da NavigationBar como 'black', o que força o iOS a usar a barra de status com ícones brancos!
-        UINavigationBar.appearance().barStyle = .black
     }
 
     var body: some View {

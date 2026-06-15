@@ -33,8 +33,12 @@ struct HomeView: View {
                         
                         Spacer()
                         
-                        Button(action: { 
-                            if viewModel.activeObjective != nil {
+                        Button(action: {
+                            // Só exibe o alerta se o objetivo existir E tiver alguma meta criada.
+                            // Objetivos vazios são considerados 'sem andamento'.
+                            let hasGoals = !viewModel.openGoals.isEmpty || !viewModel.completedGoals.isEmpty
+                            
+                            if viewModel.activeObjective != nil && hasGoals {
                                 withAnimation {
                                     showObjectiveWarning = true
                                 }
