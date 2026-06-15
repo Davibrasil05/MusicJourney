@@ -42,11 +42,7 @@ struct MetronomeOverlayView: View {
                 
                 // 5. Card Controle (Slider + Play)
                 BPMControl(
-                    bpm: $viewModel.bpm,
-                    isPlaying: viewModel.isMetronomePlaying,
-                    onTogglePlay: {
-                        viewModel.toggleMetronome()
-                    }
+                    bpm: $viewModel.bpm
                 )
                 .padding(.horizontal, 24)
                 
@@ -58,8 +54,8 @@ struct MetronomeOverlayView: View {
                     onIncrement: {
                         if viewModel.bpm < 240 { viewModel.bpm += 1 }
                     },
-                    onStop: {
-                        viewModel.closeSession()
+                    onTogglePlay: {
+                        viewModel.toggleMetronome()
                     }
                 )
                 .padding(.bottom, 40)
@@ -68,9 +64,9 @@ struct MetronomeOverlayView: View {
     }
 }
 
-// MARK: - Preview
-struct MetronomeOverlayView_Previews: PreviewProvider {
-    static var previews: some View {
-        MetronomeOverlayView(viewModel: PracticeSessionViewModel())
-    }
-}
+//// MARK: - Preview
+//struct MetronomeOverlayView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MetronomeOverlayView(viewModel: PracticeSessionViewModel())
+//    }
+//}

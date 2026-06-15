@@ -3,7 +3,7 @@ import SwiftUI
 struct BPMAdjustButtonsView: View {
     var onDecrement: () -> Void
     var onIncrement: () -> Void
-    var onStop: () -> Void
+    var onTogglePlay: () -> Void
     
     var body: some View {
         HStack(spacing: 40) {
@@ -13,16 +13,16 @@ struct BPMAdjustButtonsView: View {
                     .foregroundColor(.black)
             }
             
-            Button(action: onStop) {
-                RoundedRectangle(cornerRadius: 8)
+            Button(action: onTogglePlay) {
+                Circle()
                     .fill(Color.blue)
-                    // 1. Define o tamanho do quadrado azul por dentro
+                    // 1. Define o tamanho do círculo azul por dentro
                     .frame(width: 44, height: 44)
                     // 2. Define o tamanho total da caixa por fora
                     .frame(width: 57, height: 57)
-                    // 3. Aplica a linha preta respeitando o frame de fora (57x57)
+                    // 3. Aplica a linha preta respeitando o frame de fora
                     .overlay(
-                        RoundedRectangle(cornerRadius: 12) // O raio de fora costuma ser maior pra ficar harmonioso
+                        Circle()
                             .stroke(Color.black, lineWidth: 2)
                     )
             }
