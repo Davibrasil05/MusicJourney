@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0ECB7DDDF4F5434BA2EE39FB /* AddGoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63E3467CB9047C497300CF5 /* AddGoalsView.swift */; };
 		108919B659194815B6441888 /* GeminiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5938EB69AE644610BB6B42DF /* GeminiService.swift */; };
+		18D8C61137244B50B0B89381 /* PracticeSchedule+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD8ECB964DF48D398448F08 /* PracticeSchedule+Notifications.swift */; };
 		19C00F8496DB405184CCADF9 /* CreateObjectiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140B43F450064B438C9ADC55 /* CreateObjectiveViewModel.swift */; };
 		23BB996F3C14482ABA9100B9 /* OnboardingDotsIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5EA7D73A64BA6B30114BE /* OnboardingDotsIndicator.swift */; };
 		27587AC8D6874AA9A2DB10BF /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CCD396F3CE4496844AC454 /* UserRepository.swift */; };
@@ -42,6 +43,7 @@
 		9F403DB72FE06F720039E5E4 /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F403DB62FE06F720039E5E4 /* ProfileCard.swift */; };
 		9F403DB92FE06FC20039E5E4 /* ProfileRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F403DB82FE06FC20039E5E4 /* ProfileRows.swift */; };
 		9F403DBB2FE06FD70039E5E4 /* GenrePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F403DBA2FE06FD70039E5E4 /* GenrePicker.swift */; };
+		9F403DBD2FE07D320039E5E4 /* ObjectiveWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F403DBC2FE07D310039E5E4 /* ObjectiveWarning.swift */; };
 		9F4488052FDA04DB00258351 /* AnnotationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4488042FDA04DB00258351 /* AnnotationRepository.swift */; };
 		9F4488072FDAFC4F00258351 /* RecordingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4488062FDAFC4F00258351 /* RecordingRepository.swift */; };
 		9F4488092FDB008100258351 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4488082FDB008100258351 /* OnboardingViewModel.swift */; };
@@ -107,17 +109,11 @@
 		BF77CC31188442419EA25CE2 /* AddGoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7E45A9DFF472BA31B9A69 /* AddGoalsViewModel.swift */; };
 		CC1B3C4D5E6F7A8B9C0D1E2F /* OnboardingInstrumentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1B3C4D5E6F7A8B9C0D1E3A /* OnboardingInstrumentCard.swift */; };
 		D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028732BB7354CA2A777C0F5 /* OnboardingLevelStep.swift */; };
+		D69CFD7CF8F84FD9A1C7ED9A /* PracticeNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A221D23A5E541C6B93E70A6 /* PracticeNotificationService.swift */; };
 		DA2870C50C43424E88F73558 /* YoutubeURLInputSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB674BD32E6B4F6B97C6F375 /* YoutubeURLInputSheet.swift */; };
 		DD1B3C4D5E6F7A8B9C0D1E2F /* OnboardingGenreChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B3C4D5E6F7A8B9C0D1E3A /* OnboardingGenreChip.swift */; };
 		EE1B3C4D5E6F7A8B9C0D1E2F /* OnboardingPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */; };
 		F1649CC459FD44B18E64E87F /* GoalSuggestionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B17747982C48B586210059 /* GoalSuggestionCard.swift */; };
-
-		8127CC6A52754C09A4A7C232 /* FloatingPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AE963BA21490D9313B618 /* FloatingPlayerViewModel.swift */; };
-		A24780F0C17340C3B94B58FC /* FloatingYoutubePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABEDCD0E31149F98CF94ACA /* FloatingYoutubePlayer.swift */; };
-		DA2870C50C43424E88F73558 /* YoutubeURLInputSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB674BD32E6B4F6B97C6F375 /* YoutubeURLInputSheet.swift */; };
-		D69CFD7CF8F84FD9A1C7ED9A /* PracticeNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A221D23A5E541C6B93E70A6 /* PracticeNotificationService.swift */; };
-		18D8C61137244B50B0B89381 /* PracticeSchedule+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD8ECB964DF48D398448F08 /* PracticeSchedule+Notifications.swift */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,12 +134,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DD8ECB964DF48D398448F08 /* PracticeSchedule+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PracticeSchedule+Notifications.swift"; sourceTree = "<group>"; };
 		1028732BB7354CA2A777C0F5 /* OnboardingLevelStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLevelStep.swift; sourceTree = "<group>"; };
 		140B43F450064B438C9ADC55 /* CreateObjectiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateObjectiveViewModel.swift; sourceTree = "<group>"; };
 		1B5AE963BA21490D9313B618 /* FloatingPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPlayerViewModel.swift; sourceTree = "<group>"; };
 		1DE7E45A9DFF472BA31B9A69 /* AddGoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalsViewModel.swift; sourceTree = "<group>"; };
 		2ABEDCD0E31149F98CF94ACA /* FloatingYoutubePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingYoutubePlayer.swift; sourceTree = "<group>"; };
 		2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGenreStep.swift; sourceTree = "<group>"; };
+		4A221D23A5E541C6B93E70A6 /* PracticeNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeNotificationService.swift; sourceTree = "<group>"; };
 		55C8AD54C2464292BFF98B49 /* OnboardingWelcomeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeStep.swift; sourceTree = "<group>"; };
 		5938EB69AE644610BB6B42DF /* GeminiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiService.swift; sourceTree = "<group>"; };
 		59CCD396F3CE4496844AC454 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -172,6 +170,7 @@
 		9F403DB62FE06F720039E5E4 /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
 		9F403DB82FE06FC20039E5E4 /* ProfileRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRows.swift; sourceTree = "<group>"; };
 		9F403DBA2FE06FD70039E5E4 /* GenrePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenrePicker.swift; sourceTree = "<group>"; };
+		9F403DBC2FE07D310039E5E4 /* ObjectiveWarning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveWarning.swift; sourceTree = "<group>"; };
 		9F4488042FDA04DB00258351 /* AnnotationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationRepository.swift; sourceTree = "<group>"; };
 		9F4488062FDAFC4F00258351 /* RecordingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingRepository.swift; sourceTree = "<group>"; };
 		9F4488082FDB008100258351 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -245,13 +244,6 @@
 		DEC0466D764A456C9DDCDA49 /* OnboardingInstrumentStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInstrumentStep.swift; sourceTree = "<group>"; };
 		EE1B3C4D5E6F7A8B9C0D1E3A /* OnboardingPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPrimaryButton.swift; sourceTree = "<group>"; };
 		F7764B744B6B45AC8CD2A2D3 /* OnboardingScheduleStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScheduleStep.swift; sourceTree = "<group>"; };
-
-		1B5AE963BA21490D9313B618 /* FloatingPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPlayerViewModel.swift; sourceTree = "<group>"; };
-		2ABEDCD0E31149F98CF94ACA /* FloatingYoutubePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingYoutubePlayer.swift; sourceTree = "<group>"; };
-		BB674BD32E6B4F6B97C6F375 /* YoutubeURLInputSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeURLInputSheet.swift; sourceTree = "<group>"; };
-		4A221D23A5E541C6B93E70A6 /* PracticeNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeNotificationService.swift; sourceTree = "<group>"; };
-		0DD8ECB964DF48D398448F08 /* PracticeSchedule+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PracticeSchedule+Notifications.swift"; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +365,7 @@
 				9F48C8EE2FDB1DA4006D50B2 /* GoalCardView.swift */,
 				9F48C8EC2FDB1D59006D50B2 /* ProgressView.swift */,
 				9FBCFA252FDC967200419A24 /* CompletedObjectivePopup.swift */,
+				9F403DBC2FE07D310039E5E4 /* ObjectiveWarning.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -839,6 +832,7 @@
 				9F7C7ED92FD75EF3009961ED /* UserProfileView.swift in Sources */,
 				9F48C8ED2FDB1D59006D50B2 /* ProgressView.swift in Sources */,
 				9FB83B272FD88AFF007A06E0 /* YoutubeURLParser.swift in Sources */,
+				9F403DBD2FE07D320039E5E4 /* ObjectiveWarning.swift in Sources */,
 				9F1003C12FDB564200C7888E /* MetronomeHeader.swift in Sources */,
 				9FB83B102FD8804D007A06E0 /* Recording.swift in Sources */,
 				9F2DA0062FD9E4A40058F384 /* PresetCatalog+Flauta.swift in Sources */,
