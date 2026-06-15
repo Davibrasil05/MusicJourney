@@ -10,6 +10,7 @@ import SwiftUI
 
 struct GenrePickerView: View {
     @Binding var selectedGenres: Set<MusicGenre>
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         ZStack {
@@ -35,6 +36,22 @@ struct GenrePickerView: View {
         }
         .navigationTitle("Gêneros")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "chevron.left")
+                            .font(.system(size: 16, weight: .semibold))
+                        Text("Voltar")
+                    }
+                    .foregroundColor(Color("headerGreen"))
+                }
+            }
+        }
+        
     }
 
     private func toggle(_ genre: MusicGenre) {
