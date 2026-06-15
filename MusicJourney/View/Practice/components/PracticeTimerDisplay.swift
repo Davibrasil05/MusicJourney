@@ -14,6 +14,12 @@ struct PracticeTimerDisplay: View {
         Text(timeString)
             .font(.system(size: 64, weight: .bold, design: .rounded))
             .foregroundColor(.white)
+            .frame(minWidth: 220)
+            .padding(.vertical, 16)
+            .overlay(
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(Color.white.opacity(0.45), lineWidth: 2)
+            )
     }
 }
 

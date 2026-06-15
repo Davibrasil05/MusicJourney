@@ -26,6 +26,7 @@ struct PracticeSessionView: View {
             VStack(spacing: 0) {
                 
                 PracticeTimerDisplay(timeString: viewModel.timeString)
+                    .padding(.top, 16)
                 
                 Spacer()
                 
