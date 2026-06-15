@@ -28,8 +28,8 @@ struct BeatIndicatorView: View {
     
     private func beatSize(for beat: Int) -> CGFloat {
         if isPlaying && beat == currentBeat {
-            return 32
+            return 48
         }
-        return 24
+        return 40
     }
 }
