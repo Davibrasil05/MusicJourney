@@ -34,6 +34,8 @@ struct RecordingCard: View {
                         Text(recording.title ?? "Gravação sem nome")
                             .font(.headline)
                             .fontWeight(.bold)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
                         
                         Text(formatDuration(recording.duration))
                             .font(.caption)

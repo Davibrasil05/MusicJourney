@@ -65,6 +65,8 @@ struct NoteDetailView: View {
                     Text(annotation.title ?? "Nota sem título")
                         .font(.title)
                         .fontWeight(.bold)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                         .foregroundColor(.white)
                         .padding(.bottom, 24)
                 }

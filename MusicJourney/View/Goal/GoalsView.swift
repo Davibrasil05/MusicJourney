@@ -50,10 +50,11 @@ struct GoalsView: View {
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                             .multilineTextAlignment(.leading)
-                            .lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
                             .padding(.top, 40)
                             .padding(.horizontal)
+                            .lineLimit(2)
+                            .truncationMode(.tail)
                         
                         Spacer()
                         

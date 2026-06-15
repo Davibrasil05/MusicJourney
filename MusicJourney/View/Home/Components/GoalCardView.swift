@@ -48,6 +48,8 @@ struct GoalCardView: View {
                 // Título da Meta
                 Text(goalName)
                     .font(.system(size: 16, weight: .bold))
+                    .lineLimit(1)
+                    .truncationMode(.tail)
                     .foregroundColor(isLocked ? .gray : .black)
                 
                 Spacer()
