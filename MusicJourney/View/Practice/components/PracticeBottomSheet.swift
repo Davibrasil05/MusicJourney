@@ -166,18 +166,20 @@ struct PracticeBottomSheet: View {
             .padding(.horizontal, 24)
             .padding(.top, 28)
 
-            LazyVGrid(columns: columns, spacing: 16) {
+            LazyVGrid(columns: columns, spacing: 24) {
                 ToolGridButton(title: "Nota", iconName: "square.and.pencil", action: onNoteTapped)
                 ToolGridButton(title: "Áudio", iconName: "mic.fill", action: onAudioTapped)
                 ToolGridButton(title: "Vídeo", iconName: "play.rectangle.fill", action: onVideoTapped)
                 ToolGridButton(title: "Metrônomo", iconName: "metronome.fill", action: onMetronomeTapped)
             }
-            .padding(.horizontal, 24)
+            .padding(.horizontal, 20)
+            .padding(.top, 20)
             
             PrimaryActionButton(title: "Concluir") {
                 onStartPracticeTapped()
             }
             .disabled(!isFinishEnabled)
+            .padding(.top, 50)
             
             // Empurra tudo para cima e deixa um respiro no fundo
             Spacer()
