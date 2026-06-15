@@ -32,8 +32,9 @@ struct MainTabView: View {
 
     init() {
         let appearance = UITabBarAppearance()
-        appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = .clear
+        appearance.configureWithDefaultBackground()
+        // Opcional: Se quiser uma cor sólida, pode descomentar a linha abaixo:
+        appearance.backgroundColor = UIColor(named: "cardCream")
         
         UITabBar.appearance().standardAppearance = appearance
         if #available(iOS 15.0, *) {
@@ -54,7 +55,7 @@ struct MainTabView: View {
                 HistoryView()
             }
             .tabItem{
-                Label("Histórico", systemImage: "paper.fill")
+                Label("Histórico", systemImage: "clock.fill")
             }
 
             UserProfileView()
