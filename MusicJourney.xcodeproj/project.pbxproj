@@ -107,6 +107,8 @@
 		8127CC6A52754C09A4A7C232 /* FloatingPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AE963BA21490D9313B618 /* FloatingPlayerViewModel.swift */; };
 		A24780F0C17340C3B94B58FC /* FloatingYoutubePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABEDCD0E31149F98CF94ACA /* FloatingYoutubePlayer.swift */; };
 		DA2870C50C43424E88F73558 /* YoutubeURLInputSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB674BD32E6B4F6B97C6F375 /* YoutubeURLInputSheet.swift */; };
+		D69CFD7CF8F84FD9A1C7ED9A /* PracticeNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A221D23A5E541C6B93E70A6 /* PracticeNotificationService.swift */; };
+		18D8C61137244B50B0B89381 /* PracticeSchedule+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD8ECB964DF48D398448F08 /* PracticeSchedule+Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,6 +232,8 @@
 		1B5AE963BA21490D9313B618 /* FloatingPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPlayerViewModel.swift; sourceTree = "<group>"; };
 		2ABEDCD0E31149F98CF94ACA /* FloatingYoutubePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingYoutubePlayer.swift; sourceTree = "<group>"; };
 		BB674BD32E6B4F6B97C6F375 /* YoutubeURLInputSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeURLInputSheet.swift; sourceTree = "<group>"; };
+		4A221D23A5E541C6B93E70A6 /* PracticeNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeNotificationService.swift; sourceTree = "<group>"; };
+		0DD8ECB964DF48D398448F08 /* PracticeSchedule+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PracticeSchedule+Notifications.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -571,6 +575,7 @@
 				9F664BAE2FD8A6C700DEA9D7 /* MetroronomeService.swift */,
 				9FB83B262FD88AFF007A06E0 /* YoutubeURLParser.swift */,
 				9F880EE52FD9C5A600D9E169 /* AudioRecorderService.swift */,
+				4A221D23A5E541C6B93E70A6 /* PracticeNotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -579,6 +584,7 @@
 			isa = PBXGroup;
 			children = (
 				9F667D8B2FD885CC0068DE50 /* Extensions.swift */,
+				0DD8ECB964DF48D398448F08 /* PracticeSchedule+Notifications.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -816,6 +822,8 @@
 				AC8E752293294AE79DC20B7A /* ManualGoalSheet.swift in Sources */,
 				A24780F0C17340C3B94B58FC /* FloatingYoutubePlayer.swift in Sources */,
 				DA2870C50C43424E88F73558 /* YoutubeURLInputSheet.swift in Sources */,
+				D69CFD7CF8F84FD9A1C7ED9A /* PracticeNotificationService.swift in Sources */,
+				18D8C61137244B50B0B89381 /* PracticeSchedule+Notifications.swift in Sources */,
 				36B5121B1B7C4053A0C13742 /* OnboardingTextOptionButton.swift in Sources */,
 				B7BB8BD989574EA09AC87917 /* OnboardingWelcomeStep.swift in Sources */,
 				D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */,
@@ -1003,6 +1011,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Precisamos do microfone para gravar sua sessão de prática.";
+				INFOPLIST_KEY_NSUserNotificationsUsageDescription = "MusicJourney envia lembretes no horário de prática que você escolheu.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1033,6 +1042,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Precisamos do microfone para gravar sua sessão de prática.";
+				INFOPLIST_KEY_NSUserNotificationsUsageDescription = "MusicJourney envia lembretes no horário de prática que você escolheu.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
