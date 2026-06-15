@@ -188,10 +188,10 @@ struct AddGoalsView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "plus")
                         .font(.system(size: 15, weight: .bold))
-                    Text("Adicionar objetivo")
+                    Text("Adicionar meta")
                         .fontWeight(.bold)
                 }
-                .foregroundColor(Color("headerGreen"))
+                .foregroundColor(Color("textDark"))
                 .frame(maxWidth: .infinity)
                 .padding(14)
                 .background(Color("cardCream"))
