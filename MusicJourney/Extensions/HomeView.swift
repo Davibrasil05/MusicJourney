@@ -13,6 +13,7 @@ struct HomeView: View {
     @State private var showingAddSheet = false
     @State private var showDeleteAlert = false
     @State private var goalToDelete: Goal?
+    @State private var showObjectiveWarning = false
     
     
     var body: some View {
@@ -32,7 +33,15 @@ struct HomeView: View {
                         
                         Spacer()
                         
-                        Button(action: { showingAddSheet = true }) {
+                        Button(action: { 
+                            if viewModel.activeObjective != nil {
+                                withAnimation {
+                                    showObjectiveWarning = true
+                                }
+                            } else {
+                                showingAddSheet = true 
+                            }
+                        }) {
                             Image(systemName: "plus")
                                 .font(.title2)
                                 .foregroundColor(.white)
@@ -173,6 +182,20 @@ struct HomeView: View {
                         onClose: {
                             withAnimation {
                                 viewModel.showCompletedPopup = false
+                            }
+                        }
+                    )
+                }
+                
+                if showObjectiveWarning {
+                    ObjectiveWarning(
+                        onCancel: {
+                            withAnimation { showObjectiveWarning = false }
+                        },
+                        onConfirm: {
+                            withAnimation { showObjectiveWarning = false }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                showingAddSheet = true
                             }
                         }
                     )
