@@ -16,6 +16,14 @@ struct AddNoteModalView: View {
     @State private var noteTitle: String = ""
     @State private var noteText: String = ""
     
+    init(annotationRepo: AnnotationRepository, goal: Goal, session: Session?) {
+        self.annotationRepo = annotationRepo
+        self.goal = goal
+        self.session = session
+        // Hack garantido para remover o fundo branco do TextEditor no iOS 14/15
+        UITextView.appearance().backgroundColor = .clear
+    }
+    
     // Cores exatas do seu Figma
     let bgColor = Color(red: 235/255, green: 233/255, blue: 226/255) // Bege de fundo do modal
     let fieldBgColor = Color(red: 226/255, green: 224/255, blue: 217/255) // Cinza dos textfields
@@ -52,7 +60,7 @@ struct AddNoteModalView: View {
                     .cornerRadius(12)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                            .stroke(Color.gray.opacity(0.5), lineWidth: 2)
                     )
                 
                 // 2. Digite sua anotação
@@ -70,10 +78,10 @@ struct AddNoteModalView: View {
                 }
                 .frame(minHeight: 150)
                 .background(fieldBgColor)
-                .cornerRadius(12)
+                .cornerRadius(50)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 50)
+                        .stroke(Color.gray.opacity(0.5), lineWidth: 2)
                 )
             }
             
@@ -93,7 +101,7 @@ struct AddNoteModalView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(primaryBlue)
-                    .cornerRadius(12)
+                    .cornerRadius(50)
             }
             // Desativa o botão se o cara não digitar nada
             .disabled(noteTitle.isEmpty || noteText.isEmpty)
