@@ -25,7 +25,7 @@ struct PrimaryActionButton: View {
                 .foregroundColor(.white)
                 // Usando as medidas exatas que você passou
                 .frame(width: 362, height: 72)
-                .background(isEnabled ? Color("buttonPurple") : Color(.systemGray4))
+                .background(isEnabled ? Color("primaryBlue") : Color(.systemGray4))
                 // O cornerRadius deixa as bordas arredondadas (pela imagem parece ser algo em torno de 16)
                 .cornerRadius(16)
                 // Adicionando a leve sombra que dá aquele aspecto "saltado" 3D que vimos na imagem

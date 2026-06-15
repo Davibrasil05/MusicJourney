@@ -7,14 +7,22 @@
 import SwiftUI
 
 struct AddNoteModalView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     @ObservedObject var annotationRepo: AnnotationRepository
     var goal: Goal
     var session: Session?
+    var onClose: () -> Void
     
     @State private var noteTitle: String = ""
     @State private var noteText: String = ""
+    
+    init(annotationRepo: AnnotationRepository, goal: Goal, session: Session?, onClose: @escaping () -> Void) {
+        self.annotationRepo = annotationRepo
+        self.goal = goal
+        self.session = session
+        self.onClose = onClose
+        // Hack garantido para remover o fundo branco do TextEditor no iOS 14/15
+        UITextView.appearance().backgroundColor = .clear
+    }
     
     // Cores exatas do seu Figma
     let bgColor = Color(red: 235/255, green: 233/255, blue: 226/255) // Bege de fundo do modal
@@ -33,7 +41,7 @@ struct AddNoteModalView: View {
                 Spacer()
                 
                 Button(action: {
-                    presentationMode.wrappedValue.dismiss()
+                    onClose()
                 }) {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.gray.opacity(0.6))
@@ -49,10 +57,10 @@ struct AddNoteModalView: View {
                 TextField("Digite o Título", text: $noteTitle)
                     .padding()
                     .background(fieldBgColor)
-                    .cornerRadius(12)
+                    .cornerRadius(30)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                        RoundedRectangle(cornerRadius: 30)
+                            .stroke(Color.gray.opacity(0.5), lineWidth: 2)
                     )
                 
                 // 2. Digite sua anotação
@@ -70,10 +78,10 @@ struct AddNoteModalView: View {
                 }
                 .frame(minHeight: 150)
                 .background(fieldBgColor)
-                .cornerRadius(12)
+                .cornerRadius(20)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.gray.opacity(0.5), lineWidth: 2)
                 )
             }
             
@@ -84,7 +92,7 @@ struct AddNoteModalView: View {
                 // Salva no banco!
                 annotationRepo.createAnnotation(title: noteTitle, text: noteText, goal: goal, session: session)
                 // Fecha a tela!
-                presentationMode.wrappedValue.dismiss()
+                onClose()
             }) {
                 Text("Salvar nota")
                     .font(.title3)
@@ -93,7 +101,7 @@ struct AddNoteModalView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(primaryBlue)
-                    .cornerRadius(12)
+                    .cornerRadius(50)
             }
             // Desativa o botão se o cara não digitar nada
             .disabled(noteTitle.isEmpty || noteText.isEmpty)
@@ -101,6 +109,8 @@ struct AddNoteModalView: View {
             .padding(.bottom, 16)
         }
         .padding(.horizontal, 24)
-        .background(bgColor.ignoresSafeArea())
+        .background(bgColor)
+        .clipShape(RoundedCorner(radius: 32, corners: [.topLeft, .topRight]))
+        .ignoresSafeArea(edges: .bottom)
     }
 }

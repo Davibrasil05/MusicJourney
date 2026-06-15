@@ -45,11 +45,14 @@ struct ToolGridButton: View {
                     .foregroundColor(.black)
             }
             .frame(width: 140, height: 100)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color("backgroundCards"))
+            )
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color("headerGreen"), lineWidth: 2)
             )
-            .background(Color.clear)
         }
     }
 }
