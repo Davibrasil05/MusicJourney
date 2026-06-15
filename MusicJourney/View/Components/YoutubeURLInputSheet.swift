@@ -75,8 +75,12 @@ struct YoutubeURLInputSheet: View {
             .navigationTitle("Abrir vídeo do YouTube")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancelar", action: onCancel)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: onCancel) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray.opacity(0.6))
+                            .font(.system(size: 22))
+                    }
                 }
             }
         }
