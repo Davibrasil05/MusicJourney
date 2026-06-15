@@ -49,7 +49,7 @@ struct RecordsView: View {
                         Button(action: { presentationMode.wrappedValue.dismiss() }) {
                             HStack {
                                 Image(systemName: "chevron.left")
-                                Text("Prática")
+                                Text("Voltar")
                             }
                             .foregroundColor(.black)
                         }
