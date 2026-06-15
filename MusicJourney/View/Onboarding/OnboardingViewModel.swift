@@ -59,6 +59,13 @@ class OnboardingViewModel: ObservableObject {
             genres: selectedGenres.map(\.rawValue),
             practiceSchedule: selectedSchedule?.rawValue ?? ""
         )
+
+        if let schedule = selectedSchedule {
+            Task {
+                await PracticeNotificationService.shared.syncReminder(for: schedule)
+            }
+        }
+
         return true
     }
 }
