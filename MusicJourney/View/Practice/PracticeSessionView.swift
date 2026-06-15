@@ -25,13 +25,8 @@ struct PracticeSessionView: View {
             
             VStack(spacing: 0) {
                 
-                PracticeTimerDisplay(
-                    timeString: viewModel.timeString,
-                    isRunning: viewModel.isRunning,
-                    onTapped: {
-                        viewModel.toggleTimer()
-                    }
-                )
+                PracticeTimerDisplay(timeString: viewModel.timeString)
+                    .padding(.top, 16)
                 
                 Spacer()
                 
@@ -42,15 +37,35 @@ struct PracticeSessionView: View {
                     onAudioTapped: { viewModel.openTool(.audio) },
                     onVideoTapped: { floatingPlayerVM.presentURLInput() },
                     onMetronomeTapped: { viewModel.openTool(.metronomo) },
-                    onStartPracticeTapped: {
-                        viewModel.completePractice()
-                        presentationMode.wrappedValue.dismiss()
+                    onPrimaryActionTapped: {
+                        viewModel.handlePrimaryButtonTap()
                     },
-                    isFinishEnabled: viewModel.timeElapsed > 300
+                    isPracticeStarted: viewModel.isPracticeStarted
                 )
                 .frame(height: UIScreen.main.bounds.height * 0.65)
             }
             .ignoresSafeArea(edges: .bottom)
+            
+            if viewModel.showEarlyFinishWarning {
+                ObjectiveWarning(
+                    title: "Atenção!",
+                    message: "Você praticou por menos de 3 minutos.\nQuer concluir tão rápido assim ou prefere praticar mais?",
+                    cancelTitle: "Praticar mais",
+                    confirmTitle: "Concluir",
+                    onCancel: {
+                        withAnimation {
+                            viewModel.dismissEarlyFinishWarning()
+                        }
+                    },
+                    onConfirm: {
+                        withAnimation {
+                            viewModel.confirmEarlyFinish()
+                        }
+                    }
+                )
+                .zIndex(2)
+                .transition(.opacity)
+            }
             
             // OVERLAY DA ANOTAÇÃO (BottomSheet falso)
             if viewModel.activeModal == .nota {
@@ -158,6 +173,11 @@ struct PracticeSessionView: View {
             )
         }
        
+        .onChange(of: viewModel.practiceCompleted) { completed in
+            if completed {
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
         .onChange(of: viewModel.timeElapsed) { _ in }
         .onReceive(viewModel.$showQuitAlert) { show in
         }

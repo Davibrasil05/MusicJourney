@@ -10,24 +10,16 @@ import SwiftUI
 struct PracticeTimerDisplay: View {
     var timeString: String
     
-    var isRunning: Bool
-    
-    var onTapped: () -> Void
-    
     var body: some View {
-        VStack(spacing: 4) {
-            Text(timeString)
-                .font(.system(size: 64, weight: .bold, design: .rounded))
-                .foregroundColor(.white)
-            
-            Text(isRunning ? "Toque para pausar" : "Toque para iniciar")
-                .font(.system(size: 22, weight: .medium))
-                .foregroundColor(.white)
-        }
-        .contentShape(Rectangle())
-        .onTapGesture {
-            onTapped()
-        }
+        Text(timeString)
+            .font(.system(size: 64, weight: .bold, design: .rounded))
+            .foregroundColor(.white)
+            .frame(minWidth: 220)
+            .padding(.vertical, 16)
+            .overlay(
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(Color.white.opacity(0.45), lineWidth: 2)
+            )
     }
 }
 
@@ -40,13 +32,8 @@ struct PracticeTimerDisplay_Previews: PreviewProvider {
                 .ignoresSafeArea()
             
             VStack(spacing: 40) {
-                PracticeTimerDisplay(timeString: "00:00", isRunning: false) {
-                    print("Tocou para iniciar")
-                }
-                
-                PracticeTimerDisplay(timeString: "04:20", isRunning: true) {
-                    print("Tocou para pausar")
-                }
+                PracticeTimerDisplay(timeString: "00:00")
+                PracticeTimerDisplay(timeString: "04:20")
             }
         }
     }

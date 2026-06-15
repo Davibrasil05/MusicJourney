@@ -143,8 +143,8 @@ struct PracticeBottomSheet: View {
     var onAudioTapped: () -> Void
     var onVideoTapped: () -> Void
     var onMetronomeTapped: () -> Void
-    var onStartPracticeTapped: () -> Void
-    var isFinishEnabled: Bool
+    var onPrimaryActionTapped: () -> Void
+    var isPracticeStarted: Bool
     
     // Configuração das duas colunas da Grid
     let columns = [
@@ -175,10 +175,9 @@ struct PracticeBottomSheet: View {
             .padding(.horizontal, 20)
             .padding(.top, 20)
             
-            PrimaryActionButton(title: "Concluir") {
-                onStartPracticeTapped()
+            PrimaryActionButton(title: isPracticeStarted ? "Concluir" : "Iniciar") {
+                onPrimaryActionTapped()
             }
-            .disabled(!isFinishEnabled)
             .padding(.top, 50)
             
             // Empurra tudo para cima e deixa um respiro no fundo
@@ -209,9 +208,22 @@ struct PracticeBottomSheet_Previews: PreviewProvider {
                 onAudioTapped: { print("Audio") },
                 onVideoTapped: { print("Video") },
                 onMetronomeTapped: { print("Metronomo") },
-                onStartPracticeTapped: { print("Iniciar") },
-                isFinishEnabled: true
+                onPrimaryActionTapped: { print("Iniciar") },
+                isPracticeStarted: false
             )
+            .previewDisplayName("Iniciar")
+            
+            PracticeBottomSheet(
+                goalName: "Aprender o riff de Feel Good Inc",
+                goalDescription: "Pratique o riff lentamente, focando na precisão dos dedos antes de aumentar o andamento.",
+                onNoteTapped: { print("Nota") },
+                onAudioTapped: { print("Audio") },
+                onVideoTapped: { print("Video") },
+                onMetronomeTapped: { print("Metronomo") },
+                onPrimaryActionTapped: { print("Concluir") },
+                isPracticeStarted: true
+            )
+            .previewDisplayName("Concluir")
             // Faz o card cobrir aquela margem branca do fundo da tela
             .ignoresSafeArea(edges: .bottom)
             // Ocupa mais ou menos 65% da tela para deixar o timer aparecer em cima
