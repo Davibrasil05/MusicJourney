@@ -46,6 +46,10 @@ class UserProfileViewModel: ObservableObject {
         user.practiceSchedule = selectedSchedule.rawValue
         user.genres = selectedGenres.map(\.rawValue) as NSArray
         userRepository.save()
+
+        Task {
+            await PracticeNotificationService.shared.syncReminder(for: selectedSchedule)
+        }
     }
 }
 
