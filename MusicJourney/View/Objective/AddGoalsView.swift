@@ -48,6 +48,8 @@ struct AddGoalsView: View {
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
                         Text("Adicione metas para alcançar esse objetivo")
                             .font(.subheadline)
                             .foregroundColor(.white.opacity(0.85))

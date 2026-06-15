@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel(objectiveRepo: ObjectiveRepository(), userRepo: UserRepository())
     @State private var selectedGoal: Goal?
+    @State private var selectedCompletedGoal: Goal?
     @State private var showingAddSheet = false
     @State private var showDeleteAlert = false
     @State private var goalToDelete: Goal?
@@ -174,6 +175,11 @@ struct HomeView: View {
                 )
             }
         }
+        .fullScreenCover(item: $selectedCompletedGoal) { goal in
+            NavigationView {
+                RecordsView(goal: goal)
+            }
+        }
         .overlay(
             Group {
                 if viewModel.showCompletedPopup, let obj = viewModel.justCompletedObjective {
@@ -212,7 +218,13 @@ struct HomeView: View {
         return GoalCardView(goalName: goal.name ?? "", state: state)
             .padding(.vertical, 10)
             .padding(.horizontal, 15)
-            .onTapGesture { selectedGoal = goal }
+            .onTapGesture {
+                if state == .completed {
+                    selectedCompletedGoal = goal
+                } else if state == .active {
+                    selectedGoal = goal
+                }
+            }
             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                 Button(role: .destructive) {
                     goalToDelete = goal
