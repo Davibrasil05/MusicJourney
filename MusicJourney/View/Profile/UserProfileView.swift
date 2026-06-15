@@ -115,6 +115,32 @@ struct UserProfileView: View {
                                 }
                             }
 
+                            ProfileCard {
+                                Text(viewModel.selectedSchedule.reminderSummaryLabel)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+
+                            // TEMP: remover antes do release — testar saída da notificação
+                            Button(action: {
+                                Task {
+                                    await PracticeNotificationService.shared.sendTestNotification()
+                                }
+                            }) {
+                                ProfileCard {
+                                    HStack {
+                                        Image(systemName: "bell.badge")
+                                            .foregroundColor(Color("headerGreen"))
+                                        Text("Testar notificação")
+                                            .font(.body.bold())
+                                            .foregroundColor(.black)
+                                        Spacer()
+                                    }
+                                }
+                            }
+                            .buttonStyle(PlainButtonStyle())
+
                             NavigationLink(
                                 destination: GenrePickerView(selectedGenres: $viewModel.selectedGenres)
                             ) {
