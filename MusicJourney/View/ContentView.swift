@@ -58,10 +58,12 @@ struct MainTabView: View {
                 Label("Histórico", systemImage: "clock.fill")
             }
 
-            UserProfileView()
-                .tabItem {
-                    Label("Perfil", systemImage: "person.crop.circle.fill")
-                }
+            NavigationView {
+                UserProfileView()
+            }
+            .tabItem {
+                Label("Perfil", systemImage: "person.crop.circle.fill")
+            }
         }
         .onAppear {
             floatingPlayerVM.installOverlayWindow()

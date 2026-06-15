@@ -46,7 +46,7 @@ struct PracticeSessionView: View {
                         viewModel.completePractice()
                         presentationMode.wrappedValue.dismiss()
                     },
-                    isFinishEnabled: viewModel.timeElapsed > 0
+                    isFinishEnabled: viewModel.timeElapsed > 300
                 )
                 .frame(height: UIScreen.main.bounds.height * 0.65)
             }
