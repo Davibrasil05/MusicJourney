@@ -6,8 +6,12 @@ struct GoalCardView: View {
     
     var body: some View {
         let isLocked = state == .locked
+        let isCompleted = state == .completed
+        
         // A cor laranja é chamada de headerGreen no seu Assets
+        // Metas concluídas ficarão verdes
         let mainColor = isLocked ? Color.gray : Color("headerGreen")
+        
         // O fundo da tag onde fica o nome
         let bgColor = Color("backgroundCards")
         
@@ -24,14 +28,14 @@ struct GoalCardView: View {
                 )
             
             HStack(spacing: 0) {
-                // Círculo esquerdo (Laranja se ativo, Cinza se bloqueado)
+                // Círculo esquerdo (Verde se concluído, Laranja se ativo, Cinza se bloqueado)
                 ZStack {
                     Circle()
                         .fill(mainColor)
                         .frame(width: 100, height: 100)
                     
                     // Ícone no meio do círculo
-                    Image(systemName: isLocked ? "music.note" : "guitars.fill")
+                    Image(systemName: isCompleted ? "checkmark" : (isLocked ? "music.note" : "guitars.fill"))
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 30)

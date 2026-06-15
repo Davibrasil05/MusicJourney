@@ -24,6 +24,8 @@ class HomeViewModel: ObservableObject {
     @Published var currentUser: User?
     
     @Published var sortedGoals: [Goal] = []
+    @Published var openGoals: [Goal] = []
+    @Published var completedGoals: [Goal] = []
     
     // Popup state
     @Published var showCompletedPopup = false
@@ -56,10 +58,14 @@ class HomeViewModel: ObservableObject {
             
             if goals.isEmpty {
                 self.sortedGoals = []
+                self.openGoals = []
+                self.completedGoals = []
             } else {
                 self.viewState = .objectiveWithGoals
                 
                 self.sortedGoals = goals.sorted { $0.order < $1.order }
+                self.openGoals = self.sortedGoals.filter { $0.status != "completed" }
+                self.completedGoals = self.sortedGoals.filter { $0.status == "completed" }
                 
                 self.currentGoal = self.sortedGoals.first(where: { $0.status != "completed" })
             }
@@ -67,6 +73,8 @@ class HomeViewModel: ObservableObject {
             self.activeObjective = nil
             self.viewState = .noObjective
             self.sortedGoals = []
+            self.openGoals = []
+            self.completedGoals = []
         }
         
     }
