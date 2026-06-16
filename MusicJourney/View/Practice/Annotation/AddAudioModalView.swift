@@ -108,7 +108,7 @@ struct AddAudioModalView: View {
                     .scaleEffect(audioService.isRecording ? 1.1 : 1.0)
                     .animation(audioService.isRecording ? Animation.easeInOut(duration: 1.0).repeatForever() : .default, value: audioService.isRecording)
                     
-                    Text(audioService.isRecording ? "Gravando..." : "Toque para gravar")
+                    Text(audioService.isRecording ? "Gravando..." : "")
                         .font(.title3)
                         .foregroundColor(audioService.isRecording ? .red : .black)
                     

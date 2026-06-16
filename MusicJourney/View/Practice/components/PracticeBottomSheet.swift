@@ -153,37 +153,41 @@ struct PracticeBottomSheet: View {
     ]
     
     var body: some View {
-        VStack(spacing: 24) {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(goalName)
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundColor(Color("textDark"))
-                    .multilineTextAlignment(.leading)
+        VStack(spacing: 0) {
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 24) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(goalName)
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(Color("textDark"))
+                            .multilineTextAlignment(.leading)
 
-                ExpandableGoalDescription(text: goalDescription)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, 24)
-            .padding(.top, 28)
+                        ExpandableGoalDescription(text: goalDescription)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 24)
+                    .padding(.top, 28)
 
-            LazyVGrid(columns: columns, spacing: 24) {
-                ToolGridButton(title: "Nota", iconName: "doc.text.fill", action: onNoteTapped)
-                ToolGridButton(title: "Áudio", iconName: "mic.fill", action: onAudioTapped)
-                ToolGridButton(title: "Vídeo", iconName: "play.rectangle.fill", action: onVideoTapped)
-                ToolGridButton(title: "Metrônomo", iconName: "metronome.fill", action: onMetronomeTapped)
+                    LazyVGrid(columns: columns, spacing: 24) {
+                        ToolGridButton(title: "Nota", iconName: "doc.text.fill", action: onNoteTapped)
+                        ToolGridButton(title: "Áudio", iconName: "mic.fill", action: onAudioTapped)
+                        ToolGridButton(title: "Vídeo", iconName: "play.rectangle.fill", action: onVideoTapped)
+                        ToolGridButton(title: "Metrônomo", iconName: "metronome.fill", action: onMetronomeTapped)
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 10)
+                    .padding(.bottom, 20)
+                }
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 20)
+            
+            Spacer(minLength: 0)
             
             PrimaryActionButton(title: isPracticeStarted ? "Concluir" : "Iniciar") {
                 onPrimaryActionTapped()
             }
-            .padding(.top, 50)
-            
-            // Empurra tudo para cima e deixa um respiro no fundo
-            Spacer()
+            .padding(.bottom, 40)
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         // Cor do fundo
         .background(Color("cardCream"))
         // Arredonda APENAS os cantos superiores
