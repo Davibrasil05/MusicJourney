@@ -7,16 +7,19 @@ import SwiftUI
 
 struct CreateObjectiveView: View {
     let onFinish: () -> Void
-
+    
     @StateObject private var viewModel = CreateObjectiveViewModel()
     @State private var createdObjective: Objective?
     @State private var navigateToGoals = false
-
+    @State private var currentTitleCount = 0
+    private let num_prefix = 50
+    
+    
     var body: some View {
         NavigationView {
             ZStack {
                 Color("headerGreen").ignoresSafeArea()
-
+                
                 // Hidden NavigationLink — fires when navigateToGoals becomes true
                 NavigationLink(
                     destination: createdObjective.map { obj in
@@ -24,9 +27,9 @@ struct CreateObjectiveView: View {
                     },
                     isActive: $navigateToGoals
                 ) { EmptyView() }.hidden()
-
+                
                 VStack(spacing: 0) {
-
+                    
                     // MARK: Orange header
                     VStack(spacing: 6) {
                         HStack {
@@ -42,7 +45,7 @@ struct CreateObjectiveView: View {
                         }
                         .padding(.horizontal, 20)
                         .padding(.top, 8)
-
+                        
                         VStack(spacing: 6) {
                             Text("Novo objetivo")
                                 .font(.title)
@@ -54,27 +57,51 @@ struct CreateObjectiveView: View {
                         }
                         .padding(.vertical, 20)
                     }
-
+                    
                     // MARK: Cream content card
                     ScrollView {
                         VStack(alignment: .leading, spacing: 28) {
-
+                            
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("Título do objetivo")
                                     .font(.headline)
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("textDark"))
-
-                                TextField("Ex: Tocar Linkin Park", text: $viewModel.title)
-                                    .padding(14)
-                                    .background(Color("cardCream"))
-                                    .cornerRadius(10)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color("inputGray"), lineWidth: 1)
-                                    )
+                                
+                                VStack(spacing: 4) {
+                                    TextField("Ex: Tocar Linkin Park", text: $viewModel.title)
+                                        .padding(14)
+                                        .background(Color("cardCream"))
+                                        .cornerRadius(10)
+                                        .onChange(of: viewModel.title) { newValue in
+                                            
+                                            currentTitleCount = newValue.count
+                                            
+                                            if(newValue.count > num_prefix) {
+                                                viewModel.title = String(newValue.prefix(num_prefix))
+                                            }
+                                            
+                                        }
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color("inputGray"), lineWidth: 1)
+                                        )
+                                }
+                                
+                                HStack{
+                                    
+                                    Spacer()
+                                    
+                                    Text("\(currentTitleCount)/\(num_prefix)")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(.gray)
+                                    
+                                }
                             }
-
+                            
+                            
+                            
+                            
                             Button(action: {
                                 if let objective = viewModel.createObjective() {
                                     createdObjective = objective
@@ -89,8 +116,8 @@ struct CreateObjectiveView: View {
                                     .padding(16)
                                     .background(
                                         viewModel.canContinue
-                                            ? Color("primaryBlue")
-                                            : Color("inputGray")
+                                        ? Color("primaryBlue")
+                                        : Color("inputGray")
                                     )
                                     .cornerRadius(12)
                             }
@@ -114,7 +141,7 @@ struct CreateObjectiveView_Previews: PreviewProvider {
         CreateObjectiveView(onFinish: {})
             .environment(
                 \.managedObjectContext,
-                PersistenceController(inMemory: true).container.viewContext
+                 PersistenceController(inMemory: true).container.viewContext
             )
             .previewDisplayName("CreateObjectiveView")
     }
