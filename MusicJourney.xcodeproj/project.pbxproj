@@ -37,6 +37,10 @@
 		9F403DB92FE06FC20039E5E4 /* ProfileRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F403DB82FE06FC20039E5E4 /* ProfileRows.swift */; };
 		9F403DBB2FE06FD70039E5E4 /* GenrePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F403DBA2FE06FD70039E5E4 /* GenrePicker.swift */; };
 		9F403DBD2FE07D320039E5E4 /* ObjectiveWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F403DBC2FE07D310039E5E4 /* ObjectiveWarning.swift */; };
+		9F403DC02FE315100039E5E4 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F403DBF2FE315100039E5E4 /* SegmentControl.swift */; };
+		9F403DC22FE32B6D0039E5E4 /* AudioTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F403DC12FE32B6D0039E5E4 /* AudioTab.swift */; };
+		9F403DC42FE330680039E5E4 /* AnnotationTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F403DC32FE330670039E5E4 /* AnnotationTab.swift */; };
+		9F403DC62FE333780039E5E4 /* EditModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F403DC52FE333780039E5E4 /* EditModal.swift */; };
 		9F4488052FDA04DB00258351 /* AnnotationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4488042FDA04DB00258351 /* AnnotationRepository.swift */; };
 		9F4488072FDAFC4F00258351 /* RecordingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4488062FDAFC4F00258351 /* RecordingRepository.swift */; };
 		9F4488092FDB008100258351 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4488082FDB008100258351 /* OnboardingViewModel.swift */; };
@@ -139,6 +143,10 @@
 		9F403DB82FE06FC20039E5E4 /* ProfileRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRows.swift; sourceTree = "<group>"; };
 		9F403DBA2FE06FD70039E5E4 /* GenrePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenrePicker.swift; sourceTree = "<group>"; };
 		9F403DBC2FE07D310039E5E4 /* ObjectiveWarning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveWarning.swift; sourceTree = "<group>"; };
+		9F403DBF2FE315100039E5E4 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
+		9F403DC12FE32B6D0039E5E4 /* AudioTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTab.swift; sourceTree = "<group>"; };
+		9F403DC32FE330670039E5E4 /* AnnotationTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationTab.swift; sourceTree = "<group>"; };
+		9F403DC52FE333780039E5E4 /* EditModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModal.swift; sourceTree = "<group>"; };
 		9F4488042FDA04DB00258351 /* AnnotationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationRepository.swift; sourceTree = "<group>"; };
 		9F4488062FDAFC4F00258351 /* RecordingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingRepository.swift; sourceTree = "<group>"; };
 		9F4488082FDB008100258351 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -255,6 +263,7 @@
 		9F300B5F2FDB58060010B70B /* Annotation */ = {
 			isa = PBXGroup;
 			children = (
+				9F403DBE2FE314AD0039E5E4 /* Components */,
 				9F300B602FDB581A0010B70B /* AddNoteModalView.swift */,
 				9F300B622FDB5AAB0010B70B /* RecordsView.swift */,
 				9FBCFA122FDC725000419A24 /* NoteDetailView.swift */,
@@ -278,6 +287,17 @@
 				9F403DB62FE06F720039E5E4 /* ProfileCard.swift */,
 				9F403DB82FE06FC20039E5E4 /* ProfileRows.swift */,
 				9F403DBA2FE06FD70039E5E4 /* GenrePicker.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		9F403DBE2FE314AD0039E5E4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9F403DBF2FE315100039E5E4 /* SegmentControl.swift */,
+				9F403DC12FE32B6D0039E5E4 /* AudioTab.swift */,
+				9F403DC32FE330670039E5E4 /* AnnotationTab.swift */,
+				9F403DC52FE333780039E5E4 /* EditModal.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -688,6 +708,7 @@
 				9F1003C32FDB56B900C7888E /* DisplayBPM.swift in Sources */,
 				9F300B632FDB5AAC0010B70B /* RecordsView.swift in Sources */,
 				9F403DB72FE06F720039E5E4 /* ProfileCard.swift in Sources */,
+				9F403DC02FE315100039E5E4 /* SegmentControl.swift in Sources */,
 				9F403DBB2FE06FD70039E5E4 /* GenrePicker.swift in Sources */,
 				9FDC4E6C2FD886A000C62F3C /* HomeView.swift in Sources */,
 				9F7C7ED42FD75ECE009961ED /* ObjectiveRepository.swift in Sources */,
@@ -723,10 +744,13 @@
 				AC8E752293294AE79DC20B7A /* ManualGoalSheet.swift in Sources */,
 				A24780F0C17340C3B94B58FC /* FloatingYoutubePlayer.swift in Sources */,
 				DA2870C50C43424E88F73558 /* YoutubeURLInputSheet.swift in Sources */,
+				9F403DC22FE32B6D0039E5E4 /* AudioTab.swift in Sources */,
+				9F403DC42FE330680039E5E4 /* AnnotationTab.swift in Sources */,
 				D69CFD7CF8F84FD9A1C7ED9A /* PracticeNotificationService.swift in Sources */,
 				18D8C61137244B50B0B89381 /* PracticeSchedule+Notifications.swift in Sources */,
 				36B5121B1B7C4053A0C13742 /* OnboardingTextOptionButton.swift in Sources */,
 				B7BB8BD989574EA09AC87917 /* OnboardingWelcomeStep.swift in Sources */,
+				9F403DC62FE333780039E5E4 /* EditModal.swift in Sources */,
 				D1B5A00A0BE743B38E71586A /* OnboardingLevelStep.swift in Sources */,
 				9FBCFA242FDC962200419A24 /* ObjectiveCard.swift in Sources */,
 				58A8C6D456334176AC462E67 /* OnboardingInstrumentStep.swift in Sources */,
