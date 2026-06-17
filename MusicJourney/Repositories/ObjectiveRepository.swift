@@ -145,38 +145,7 @@ class ObjectiveRepository: ObservableObject {
     }
     
     // MARK: - PRESETS (Objetivos pré-definidos)
-    func getPresetsForUser(instrument: String, level: String) -> [PresetObjective] {
-        return PresetCatalog.presets(instrument: instrument, level: level)
-    }
-
-    func createPresetObjective(preset: PresetObjective, user: User) {
-        let objective = Objective(context: context)
-        objective.id = UUID()
-        objective.name = preset.name
-        objective.descriptionText = preset.descriptionText
-        objective.createdAt = Date()
-        objective.progress = 0
-        objective.status = "active"
-        objective.user = user
-
-        for goalPreset in preset.goals {
-            let goal = Goal(context: context)
-            goal.id = UUID()
-            goal.name = goalPreset.name
-            goal.textDescription = goalPreset.textDescription
-            goal.category = goalPreset.category
-            goal.difficulty = goalPreset.difficulty
-            goal.type = goalPreset.type
-            goal.order = goalPreset.order
-            goal.isFinal = goalPreset.isFinal
-            goal.xpReward = goalPreset.xpReward
-            goal.status = goalPreset.order == 1 ? "unlocked" : "locked"
-            goal.objective = objective
-        }
-
-        saveContext()
-        fetchObjectives()
-    }
+   
 
     // MARK: - Save Helper
     private func saveContext() {
