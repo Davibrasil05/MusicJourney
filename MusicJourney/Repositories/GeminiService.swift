@@ -46,6 +46,7 @@ class GeminiService {
            c) O "Foco adicional" contradiz ou desvia claramente do contexto musical do objetivo.
         4. Quando o foco adicional for musical e relevante, use-o como prioridade na geração das metas.
         5. Saída: Retorne ESTRITAMENTE o objeto JSON abaixo, sem nenhum texto antes ou depois.
+        6. As descrições das metas devem ter até 150 caracteres
 
         [ESTRUTURA JSON ESPERADA]
         {
