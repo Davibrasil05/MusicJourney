@@ -32,30 +32,12 @@ struct UserProfileView: View {
             VStack(spacing: 0) {
                 VStack(spacing: 20) {
                     HStack {
-                        Text("Meu Perfil")
+                        Text("Meu perfil")
                             .font(.title2)
                             .foregroundColor(.white)
                             .bold()
 
                         Spacer()
-
-                        // Componente invisível para forçar exatamente a mesma altura da HomeView/HistoryView
-                        Image(systemName: "plus")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                            .padding(8)
-                            .hidden()
-                    }
-                    .overlay(alignment: .trailing) {
-                        Button(action: { viewModel.saveProfile(to: user) }) {
-                            Text("Salvar")
-                                .bold()
-                                .foregroundColor(.white)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 16)
-                                .background(Color.black.opacity(0.15))
-                                .clipShape(Capsule())
-                        }
                     }
                     .padding(.horizontal)
                     .padding(.top, 8)
@@ -79,7 +61,6 @@ struct UserProfileView: View {
                     VStack(alignment: .leading, spacing: 15) {
                         ProfileSectionHeader(title: "Perfil musical")
                             .padding(.top, 40)
-                           
 
                         VStack(spacing: 12) {
                             ProfilePickerRow(
@@ -91,6 +72,7 @@ struct UserProfileView: View {
                                         Text(instrument.rawValue).tag(instrument)
                                     }
                                 }
+                                .pickerStyle(MenuPickerStyle())
                             }
 
                             ProfilePickerRow(
@@ -102,6 +84,7 @@ struct UserProfileView: View {
                                         Text(level.rawValue).tag(level)
                                     }
                                 }
+                                .pickerStyle(MenuPickerStyle())
                             }
 
                             ProfilePickerRow(
@@ -113,6 +96,7 @@ struct UserProfileView: View {
                                         Text(schedule.rawValue).tag(schedule)
                                     }
                                 }
+                                .pickerStyle(MenuPickerStyle())
                             }
 
                             ProfileCard {
@@ -121,25 +105,6 @@ struct UserProfileView: View {
                                     .foregroundColor(.secondary)
                                     .fixedSize(horizontal: false, vertical: true)
                             }
-
-                            // TEMP: remover antes do release — testar saída da notificação
-                            Button(action: {
-                                Task {
-                                    await PracticeNotificationService.shared.sendTestNotification()
-                                }
-                            }) {
-                                ProfileCard {
-                                    HStack {
-                                        Image(systemName: "bell.badge")
-                                            .foregroundColor(Color("headerGreen"))
-                                        Text("Testar notificação")
-                                            .font(.body.bold())
-                                            .foregroundColor(.black)
-                                        Spacer()
-                                    }
-                                }
-                            }
-                            .buttonStyle(PlainButtonStyle())
 
                             NavigationLink(
                                 destination: GenrePickerView(selectedGenres: $viewModel.selectedGenres)
@@ -151,19 +116,18 @@ struct UserProfileView: View {
                             }
                             .buttonStyle(PlainButtonStyle())
                         }
-                        Spacer()
+
                         ProfileSectionHeader(title: "Sua jornada")
-                        
+                            .padding(.top, 8)
+
                         VStack(spacing: 12) {
                             ProfileInfoRow(
-                                title: "Nível musical",
-                                value: "Lev. \(user.level)",
-                                valueColor: Color("primaryBlue")
+                                title: "Nível Musical",
+                                value: "Lev. \(user.level)"
                             )
                             ProfileInfoRow(
                                 title: "Experiência",
-                                value: "\(user.xp)%",
-                                valueColor: Color("headerGreen")
+                                value: "\(user.xp)%"
                             )
                         }
                     }
@@ -177,8 +141,19 @@ struct UserProfileView: View {
             }
         }
         .onAppear { viewModel.loadProfile(from: user) }
+        .onChange(of: viewModel.selectedInstrument) { _ in
+            viewModel.saveProfileChanges(to: user)
+        }
+        .onChange(of: viewModel.selectedLevel) { _ in
+            viewModel.saveProfileChanges(to: user)
+        }
+        .onChange(of: viewModel.selectedSchedule) { _ in
+            viewModel.saveProfileChanges(to: user)
+        }
+        .onChange(of: viewModel.genresSelectionKey) { _ in
+            viewModel.saveProfileChanges(to: user)
+        }
     }
-
 }
 
 struct UserProfileView_Previews: PreviewProvider {

@@ -11,7 +11,7 @@ struct ProfileSectionHeader: View {
     let title: String
 
     var body: some View {
-        HStack{
+        HStack {
             Text(title)
                 .font(.title2.bold())
                 .foregroundColor(.black)
@@ -30,5 +30,21 @@ struct ProfileCard<Content: View>: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color("backgroundCards"))
             .cornerRadius(16)
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color("headerGreen"), lineWidth: 1.5)
+            )
+    }
+}
+
+struct ProfileCard_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileCard {
+            Text("Card de exemplo")
+                .foregroundColor(Color("textDark"))
+        }
+        .padding()
+        .background(Color("cardCream"))
+        .previewDisplayName("ProfileCard")
     }
 }
