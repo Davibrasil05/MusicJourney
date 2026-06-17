@@ -34,7 +34,7 @@ struct NoteDetailView: View {
                                 Text("Meus registros")
                                     .fontWeight(.semibold)
                             }
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                         }
                         
                         Spacer()
@@ -55,7 +55,7 @@ struct NoteDetailView: View {
                         } label: {
                             Image(systemName: "ellipsis")
                                 .rotationEffect(.degrees(90))
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
                                 .font(.title3)
                                
                         }
