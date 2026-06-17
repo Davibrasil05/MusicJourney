@@ -22,7 +22,7 @@ final class PracticeNotificationService: NSObject {
         do {
             return try await notificationCenter.requestAuthorization(options: [.alert, .sound, .badge])
         } catch {
-            print("PracticeNotificationService: authorization error — \(error)")
+            print("PracticeNotificationService: erro de autorização — \(error)")
             return false
         }
     }
@@ -55,14 +55,14 @@ final class PracticeNotificationService: NSObject {
         do {
             try await notificationCenter.add(request)
         } catch {
-            print("PracticeNotificationService: schedule error — \(error)")
+            print("PracticeNotificationService: erro de agendamento — \(error)")
         }
     }
 
     // TEMP: remover antes do release — botão de teste no perfil
     func sendTestNotification() async {
         guard await requestAuthorization() else {
-            print("PracticeNotificationService: test notification — permission denied")
+            print("PracticeNotificationService: notificação de teste — permissão negada")
             return
         }
 
@@ -79,7 +79,7 @@ final class PracticeNotificationService: NSObject {
         do {
             try await notificationCenter.add(request)
         } catch {
-            print("PracticeNotificationService: test notification error — \(error)")
+            print("PracticeNotificationService: erro na notificação de teste — \(error)")
         }
     }
 }
