@@ -30,5 +30,9 @@ struct ProfileCard<Content: View>: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color("backgroundCards"))
             .cornerRadius(16)
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color("headerGreen"), lineWidth: 1.5)
+            )
     }
 }
