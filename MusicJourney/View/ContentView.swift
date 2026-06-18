@@ -67,6 +67,7 @@ struct MainTabView: View {
                 Label("Perfil", systemImage: "person.crop.circle.fill")
             }
         }
+        .accentColor(Color("primaryBlue"))
         .onAppear {
             floatingPlayerVM.installOverlayWindow()
             Task {

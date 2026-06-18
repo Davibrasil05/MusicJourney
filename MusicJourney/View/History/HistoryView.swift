@@ -24,15 +24,6 @@ struct HistoryView: View {
                             .bold()
                         Spacer()
                         
-                        // Botão + (mesmo da Home)
-                        Button(action: { }) {
-                            Image(systemName: "plus")
-                                .font(.title2)
-                                .foregroundColor(.white)
-                                .padding(8)
-                                .background(Color.black.opacity(0.15))
-                                .clipShape(Circle())
-                        }
                     }
                     .padding(.horizontal)
                     .padding(.top, 8)
