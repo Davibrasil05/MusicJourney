@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct ProfilePickerRow<Content: View>: View {
     let title: String
     let value: String
@@ -15,21 +14,24 @@ struct ProfilePickerRow<Content: View>: View {
 
     var body: some View {
         ProfileCard {
-            HStack {
+            HStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Text(value)
                         .font(.body.bold())
-                        .foregroundColor(Color("headerGreen"))
+                        .foregroundColor(Color("textDark"))
                 }
                 Spacer()
-                picker
-                    .labelsHidden()
-                Image(systemName: "chevron.up.chevron.down")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                HStack(spacing: 6) {
+                    picker
+                        .labelsHidden()
+                        .accentColor(Color("headerGreen"))
+                    Image(systemName: "chevron.up.chevron.down")
+                        .font(.caption.weight(.semibold))
+                        .foregroundColor(Color("headerGreen"))
+                }
             }
         }
     }
@@ -38,18 +40,17 @@ struct ProfilePickerRow<Content: View>: View {
 struct ProfileInfoRow: View {
     let title: String
     let value: String
-    let valueColor: Color
 
     var body: some View {
         ProfileCard {
             HStack {
                 Text(title)
-                    .font(.body)
-                    .foregroundColor(.black)
+                    .font(.body.bold())
+                    .foregroundColor(Color("textDark"))
                 Spacer()
                 Text(value)
                     .font(.body.bold())
-                    .foregroundColor(valueColor)
+                    .foregroundColor(.secondary)
             }
         }
     }
@@ -61,21 +62,44 @@ struct ProfileNavigationRow: View {
 
     var body: some View {
         ProfileCard {
-            HStack {
+            HStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Text(value)
                         .font(.body.bold())
-                        .foregroundColor(Color("headerGreen"))
+                        .foregroundColor(Color("textDark"))
                         .lineLimit(2)
+                        .multilineTextAlignment(.leading)
                 }
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .font(.caption.bold())
-                    .foregroundColor(.secondary)
+                    .font(.caption.weight(.semibold))
+                    .foregroundColor(Color("headerGreen"))
             }
         }
+    }
+}
+
+struct ProfileRows_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack(spacing: 12) {
+            ProfilePickerRow(title: "Instrumento", value: "Violão") {
+                Picker("Instrumento", selection: .constant(MusicInstrument.violao)) {
+                    ForEach(MusicInstrument.allCases) { instrument in
+                        Text(instrument.rawValue).tag(instrument)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+            }
+
+            ProfileInfoRow(title: "Nível Musical", value: "Lev. 11")
+
+            ProfileNavigationRow(title: "Gêneros", value: "Rock, MPB")
+        }
+        .padding()
+        .background(Color("cardCream"))
+        .previewDisplayName("ProfileRows")
     }
 }

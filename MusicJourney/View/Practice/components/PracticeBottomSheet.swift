@@ -11,7 +11,7 @@ import SwiftUI
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
-
+    
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(
             roundedRect: rect,
@@ -33,7 +33,7 @@ struct ToolGridButton: View {
             action()
         }) {
             VStack(spacing: 12) {
-
+                
                 Image(systemName: iconName)
                     .resizable()
                     .scaledToFit()
@@ -59,7 +59,7 @@ struct ToolGridButton: View {
 
 private struct DescriptionHeightPreferenceKey: PreferenceKey {
     static var defaultValue: CGFloat = 0
-
+    
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
     }
@@ -70,12 +70,13 @@ private struct ExpandableGoalDescription: View {
     let text: String
     @State private var isExpanded = false
     @State private var contentHeight: CGFloat = 0
-
+    
     private let expandAnimation = Animation.spring(response: 0.34, dampingFraction: 0.86)
-
+    
     var body: some View {
         if !text.isEmpty {
             VStack(alignment: .leading, spacing: 6) {
+                
                 Button(action: {
                     withAnimation(expandAnimation) {
                         isExpanded.toggle()
@@ -86,19 +87,20 @@ private struct ExpandableGoalDescription: View {
                             .font(.subheadline)
                             .fontWeight(.medium)
                             .foregroundColor(Color("headerGreen"))
-
+                        
                         Image(systemName: "chevron.down")
                             .font(.system(size: 12, weight: .semibold))
                             .foregroundColor(Color("headerGreen"))
                             .rotationEffect(.degrees(isExpanded ? 180 : 0))
                             .animation(expandAnimation, value: isExpanded)
-
+                        
                         Spacer(minLength: 0)
                     }
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-
+                
+                
                 Text(text)
                     .font(.subheadline)
                     .foregroundColor(Color("textDark").opacity(isExpanded ? 0.78 : 0))
@@ -124,6 +126,7 @@ private struct ExpandableGoalDescription: View {
                                 }
                             )
                     }
+                
             }
             .onPreferenceChange(DescriptionHeightPreferenceKey.self) { height in
                 if height > 0 {
@@ -161,13 +164,13 @@ struct PracticeBottomSheet: View {
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(Color("textDark"))
                             .multilineTextAlignment(.leading)
-
+                        
                         ExpandableGoalDescription(text: goalDescription)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 24)
                     .padding(.top, 28)
-
+                    
                     LazyVGrid(columns: columns, spacing: 24) {
                         ToolGridButton(title: "Nota", iconName: "doc.text.fill", action: onNoteTapped)
                         ToolGridButton(title: "Áudio", iconName: "mic.fill", action: onAudioTapped)
@@ -215,7 +218,7 @@ struct PracticeBottomSheet_Previews: PreviewProvider {
                 onPrimaryActionTapped: { print("Iniciar") },
                 isPracticeStarted: false
             )
-            .previewDisplayName("Iniciar")
+                .previewDisplayName("Iniciar")
             
             PracticeBottomSheet(
                 goalName: "Aprender o riff de Feel Good Inc",
@@ -227,11 +230,11 @@ struct PracticeBottomSheet_Previews: PreviewProvider {
                 onPrimaryActionTapped: { print("Concluir") },
                 isPracticeStarted: true
             )
-            .previewDisplayName("Concluir")
+                .previewDisplayName("Concluir")
             // Faz o card cobrir aquela margem branca do fundo da tela
-            .ignoresSafeArea(edges: .bottom)
+                .ignoresSafeArea(edges: .bottom)
             // Ocupa mais ou menos 65% da tela para deixar o timer aparecer em cima
-            .frame(height: UIScreen.main.bounds.height * 0.65)
+                .frame(height: UIScreen.main.bounds.height * 0.65)
         }
     }
 }

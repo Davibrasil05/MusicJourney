@@ -25,7 +25,12 @@ class UserProfileViewModel: ObservableObject {
             : selectedGenres.map(\.rawValue).sorted().joined(separator: ", ")
     }
     
+    var genresSelectionKey: String {
+        selectedGenres.map(\.rawValue).sorted().joined(separator: "|")
+    }
+    
     private var hasLoadedProfile = false
+    private var suppressAutoSave = true
     
     func loadProfile(from user: User) {
         guard !hasLoadedProfile else { return }
@@ -37,12 +42,17 @@ class UserProfileViewModel: ObservableObject {
         selectedGenres = Set(saved.compactMap { MusicGenre(rawValue: $0) })
         
         hasLoadedProfile = true
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.suppressAutoSave = false
+        }
     }
     
-    func saveProfile(to user: User) {
+    func saveProfileChanges(to user: User) {
+        guard !suppressAutoSave else { return }
+        
         user.instrument = selectedInstrument.rawValue
         user.experienceLevel = selectedLevel.rawValue
-        user.level = selectedLevel.levelValue
         user.practiceSchedule = selectedSchedule.rawValue
         user.genres = selectedGenres.map(\.rawValue) as NSArray
         userRepository.save()
@@ -51,5 +61,8 @@ class UserProfileViewModel: ObservableObject {
             await PracticeNotificationService.shared.syncReminder(for: selectedSchedule)
         }
     }
+    
+    func saveProfile(to user: User) {
+        saveProfileChanges(to: user)
+    }
 }
-

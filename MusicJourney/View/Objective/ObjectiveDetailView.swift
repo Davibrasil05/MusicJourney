@@ -35,7 +35,7 @@ struct ObjectiveDetailView: View {
                         .foregroundColor(.gray)
                 } else {
                     ForEach(goals) { goal in
-                        NavigationLink(destination: GoalDetailView()) {
+                    
                             HStack {
                                 // Mudou: Status agora é comparado como String
                                 Image(systemName: goal.status == "completed" ? "checkmark.square.fill" : "square")
@@ -65,8 +65,7 @@ struct ObjectiveDetailView: View {
                                     .font(.caption)
                                     .foregroundColor(.gray)
                                 }
-                            }
-                            .padding(.vertical, 4)
+                            
                         }
                     }
                     .onDelete { indexSet in

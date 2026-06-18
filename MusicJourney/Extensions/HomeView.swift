@@ -81,8 +81,6 @@ struct HomeView: View {
                     HStack{
                         Text(viewModel.activeObjective?.name ?? "Crie um objetivo")
                             .font(.system(size: 22, weight: .bold))
-                            .lineLimit(1)
-                            .truncationMode(.tail)
                             .foregroundColor(.black)
                             .padding(.top, 40) // Distância do topo curvo
                             .padding(.horizontal)
