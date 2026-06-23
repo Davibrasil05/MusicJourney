@@ -7,31 +7,42 @@
 
 import SwiftUI
 
-struct ProfilePickerRow<Content: View>: View {
+struct ProfilePickerRow<Option: Hashable>: View {
     let title: String
-    let value: String
-    @ViewBuilder let picker: Content
+    @Binding var selection: Option
+    let options: [Option]
+    let optionLabel: (Option) -> String
 
     var body: some View {
         ProfileCard {
-            HStack(alignment: .center) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(title)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Text(value)
-                        .font(.body.bold())
-                        .foregroundColor(Color("textDark"))
+            Menu {
+                ForEach(options, id: \.self) { option in
+                    Button {
+                        selection = option
+                    } label: {
+                        if option == selection {
+                            Label(optionLabel(option), systemImage: "checkmark")
+                        } else {
+                            Text(optionLabel(option))
+                        }
+                    }
                 }
-                Spacer()
-                HStack(spacing: 6) {
-                    picker
-                        .labelsHidden()
-                        .accentColor(Color("headerGreen"))
+            } label: {
+                HStack(alignment: .center) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(title)
+                            .font(.subheadline)
+                            .foregroundColor(Color("textDark").opacity(0.6))
+                        Text(optionLabel(selection))
+                            .font(.body.bold())
+                            .foregroundColor(Color("textDark"))
+                    }
+                    Spacer(minLength: 8)
                     Image(systemName: "chevron.up.chevron.down")
                         .font(.caption.weight(.semibold))
                         .foregroundColor(Color("headerGreen"))
                 }
+                .contentShape(Rectangle())
             }
         }
     }
@@ -50,7 +61,7 @@ struct ProfileInfoRow: View {
                 Spacer()
                 Text(value)
                     .font(.body.bold())
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Color("textDark").opacity(0.6))
             }
         }
     }
@@ -66,7 +77,7 @@ struct ProfileNavigationRow: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Color("textDark").opacity(0.6))
                     Text(value)
                         .font(.body.bold())
                         .foregroundColor(Color("textDark"))
@@ -85,14 +96,12 @@ struct ProfileNavigationRow: View {
 struct ProfileRows_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 12) {
-            ProfilePickerRow(title: "Instrumento", value: "Violão") {
-                Picker("Instrumento", selection: .constant(MusicInstrument.violao)) {
-                    ForEach(MusicInstrument.allCases) { instrument in
-                        Text(instrument.rawValue).tag(instrument)
-                    }
-                }
-                .pickerStyle(MenuPickerStyle())
-            }
+            ProfilePickerRow(
+                title: "Instrumento",
+                selection: .constant(MusicInstrument.violao),
+                options: MusicInstrument.allCases,
+                optionLabel: { $0.rawValue }
+            )
 
             ProfileInfoRow(title: "Nível Musical", value: "Lev. 11")
 
