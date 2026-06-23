@@ -27,21 +27,6 @@ struct HistoryView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 8)
-                    
-                    // INDICADOR DE NÍVEL
-                    HStack(spacing: 16) {
-                        Text("Lev. \(viewModel.currentUser?.level ?? 1)")
-                            .bold()
-                            .foregroundColor(.white)
-                        
-                        let xpAtual = Double(viewModel.currentUser?.xp ?? 0)
-                        LevelProgressBar(percentage: xpAtual / 100.0)
-                        
-                        Text("\(Int(xpAtual))%")
-                            .bold()
-                            .foregroundColor(.white)
-                    }
-                    .padding(.horizontal, 23)
                     .padding(.bottom, 30)
                 }
                 
@@ -51,7 +36,7 @@ struct HistoryView: View {
                         Text("Reveja seus registros!")
                             .font(.system(size: 22, weight: .bold))
                             .multilineTextAlignment(.center)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("textDark"))
                             .padding(.top, 40)
                             .padding(.horizontal)
                         Spacer()

@@ -57,22 +57,7 @@ struct HomeView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 8)
-                    
-                    // INDICADOR DE NÍVEL
-                    HStack(spacing: 16) {
-                        Text("Lev. \(viewModel.currentUser?.level ?? 1)")
-                            .bold()
-                            .foregroundColor(.white)
-                        
-                        let xpAtual = Double(viewModel.currentUser?.xp ?? 0)
-                        LevelProgressBar(percentage: xpAtual / 100.0)
-                        
-                        Text("\(Int(xpAtual))%")
-                            .bold()
-                            .foregroundColor(.white)
-                    }
-                    .padding(.horizontal, 23)
-                    .padding(.bottom, 30) // Respiro antes da caixa creme
+                    .padding(.bottom, 30)
                 }
                 
                 // 2. CAIXA INFERIOR (CREME) - Onde ficam o Título e os Cards
@@ -81,7 +66,7 @@ struct HomeView: View {
                     HStack{
                         Text(viewModel.activeObjective?.name ?? "Crie um objetivo")
                             .font(.system(size: 22, weight: .bold))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("textDark"))
                             .padding(.top, 40) // Distância do topo curvo
                             .padding(.horizontal)
                         Spacer()
@@ -114,7 +99,7 @@ struct HomeView: View {
                             if !viewModel.completedGoals.isEmpty {
                                 Text("Metas concluídas")
                                     .font(.system(size: 22, weight: .bold))
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color("textDark"))
                                     .padding(.top, 20)
                                     .padding(.horizontal, 15)
                                     .listRowSeparator(.hidden)

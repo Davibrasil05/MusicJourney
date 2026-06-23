@@ -41,19 +41,6 @@ struct UserProfileView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 8)
-
-                    HStack(spacing: 16) {
-                        Text("Lev. \(user.level)")
-                            .bold()
-                            .foregroundColor(.white)
-
-                        LevelProgressBar(percentage: Double(user.xp) / 100.0)
-
-                        Text("\(user.xp)%")
-                            .bold()
-                            .foregroundColor(.white)
-                    }
-                    .padding(.horizontal, 23)
                     .padding(.bottom, 30)
                 }
 
@@ -100,20 +87,6 @@ struct UserProfileView: View {
                                 )
                             }
                             .buttonStyle(PlainButtonStyle())
-                        }
-
-                        ProfileSectionHeader(title: "Sua jornada")
-                            .padding(.top, 8)
-
-                        VStack(spacing: 12) {
-                            ProfileInfoRow(
-                                title: "Nível Musical",
-                                value: "Lev. \(user.level)"
-                            )
-                            ProfileInfoRow(
-                                title: "Experiência",
-                                value: "\(user.xp)%"
-                            )
                         }
                     }
                     .padding(.horizontal)
