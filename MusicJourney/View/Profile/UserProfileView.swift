@@ -41,19 +41,6 @@ struct UserProfileView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 8)
-
-                    HStack(spacing: 16) {
-                        Text("Lev. \(user.level)")
-                            .bold()
-                            .foregroundColor(.white)
-
-                        LevelProgressBar(percentage: Double(user.xp) / 100.0)
-
-                        Text("\(user.xp)%")
-                            .bold()
-                            .foregroundColor(.white)
-                    }
-                    .padding(.horizontal, 23)
                     .padding(.bottom, 30)
                 }
 
@@ -65,44 +52,29 @@ struct UserProfileView: View {
                         VStack(spacing: 12) {
                             ProfilePickerRow(
                                 title: "Instrumento",
-                                value: viewModel.selectedInstrument.rawValue
-                            ) {
-                                Picker("Instrumento", selection: $viewModel.selectedInstrument) {
-                                    ForEach(MusicInstrument.allCases) { instrument in
-                                        Text(instrument.rawValue).tag(instrument)
-                                    }
-                                }
-                                .pickerStyle(MenuPickerStyle())
-                            }
+                                selection: $viewModel.selectedInstrument,
+                                options: MusicInstrument.allCases,
+                                optionLabel: { $0.rawValue }
+                            )
 
                             ProfilePickerRow(
                                 title: "Nível",
-                                value: viewModel.selectedLevel.rawValue
-                            ) {
-                                Picker("Nível", selection: $viewModel.selectedLevel) {
-                                    ForEach(MusicLevel.allCases) { level in
-                                        Text(level.rawValue).tag(level)
-                                    }
-                                }
-                                .pickerStyle(MenuPickerStyle())
-                            }
+                                selection: $viewModel.selectedLevel,
+                                options: MusicLevel.allCases,
+                                optionLabel: { $0.rawValue }
+                            )
 
                             ProfilePickerRow(
                                 title: "Horário de prática",
-                                value: viewModel.selectedSchedule.rawValue
-                            ) {
-                                Picker("Horário de prática", selection: $viewModel.selectedSchedule) {
-                                    ForEach(PracticeSchedule.allCases) { schedule in
-                                        Text(schedule.rawValue).tag(schedule)
-                                    }
-                                }
-                                .pickerStyle(MenuPickerStyle())
-                            }
+                                selection: $viewModel.selectedSchedule,
+                                options: PracticeSchedule.allCases,
+                                optionLabel: { $0.rawValue }
+                            )
 
                             ProfileCard {
                                 Text(viewModel.selectedSchedule.reminderSummaryLabel)
                                     .font(.caption)
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(Color("textDark").opacity(0.6))
                                     .fixedSize(horizontal: false, vertical: true)
                             }
 
@@ -115,20 +87,6 @@ struct UserProfileView: View {
                                 )
                             }
                             .buttonStyle(PlainButtonStyle())
-                        }
-
-                        ProfileSectionHeader(title: "Sua jornada")
-                            .padding(.top, 8)
-
-                        VStack(spacing: 12) {
-                            ProfileInfoRow(
-                                title: "Nível Musical",
-                                value: "Lev. \(user.level)"
-                            )
-                            ProfileInfoRow(
-                                title: "Experiência",
-                                value: "\(user.xp)%"
-                            )
                         }
                     }
                     .padding(.horizontal)

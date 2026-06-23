@@ -20,8 +20,8 @@ struct GenrePickerView: View {
                 ForEach(MusicGenre.allCases) { genre in
                     Button(action: { toggle(genre) }) {
                         HStack {
-                            Text(genre.rawValue)
-                                .foregroundColor(.black)
+                                Text(genre.rawValue)
+                                    .foregroundColor(Color("textDark"))
                             Spacer()
                             if selectedGenres.contains(genre) {
                                 Image(systemName: "checkmark.circle.fill")

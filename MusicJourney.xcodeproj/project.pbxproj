@@ -77,7 +77,7 @@
 		9FBCFA172FDC758700419A24 /* AnnotationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCFA162FDC758700419A24 /* AnnotationCard.swift */; };
 		9FBCFA202FDC95C900419A24 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCFA1F2FDC95C900419A24 /* GoalsView.swift */; };
 		9FBCFA242FDC962200419A24 /* ObjectiveCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCFA232FDC962200419A24 /* ObjectiveCard.swift */; };
-		9FBCFA262FDC967200419A24 /* CompletedObjectivePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCFA252FDC967200419A24 /* CompletedObjectivePopup.swift */; };
+		9FBCFA262FDC967200419A24 /* CompletedObjectivePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBCFA252FDC967200419A24 /* CompletedObjectivePopUp.swift */; };
 		9FDC4E6C2FD886A000C62F3C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDC4E6B2FD886A000C62F3C /* HomeView.swift */; };
 		9FE541D12FD890DD00675C89 /* OnboardingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE541CE2FD890DA00675C89 /* OnboardingFormView.swift */; };
 		A24780F0C17340C3B94B58FC /* FloatingYoutubePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABEDCD0E31149F98CF94ACA /* FloatingYoutubePlayer.swift */; };
@@ -186,7 +186,7 @@
 		9FBCFA162FDC758700419A24 /* AnnotationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationCard.swift; sourceTree = "<group>"; };
 		9FBCFA1F2FDC95C900419A24 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
 		9FBCFA232FDC962200419A24 /* ObjectiveCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveCard.swift; sourceTree = "<group>"; };
-		9FBCFA252FDC967200419A24 /* CompletedObjectivePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedObjectivePopup.swift; sourceTree = "<group>"; };
+		9FBCFA252FDC967200419A24 /* CompletedObjectivePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedObjectivePopUp.swift; sourceTree = "<group>"; };
 		9FDC4E6B2FD886A000C62F3C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = MusicJourney/Extensions/HomeView.swift; sourceTree = SOURCE_ROOT; };
 		9FE541CE2FD890DA00675C89 /* OnboardingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFormView.swift; sourceTree = "<group>"; };
 		A63E3467CB9047C497300CF5 /* AddGoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalsView.swift; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 			children = (
 				9F48C8EE2FDB1DA4006D50B2 /* GoalCardView.swift */,
 				9F48C8EC2FDB1D59006D50B2 /* ProgressView.swift */,
-				9FBCFA252FDC967200419A24 /* CompletedObjectivePopup.swift */,
+				9FBCFA252FDC967200419A24 /* CompletedObjectivePopUp.swift */,
 				9F403DBC2FE07D310039E5E4 /* ObjectiveWarning.swift */,
 			);
 			path = Components;
@@ -734,7 +734,7 @@
 				9F403DB42FE06EEB0039E5E4 /* UserProfileViewModel.swift in Sources */,
 				9FE541D12FD890DD00675C89 /* OnboardingFormView.swift in Sources */,
 				9F1003CB2FDB575800C7888E /* BPMAdjustButtonsView.swift in Sources */,
-				9FBCFA262FDC967200419A24 /* CompletedObjectivePopup.swift in Sources */,
+				9FBCFA262FDC967200419A24 /* CompletedObjectivePopUp.swift in Sources */,
 				23BB996F3C14482ABA9100B9 /* OnboardingDotsIndicator.swift in Sources */,
 				9F48C8F22FDB3465006D50B2 /* CreateObjectiveView.swift in Sources */,
 				19C00F8496DB405184CCADF9 /* CreateObjectiveViewModel.swift in Sources */,
@@ -929,7 +929,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicJourney/Preview Content\"";
-				DEVELOPMENT_TEAM = H62429N34K;
+				DEVELOPMENT_TEAM = R4YZ28MAHS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Precisamos do microfone para gravar sua sessão de prática.";
@@ -960,7 +960,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicJourney/Preview Content\"";
-				DEVELOPMENT_TEAM = H62429N34K;
+				DEVELOPMENT_TEAM = R4YZ28MAHS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Precisamos do microfone para gravar sua sessão de prática.";
