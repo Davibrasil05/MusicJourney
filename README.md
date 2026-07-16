@@ -1,55 +1,60 @@
-# ResumeAnalyzer
+# MusicJourney 🎵
 
-O **ResumeAnalyzer** é um aplicativo iOS inteligente construído com SwiftUI que utiliza o poder da Inteligência Artificial para ajudar os usuários a otimizar seus currículos e se preparar para entrevistas de emprego. O aplicativo oferece uma experiência fluida para avaliar um currículo de acordo com uma descrição de vaga específica e realizar simulações de entrevistas guiadas por IA.
+O **MusicJourney** é um aplicativo iOS inovador desenvolvido em SwiftUI, criado para auxiliar músicos de todos os níveis a organizar, acompanhar e aprimorar sua rotina de estudos. Com recursos avançados que vão desde a inteligência artificial para criação de metas até ferramentas práticas para o dia a dia, o app é o companheiro ideal para a sua jornada musical.
 
-## 🚀 Funcionalidades
+## 🚀 Funcionalidades Principais
 
-- **Análise de Currículo com IA**: Compare o seu currículo com qualquer descrição de vaga. O aplicativo avalia a compatibilidade e retorna uma nota geral, pontos fortes e sugestões de melhoria acionáveis adaptadas ao seu nível de senioridade.
-- **Simulação de Entrevistas**: Prepare-se para sua próxima grande oportunidade com entrevistas simuladas, utilizando os recursos nativos de Reconhecimento de Fala (Speech Recognition) do iOS.
-- **Geração e Leitura de PDF**: Importe seus currículos em PDF existentes para extrair o texto (usando o Vision) e gere novos currículos em PDF formatados de forma elegante diretamente do aplicativo.
-- **Onboarding & Gerenciamento de Perfil**: Configure seu perfil profissional (cargo atual, senioridade e objetivos principais) para que a IA possa fornecer um feedback mais personalizado.
-- **Persistência de Dados**: Utiliza o moderno framework **SwiftData** da Apple para armazenar seu perfil, análises de currículos salvas e o histórico de entrevistas localmente e de forma segura no seu dispositivo.
+- **Metas Inteligentes com IA (Gemini)**: Crie objetivos de prática personalizados e categorizados (Técnica, Repertório, Teoria) com a ajuda da inteligência artificial do Google Gemini.
+- **Ferramentas de Prática Integradas**:
+  - **Metrônomo**: Mantenha o tempo perfeito durante seus estudos.
+  - **Reprodutor do YouTube**: Assista a videoaulas e tutoriais diretamente no aplicativo (suporte a player flutuante).
+  - **Gravador de Áudio**: Grave suas sessões de prática para autoavaliação e acompanhamento de progresso.
+- **Gerenciamento de Sessões e Objetivos**: Acompanhe o histórico de suas sessões de estudo, faça anotações (Annotations) e avalie seu desempenho.
+- **Lembretes e Notificações**: Configure notificações para manter sua rotina de prática consistente.
+- **Persistência de Dados (Core Data)**: Todo o seu progresso, gravações, histórico, metas e perfil de usuário são salvos localmente e de forma segura no dispositivo.
 
 ## 🛠 Tech Stack & Arquitetura
 
 - **Linguagem**: Swift
 - **Framework de UI**: SwiftUI
-- **Banco de Dados Local**: SwiftData (ModelContainer & @Query)
-- **Integração de IA**: API da OpenAI (utilizando o modelo `gpt-4o-mini` com suporte ao Strict Structured Outputs)
-- **Frameworks Nativos**: 
-  - `Vision` & `PDFKit` para leitura e geração de PDFs
-  - `Speech` & `AVFoundation` para reconhecimento de fala durante as entrevistas simuladas
+- **Banco de Dados Local**: Core Data
+- **Integração de IA**: API do Google Gemini (para análise e sugestões)
+- **Recursos e Frameworks Nativos**:
+  - `AVFoundation` para o metrônomo e gravação/reprodução de áudio
+  - `UserNotifications` para os lembretes de prática
 
 ## 📂 Estrutura do Projeto
 
-- **Model**: Contém todas as definições de dados, incluindo os modelos de esquema do SwiftData (`UserProfile`, `SavedAnalysis`, `SavedInterview`, `Curriculum`, etc.).
-- **View**: Telas em SwiftUI organizadas por funcionalidade (`Home`, `Resume`, `Interview`, `OnBoarding`, `Job`, etc.).
-- **Services**: Lógica de negócios e gerenciadores (`AiManager`, `InterviewManager`, `PDFGeneratorService`, `SpeechRecognizerManager`, `VisionService`, etc.).
-- **Extensions**: Extensões úteis para Swift e SwiftUI (ex: extensões de manipulação de strings em `CleanForAi`).
-- **Templates**: Contém modelos (templates) utilizados na geração de PDFs e análise de dados.
+A arquitetura do projeto foi estruturada para manter o código limpo, escalável e de fácil manutenção:
+
+- **Model**: Estruturas de dados (DTOs) e definições do Core Data.
+- **View**: Telas organizadas por contexto e funcionalidade (`Home`, `Goal`, `Metronome`, `Practice`, `Profile`, `History`, `Onboarding`).
+- **Repositories**: Abstração de acesso a dados persistidos no Core Data (`UserRepository`, `ObjectiveRepository`, `SessionRepository`, `RecordingRepository`, etc.).
+- **Services**: Lógica de negócios especializada (`GeminiService`, `MetroronomeService`, `PracticeNotificationService`).
+- **App**: Ponto de entrada do aplicativo (`MusicJourneyApp.swift`).
 
 ## ⚙️ Como Começar
 
 ### Pré-requisitos
 
-- **Xcode**: Versão 15.0 ou superior (necessário para suportar o SwiftData).
+- **Xcode**: Versão 15.0 ou superior.
 - **iOS**: iOS 17.0 ou superior.
-- **Chave de API da OpenAI**: Necessária para que os recursos de inteligência artificial funcionem.
+- **Chave de API do Gemini**: Necessária para o funcionamento do recurso de geração de metas por IA.
 
 ### Instalação
 
 1. **Clone o repositório** (ou baixe os arquivos do projeto):
    ```bash
-   git clone https://github.com/seu-usuario/ResumeAnalyzer.git
+   git clone https://github.com/seu-usuario/MusicJourney.git
    ```
 2. **Abra o projeto** no Xcode:
    ```bash
-   cd ResumeAnalyzer
-   open ResumeAnalyzer.xcodeproj
+   cd MusicJourney
+   open MusicJourney.xcodeproj
    ```
 3. **Configure as Chaves de API**:
    - Localize o arquivo `Secrets.swift` no projeto.
-   - Insira sua chave da API da OpenAI na variável `apiKey`.
+   - Insira sua chave da API do Gemini.
    *(Atenção: Certifique-se de nunca commitar suas chaves de API em um controle de versão público!)*
 
 4. **Compile e Execute**:
@@ -58,6 +63,6 @@ O **ResumeAnalyzer** é um aplicativo iOS inteligente construído com SwiftUI qu
 
 ## 🔒 Privacidade & Permissões
 
-O ResumeAnalyzer requer acesso a alguns recursos do dispositivo para fornecer todas as suas funcionalidades. O aplicativo solicita as seguintes permissões (já configuradas no `Info.plist`):
-- **Microfone & Reconhecimento de Fala**: Necessários para a funcionalidade interativa de simulação de entrevista.
-- **Arquivos/Fotos**: Necessários para a importação de currículos em formato PDF.
+O MusicJourney solicita algumas permissões para oferecer uma experiência completa:
+- **Microfone**: Necessário para a funcionalidade de gravação de áudio das sessões de prática.
+- **Notificações**: Necessário para enviar lembretes programados de estudo.
