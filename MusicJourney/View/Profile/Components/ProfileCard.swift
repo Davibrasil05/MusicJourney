@@ -14,7 +14,7 @@ struct ProfileSectionHeader: View {
         HStack {
             Text(title)
                 .font(.title2.bold())
-                .foregroundColor(.black)
+                .foregroundColor(Color("textDark"))
             Spacer()
         }
     }

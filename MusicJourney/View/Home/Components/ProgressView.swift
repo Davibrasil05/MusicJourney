@@ -25,3 +25,24 @@ struct LevelProgressBar: View {
         .frame(height: 27)
     }
 }
+
+struct LevelProgressBar_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            LevelProgressBar(percentage: 0.45)
+                .padding()
+                .background(Color("headerGreen"))
+                .previewDisplayName("45%")
+
+            LevelProgressBar(percentage: 0.0)
+                .padding()
+                .background(Color("headerGreen"))
+                .previewDisplayName("0%")
+
+            LevelProgressBar(percentage: 1.0)
+                .padding()
+                .background(Color("headerGreen"))
+                .previewDisplayName("100%")
+        }
+    }
+}
