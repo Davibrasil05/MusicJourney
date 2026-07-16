@@ -19,13 +19,13 @@
 		5F3F5ED144344B5FACD09D1C /* GoalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C815E018F8A34C00A12E6B5A /* GoalDTO.swift */; };
 		7578F69B620143EBBF7B7779 /* OnboardingGenreStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBEFFC857384E57ADC3D34A /* OnboardingGenreStep.swift */; };
 		8127CC6A52754C09A4A7C232 /* FloatingPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AE963BA21490D9313B618 /* FloatingPlayerViewModel.swift */; };
+		98D2E8542FEB187600EBE329 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D2E8532FEB187600EBE329 /* Secrets.swift */; };
 		9F1003C12FDB564200C7888E /* MetronomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C02FDB564200C7888E /* MetronomeHeader.swift */; };
 		9F1003C32FDB56B900C7888E /* DisplayBPM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C22FDB56B900C7888E /* DisplayBPM.swift */; };
 		9F1003C52FDB56D000C7888E /* DisplayCompass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C42FDB56D000C7888E /* DisplayCompass.swift */; };
 		9F1003C72FDB56F800C7888E /* BPMControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C62FDB56F800C7888E /* BPMControl.swift */; };
 		9F1003C92FDB574000C7888E /* BeatIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003C82FDB574000C7888E /* BeatIndicatorView.swift */; };
 		9F1003CB2FDB575800C7888E /* BPMAdjustButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1003CA2FDB575800C7888E /* BPMAdjustButtonsView.swift */; };
-		9F300B5E2FDB508E0010B70B /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F300B5D2FDB508E0010B70B /* Secrets.swift */; };
 		9F300B612FDB581B0010B70B /* AddNoteModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F300B602FDB581A0010B70B /* AddNoteModalView.swift */; };
 		9F300B632FDB5AAC0010B70B /* RecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F300B622FDB5AAB0010B70B /* RecordsView.swift */; };
 		9F300B652FDB647B0010B70B /* AddAudioModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F300B642FDB647B0010B70B /* AddAudioModalView.swift */; };
@@ -125,13 +125,13 @@
 		5938EB69AE644610BB6B42DF /* GeminiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiService.swift; sourceTree = "<group>"; };
 		59CCD396F3CE4496844AC454 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		81B17747982C48B586210059 /* GoalSuggestionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSuggestionCard.swift; sourceTree = "<group>"; };
+		98D2E8532FEB187600EBE329 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		9F1003C02FDB564200C7888E /* MetronomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeHeader.swift; sourceTree = "<group>"; };
 		9F1003C22FDB56B900C7888E /* DisplayBPM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayBPM.swift; sourceTree = "<group>"; };
 		9F1003C42FDB56D000C7888E /* DisplayCompass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCompass.swift; sourceTree = "<group>"; };
 		9F1003C62FDB56F800C7888E /* BPMControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMControl.swift; sourceTree = "<group>"; };
 		9F1003C82FDB574000C7888E /* BeatIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatIndicatorView.swift; sourceTree = "<group>"; };
 		9F1003CA2FDB575800C7888E /* BPMAdjustButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMAdjustButtonsView.swift; sourceTree = "<group>"; };
-		9F300B5D2FDB508E0010B70B /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		9F300B602FDB581A0010B70B /* AddNoteModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteModalView.swift; sourceTree = "<group>"; };
 		9F300B622FDB5AAB0010B70B /* RecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsView.swift; sourceTree = "<group>"; };
 		9F300B642FDB647B0010B70B /* AddAudioModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAudioModalView.swift; sourceTree = "<group>"; };
@@ -357,7 +357,7 @@
 		9F667CF12FD3400D0068DE50 /* MusicJourney */ = {
 			isa = PBXGroup;
 			children = (
-				9F300B5D2FDB508E0010B70B /* Secrets.swift */,
+				98D2E8532FEB187600EBE329 /* Secrets.swift */,
 				9FB83B212FD88225007A06E0 /* App */,
 				9FB83B202FD8821E007A06E0 /* Extensions */,
 				9FB83B1F2FD88211007A06E0 /* Services */,
@@ -702,7 +702,6 @@
 				9F1003C72FDB56F800C7888E /* BPMControl.swift in Sources */,
 				108919B659194815B6441888 /* GeminiService.swift in Sources */,
 				5F3F5ED144344B5FACD09D1C /* GoalDTO.swift in Sources */,
-				9F300B5E2FDB508E0010B70B /* Secrets.swift in Sources */,
 				9F1003C52FDB56D000C7888E /* DisplayCompass.swift in Sources */,
 				9F403DB92FE06FC20039E5E4 /* ProfileRows.swift in Sources */,
 				9F1003C32FDB56B900C7888E /* DisplayBPM.swift in Sources */,
@@ -764,6 +763,7 @@
 				9F300B612FDB581B0010B70B /* AddNoteModalView.swift in Sources */,
 				CC1B3C4D5E6F7A8B9C0D1E2F /* OnboardingInstrumentCard.swift in Sources */,
 				DD1B3C4D5E6F7A8B9C0D1E2F /* OnboardingGenreChip.swift in Sources */,
+				98D2E8542FEB187600EBE329 /* Secrets.swift in Sources */,
 				9F880EE62FD9C5A600D9E169 /* AudioRecorderService.swift in Sources */,
 				EE1B3C4D5E6F7A8B9C0D1E2F /* OnboardingPrimaryButton.swift in Sources */,
 				9F664BAF2FD8A6C700DEA9D7 /* MetroronomeService.swift in Sources */,
@@ -929,7 +929,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicJourney/Preview Content\"";
-				DEVELOPMENT_TEAM = R4YZ28MAHS;
+				DEVELOPMENT_TEAM = 8YM89TM9L3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Precisamos do microfone para gravar sua sessão de prática.";
@@ -960,7 +960,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicJourney/Preview Content\"";
-				DEVELOPMENT_TEAM = R4YZ28MAHS;
+				DEVELOPMENT_TEAM = 8YM89TM9L3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Precisamos do microfone para gravar sua sessão de prática.";
